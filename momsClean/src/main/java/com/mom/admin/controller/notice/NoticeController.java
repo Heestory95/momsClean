@@ -1,4 +1,4 @@
-package com.mom.admin.controller.notice;
+/*package com.mom.admin.controller.notice;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -78,3 +78,4 @@ public class NoticeController {
 	}
 	
 }
+*/

@@ -1,4 +1,4 @@
-package com.mom.admin.service.notice;
+/*package com.mom.admin.service.notice;
 
 import java.util.List;
 
@@ -42,4 +42,4 @@ public class NoticeServiceImpl implements NoticeService {
 			mapper.delete(noticeNo);
 		}
 
-	}
+	}*/

@@ -1,4 +1,4 @@
-package com.mom.admin.service.notice;
+/*package com.mom.admin.service.notice;
 
 import java.util.List;
 
@@ -15,4 +15,4 @@ public interface NoticeService {
 	public void modify(Notice notice) throws Exception;
 	// 공지사항 삭제 처리
 	public void remove(Integer noticeNo) throws Exception;	
-}
+}*/
