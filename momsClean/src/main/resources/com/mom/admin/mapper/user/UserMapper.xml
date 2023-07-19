@@ -4,14 +4,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mom.admin.mapper.user.UserMapper">
 
-	<!-- 목록 조회 -->
+	<!-- 회원리스트 조회 -->
 	<select id="list" resultType="User">
 		<![CDATA[
 		SELECT user_no, user_id, user_name, user_phone, user_email, email_auth, reg_date, user_division
-		FROM (SELECT user_no, user_id, user_name, user_phone, user_email, email_auth, reg_date, user_division FROM user_tbl)
-		WHERE user_no > 0
+		FROM (SELECT user_no, user_id, user_name, user_phone, user_email, email_auth, reg_date, user_division, rownum as rnum FROM user_tbl)
+		WHERE user_division = '유지'
+		AND rnum between #{sizePerPage}*#{page}-9 and #{sizePerPage}*#{page}
 		ORDER BY user_no ASC
 		]]>
+	</select>
+	
+	<!-- 회원 상세조회 -->
+	<select id="read" resultType="User">
+		SELECT user_no, user_id, user_name, user_phone, user_email, reg_date, user_division
+		FROM user_tbl
+		WHERE user_no = #{userNo}
 	</select>
 	
 	<!-- 회원목록 전체 건수 조회 -->
@@ -22,4 +30,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			WHERE user_no > 0
 		]]>
 	</select>
+	
+	<!-- 회원 탈퇴처리 -->
+	<update id="update">
+		UPDATE user_tbl
+		SET user_division = '탈퇴'
+		WHERE user_no = #{userNo} AND user_division = '유지'
+	</update>
 </mapper>

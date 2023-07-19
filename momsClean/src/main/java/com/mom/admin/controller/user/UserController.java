@@ -1,15 +1,19 @@
 package com.mom.admin.controller.user;
 
-import org.mybatis.spring.annotation.MapperScan;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.mom.admin.domain.PageRequest;
 import com.mom.admin.domain.Pagination;
+import com.mom.admin.domain.User;
 import com.mom.admin.service.user.UserService;
 
 @Controller
@@ -31,5 +35,24 @@ public class UserController {
 		pagination.setPageRequest(pageRequest);
 		pagination.setTotalCount(service.count());
 		model.addAttribute("pagination", pagination);
+	}
+	
+	
+	// 회원 탈퇴처리 페이지
+	@GetMapping("/modify")
+	public String modifyForm(int userNo, Model model) throws Exception {
+		User user = service.read(userNo);
+		model.addAttribute(user);
+		return "admin/user/modify";
+	}
+	
+	// 회원 탈퇴 처리
+	@PostMapping("/modify")
+	public String modify(User user, RedirectAttributes rttr) throws Exception {
+		service.modify(user);
+		
+		rttr.addFlashAttribute("msg", "SUCCESS");
+		
+		return "redirect:/admin/user/list";
 	}
 }

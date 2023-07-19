@@ -4,9 +4,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>수정 완료</title>
 </head>
 <body>
-
+	<div>
+		<h2>${msg}</h2>
+		
+		<a href="list">돌아가기</a>
+	</div>
 </body>
 </html>

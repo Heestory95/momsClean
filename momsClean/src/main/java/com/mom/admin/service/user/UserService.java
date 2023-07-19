@@ -7,9 +7,15 @@ import com.mom.admin.domain.User;
 
 public interface UserService {
 
-	// 페이징 요청 정보를 매개 변수로 받아 페이징 처리를 한 회원목록 반환
+	// 페이징 요청 정보를 매개 변수로 받아 페이징 처리를 한 회원리스트 반환
 	public List<User> list(PageRequest pageRequest) throws Exception;
 
-	// 회원목록 전체 건수 반환
+	// 회원리스트 전체 건수 반환
 	public int count() throws Exception;
+	
+	// 회원 탈퇴처리 페이지
+	public User read(int userNo) throws Exception;
+	
+	// 탈퇴 처리
+	public void modify(User user) throws Exception;
 }
