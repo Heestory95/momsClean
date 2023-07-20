@@ -6,7 +6,7 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <h2 align="center">
-	<spring:message code="user.admin.header.list" />
+	<spring:message code="user.admin.header.withdraw" />
 </h2>
 <form:form modelAttribute="user">
 	<table border="1" align="center">
@@ -28,19 +28,19 @@
 			<th align="center" width="70"><spring:message
 					code="user.admin.userDivision" /></th>
 			<th align="center" width="120"><spring:message
-					code="user.admin.reserveDate" /></th>
+					code="user.admin.withdrawDate" /></th>
 			<th align="center" width="60"><spring:message
 					code="user.admin.treatment" /></th>
 		</tr>
 		<c:choose>
-			<c:when test="${empty list}">
+			<c:when test="${empty withdraw}">
 				<tr>
 					<td colspan="10"><spring:message code="common.user.listEmpty"></spring:message>
 					</td>
 				</tr>
 			</c:when>
 			<c:otherwise>
-				<c:forEach items="${list}" var="user">
+				<c:forEach items="${withdraw}" var="user">
 					<tr>
 						<td align="center">${user.userNo}</td>
 						<td align="center">${user.userId}</td>
@@ -51,8 +51,9 @@
 						<td align="center"><fmt:formatDate value="${user.regDate}"
 								pattern="yyyy-MM-dd" /></td>
 						<td align="center">${user.userDivision}</td>
-						<td align="center">${reserve.reserveDate}</td>
-						<td align="center"><a href='/admin/user/modify?userNo=${user.userNo}'>탈퇴</a></td>
+						<td align="center"><fmt:formatDate value="${user.withdrawDate}"
+								pattern="yyyy-MM-dd" /></td>
+						<td align="center"><a href='/admin/user/withdraw/modify?userNo=${user.userNo}'>복구</a></td>
 					</tr>
 				</c:forEach>
 			</c:otherwise>
@@ -67,7 +68,7 @@
 
 	<c:forEach begin="${pagination.startPage}" end="${pagination.endPage}"
 		var="idx">
-		<a href="/admin/user/list${pagination.makeQuery(idx)}">${idx}</a>
+		<a href="/admin/user/withdraw/list${pagination.makeQuery(idx)}">${idx}</a>
 	</c:forEach>
 
 	<c:if test="${pagination.next && pagination.endPage > 0}">

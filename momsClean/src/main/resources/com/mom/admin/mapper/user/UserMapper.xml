@@ -15,6 +15,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		]]>
 	</select>
 	
+	<!-- 탈퇴회원리스트 조회 -->
+	<select id="withdraw" resultType="User">
+		<![CDATA[
+		SELECT user_no, user_id, user_name, user_phone, user_email, email_auth, reg_date, user_division, withdraw_date
+		FROM (SELECT user_no, user_id, user_name, user_phone, user_email, email_auth, reg_date, user_division, withdraw_date, rownum as rnum FROM user_tbl)
+		WHERE user_division = '탈퇴'
+		AND rnum between #{sizePerPage}*#{page}-9 and #{sizePerPage}*#{page}
+		ORDER BY user_no ASC
+		]]>
+	</select>
+	
 	<!-- 회원 상세조회 -->
 	<select id="read" resultType="User">
 		SELECT user_no, user_id, user_name, user_phone, user_email, reg_date, user_division
@@ -34,7 +45,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 회원 탈퇴처리 -->
 	<update id="update">
 		UPDATE user_tbl
-		SET user_division = '탈퇴'
+		SET user_division = '탈퇴', withdraw_date = sysdate
 		WHERE user_no = #{userNo} AND user_division = '유지'
+	</update>
+	
+	<!-- 회원 복구처리 -->
+	<update id="restoreUpdate">
+		UPDATE user_tbl
+		SET user_division = '유지', withdraw_date = null
+		WHERE user_no = #{userNo} AND user_division = '탈퇴'
 	</update>
 </mapper>
