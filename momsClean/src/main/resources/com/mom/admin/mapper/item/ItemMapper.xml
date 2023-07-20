@@ -50,7 +50,7 @@
 			item_price
 		from item
 		where item_division = '상품'
-		order by i_no desc
+		order by i_no ASC
 		]]>
 	</select>
 	
@@ -62,7 +62,7 @@
 			item_price
 		from item
 		where item_division = '옵션'
-		order by i_no desc
+		order by i_no ASC
 		]]>
 	</select>
 	

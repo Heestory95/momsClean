@@ -3,6 +3,7 @@
 PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+
 	<!-- mapUnderscore ToCamelCase 프로퍼티 값을 true로 지정한다. -->
   	<settings>
   		<setting name="mapUnderscoreToCamelCase" value="true"/>

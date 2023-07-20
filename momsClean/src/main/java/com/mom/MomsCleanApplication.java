@@ -5,7 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-@MapperScan(basePackages = "com.mom.admin.mapper.user")
+@MapperScan(basePackages = "com.mom.admin.mapper.*")
 public class MomsCleanApplication {
 
 	public static void main(String[] args) {

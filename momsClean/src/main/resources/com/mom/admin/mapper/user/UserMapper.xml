@@ -62,7 +62,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<include refid="search" />
 		
 		<![CDATA[
-		ORDER BY user_no ASC
+		ORDER BY withdraw_date DESC
 		]]>
 	</select>
 	
