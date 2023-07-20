@@ -75,3 +75,10 @@
 		<a href="${pagination.endPage + 1}">&raquo;</a>
 	</c:if>
 </div>
+<!-- 검색 폼을 만든다. -->
+<form:form modelAttribute="pgrq" method="get" action="list${pgrq.toUriStringByPage(1)}" align="center">
+	<form:select path="searchType" items="${searchTypeCodeValueList}" itemValue="value" itemLabel="label" />
+	
+	<form:input path="keyword"/>
+	<button id='searchBtn'><spring:message code="action.search" /></button>
+</form:form>

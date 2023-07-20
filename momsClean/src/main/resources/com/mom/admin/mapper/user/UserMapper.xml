@@ -4,6 +4,32 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mom.admin.mapper.user.UserMapper">
 
+	<!-- 검색 조건을 나타내는 쿼리 조각 -->
+	<sql id="search">
+		<if test="searchType != null">
+			<if test="searchType == 'ca'.toString()">
+				AND (user_no LIKE CONCAT('%', CONCAT(#{keyword}, '%'))
+				OR user_id LIKE CONCAT('%', CONCAT(#{keyword}, '%'))
+				OR user_name LIKE CONCAT('%', CONCAT(#{keyword}, '%')))
+			</if>
+			<if test="searchType == 'no'.toString()">
+				AND user_no LIKE CONCAT('%', CONCAT(#{keyword}, '%'))
+			</if>
+			<if test="searchType == 'id'.toString()">
+				AND user_id LIKE CONCAT('%', CONCAT(#{keyword}, '%'))
+			</if>
+			<if test="searchType == 'na'.toString()">
+				AND user_name LIKE CONCAT('%', CONCAT(#{keyword}, '%'))
+			</if>
+		</if>
+	</sql>
+	<sql id="total_list">
+		<if test="searchType == null">
+			AND rnum BETWEEN #{sizePerPage} * #{page} - 9
+			AND #{sizePerPage} * #{page}
+		</if>
+	</sql>
+
 	<!-- 회원리스트 조회 -->
 	<select id="list" resultType="User">
 		<![CDATA[
@@ -11,9 +37,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		FROM (SELECT user_no, user_id, user_name, user_phone, user_email, email_auth, reg_date, user_division, rownum as rnum FROM user_tbl)
 		WHERE user_division = '유지'
 		AND rnum between #{sizePerPage}*#{page}-9 and #{sizePerPage}*#{page}
+		]]>
+		
+		<include refid="total_list" />
+		<include refid="search" />
+		
+		<![CDATA[
 		ORDER BY user_no ASC
 		]]>
 	</select>
+	
+	
 	
 	<!-- 탈퇴회원리스트 조회 -->
 	<select id="withdraw" resultType="User">
@@ -22,6 +56,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		FROM (SELECT user_no, user_id, user_name, user_phone, user_email, email_auth, reg_date, user_division, withdraw_date, rownum as rnum FROM user_tbl)
 		WHERE user_division = '탈퇴'
 		AND rnum between #{sizePerPage}*#{page}-9 and #{sizePerPage}*#{page}
+		]]>
+		
+		<include refid="total_list" />
+		<include refid="search" />
+		
+		<![CDATA[
 		ORDER BY user_no ASC
 		]]>
 	</select>
@@ -40,6 +80,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			FROM user_tbl
 			WHERE user_no > 0
 		]]>
+		<include refid="search" />
 	</select>
 	
 	<!-- 회원 탈퇴처리 -->

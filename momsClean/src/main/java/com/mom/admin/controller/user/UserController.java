@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.mom.admin.common.CodeLabelValue;
 import com.mom.admin.domain.PageRequest;
 import com.mom.admin.domain.Pagination;
 import com.mom.admin.domain.User;
@@ -22,77 +23,96 @@ import com.mom.admin.service.user.UserService;
 public class UserController {
 	@Autowired
 	private UserService service;
-	
+
 	// 회원 리스트 페이지
 	// 페이징 요청 정보를 매개 변수로 받고 다시 뷰에 전달
 	@GetMapping("/list")
 	public void list(@ModelAttribute("pgrq") PageRequest pageRequest, Model model) throws Exception {
 		// 뷰에 페이징 처리를 한 회원리스트를 전달한다.
 		model.addAttribute("list", service.list(pageRequest));
-		
+
 		// 페이징 네비게이션 정보를 뷰에 전달한다.
 		Pagination pagination = new Pagination();
 		pagination.setPageRequest(pageRequest);
-		
+
 		// 페이지 네비게이션 정보에 검색 처리된 회원 건수를 저장한다.
 		pagination.setTotalCount(service.count());
 		model.addAttribute("pagination", pagination);
-		
+
+		// 검색 유형의 코드명과 코드값을 정의한다.
+		List<CodeLabelValue> searchTypeCodeValueList = new ArrayList<CodeLabelValue>();
+		searchTypeCodeValueList.add(new CodeLabelValue("ca", "카테고리"));
+		searchTypeCodeValueList.add(new CodeLabelValue("no", "회원번호"));
+		searchTypeCodeValueList.add(new CodeLabelValue("id", "아이디"));
+		searchTypeCodeValueList.add(new CodeLabelValue("na", "이름"));
+
+		model.addAttribute("searchTypeCodeValueList", searchTypeCodeValueList);
 	}
-	
+
 	// 회원 탈퇴처리 페이지
 	@GetMapping("/modify")
-	public String modifyForm(int userNo, @ModelAttribute("pgrq") PageRequest pageRequest, Model model) throws Exception {
+	public String modifyForm(int userNo, @ModelAttribute("pgrq") PageRequest pageRequest, Model model)
+			throws Exception {
 		User user = service.read(userNo);
 		model.addAttribute(user);
 		return "admin/user/modify";
 	}
-	
+
 	// 회원 탈퇴 처리
 	@PostMapping("/modify")
 	public String modify(User user, PageRequest pageRequest, RedirectAttributes rttr) throws Exception {
 		service.modify(user);
-		
+
 		// RedirectAttributes 객체에 일회성 데이터를 지정하여 전달한다.
 		rttr.addAttribute("page", pageRequest.getPage());
 		rttr.addAttribute("sizePerPage", pageRequest.getSizePerPage());
 		rttr.addFlashAttribute("msg", "SUCCESS");
-		
+
 		return "redirect:/admin/user/list";
 	}
-	
-	
+
 	@GetMapping("/withdraw/list")
 	public void withdraw(@ModelAttribute("pgrq") PageRequest pageRequest, Model model) throws Exception {
 		// 뷰에 페이징 처리를 한 게시글 목록을 전달한다.
-				model.addAttribute("withdraw", service.withdraw(pageRequest));
-				
-				// 페이징 네비게이션 정보를 뷰에 전달한다.
-				Pagination pagination = new Pagination();
-				
-				pagination.setPageRequest(pageRequest);
-				pagination.setTotalCount(service.count());
-				model.addAttribute("pagination", pagination);
+		model.addAttribute("withdraw", service.withdraw(pageRequest));
+
+		// 페이징 네비게이션 정보를 뷰에 전달한다.
+		Pagination pagination = new Pagination();
+		pagination.setPageRequest(pageRequest);
+
+		// 페이지 네비게이션 정보에 검색 처리된 회원 건수를 저장한다.
+		pagination.setTotalCount(service.count());
+		model.addAttribute("pagination", pagination);
+
+		// 검색 유형의 코드명과 코드값을 정의한다.
+		List<CodeLabelValue> searchTypeCodeValueList = new ArrayList<CodeLabelValue>();
+		searchTypeCodeValueList.add(new CodeLabelValue("ca", "카테고리"));
+		searchTypeCodeValueList.add(new CodeLabelValue("no", "회원번호"));
+		searchTypeCodeValueList.add(new CodeLabelValue("id", "아이디"));
+		searchTypeCodeValueList.add(new CodeLabelValue("na", "이름"));
+
+		model.addAttribute("searchTypeCodeValueList", searchTypeCodeValueList);
 	}
-	
+
 	// 회원 복구처리 페이지
 	@GetMapping("/withdraw/modify")
-	public String withdrawModifyForm(int userNo, @ModelAttribute("pgrq") PageRequest pageRequest, Model model) throws Exception {
+	public String withdrawModifyForm(int userNo, @ModelAttribute("pgrq") PageRequest pageRequest, Model model)
+			throws Exception {
 		User user = service.read(userNo);
 		model.addAttribute(user);
 		return "admin/user/withdraw/modify";
 	}
-	
+
 	// 회원 탈퇴 처리
 	@PostMapping("/withdraw/modify")
 	public String withdrawModify(User user, PageRequest pageRequest, RedirectAttributes rttr) throws Exception {
 		service.restore(user);
-			
+
 		// RedirectAttributes 객체에 일회성 데이터를 지정하여 전달한다.
 		rttr.addAttribute("page", pageRequest.getPage());
 		rttr.addAttribute("sizePerPage", pageRequest.getSizePerPage());
 		rttr.addFlashAttribute("msg", "SUCCESS");
-			
+
 		return "redirect:/admin/user/withdraw/list";
 	}
 }
