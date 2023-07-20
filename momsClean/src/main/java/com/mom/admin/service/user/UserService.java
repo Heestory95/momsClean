@@ -18,7 +18,7 @@ public interface UserService {
 	// 회원리스트 전체 건수 반환
 	public int count() throws Exception;
 	
-	// 회원 탈퇴처리 페이지
+	// 회원 탈퇴, 복구 페이지
 	public User read(int userNo) throws Exception;
 	
 	// 회원 탈퇴처리

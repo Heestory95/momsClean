@@ -32,7 +32,7 @@ public class UserServiceImpl implements UserService {
 		return mapper.count();
 	}
 	
-	// 회원 탈퇴처리, 복구처리 페이지
+	// 회원 탈퇴, 복구 페이지
 	@Override
 	public User read(int userNo) throws Exception {
 		return mapper.read(userNo);

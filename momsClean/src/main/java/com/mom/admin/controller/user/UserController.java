@@ -103,7 +103,7 @@ public class UserController {
 		return "admin/user/withdraw/modify";
 	}
 
-	// 회원 탈퇴 처리
+	// 회원 복구 처리
 	@PostMapping("/withdraw/modify")
 	public String withdrawModify(User user, PageRequest pageRequest, RedirectAttributes rttr) throws Exception {
 		service.restore(user);
