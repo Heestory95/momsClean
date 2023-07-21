@@ -28,6 +28,14 @@
 			<td><form:input path="itemPrice" readonly="true" /></td>
 			<td><font color="red"><form:errors path="itemPrice" /></font></td>
 		</tr>
+		<tr>
+			<td><spring:message code="item.img"/></td>
+			<td><img src="picture?itemNo=${item.itemNo}" width="210"></td>
+		</tr>
+		<tr>
+			<td><spring:message code="item.img.thumb"/></td>
+			<td><img src="thumb?itemNo=${item.itemNo}" width="210"></td>
+		</tr>
 	</table>
 </form:form>
 <div>

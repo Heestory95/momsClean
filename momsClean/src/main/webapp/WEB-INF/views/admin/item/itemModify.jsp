@@ -28,6 +28,22 @@
 			<td><form:input path="itemPrice" />원</td>
 			<td><font color="red"><form:errors path="itemPrice" /></font></td>
 		</tr>
+		<tr>
+			<td><spring:message code="item.img"/></td>
+			<td><img src="picture?itemNo=${item.itemNo}" width="210"></td>
+		</tr>
+		<tr>
+			<td><spring:message code="item.img.thumb"/></td>
+			<td><img src="thumb?itemNo=${item.itemNo}" width="210"></td>
+		</tr>
+		<tr>
+			<td><spring:message code="item.imgFile"/></td>
+			<td><input type="file" name="picture"/></td>
+		</tr>
+		<tr>
+			<td><spring:message code="item.img.thumbFile"/></td>
+			<td><input type="file" name="thumb"/></td>
+		</tr>
 	</table>
 </form:form>
 

@@ -34,4 +34,9 @@ public interface ItemMapper {
 	public List<Item> list2() throws Exception;
 	
 	public Integer getINo(String itemName) throws Exception;
+	
+	// 원본 이미지 표시
+	public String getPicture(String itemNo) throws Exception;
+	// 썸네일 이미지 표시
+	public String getThumb(String itemNo) throws Exception;
 }

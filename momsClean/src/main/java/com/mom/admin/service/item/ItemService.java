@@ -36,4 +36,11 @@ public interface ItemService {
 	
 	public Integer getINo(String itemName) throws Exception;
 	
+	
+	
+	// 썸네일 이미지
+	public String getThumb(String itemNo) throws Exception;
+	// 원본 이미지
+	public String getPicture(String itemNo) throws Exception;
+	
 }

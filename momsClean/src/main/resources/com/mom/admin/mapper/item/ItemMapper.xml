@@ -11,7 +11,9 @@
 		item_no,
 		item_division,
 		item_name,
-		item_price
+		item_price,
+		item_img,
+		item_img_thumb
 		)
 		values
 		(
@@ -19,10 +21,12 @@
 		#{itemNo},
 		'상품',
 		#{itemName},
-		#{itemPrice}
+		#{itemPrice},
+		#{pictureUrl},
+		#{thumbUrl}
 		)
 	</insert>
-	
+
 	<!-- 옵션 등록 -->
 	<insert id="createOption">
 		insert into item
@@ -40,7 +44,7 @@
 		#{itemPrice}
 		)
 	</insert>
-	
+
 	<!-- 상품 조회 -->
 	<select id="list" resultType="Item">
 		<![CDATA[
@@ -50,10 +54,10 @@
 			item_price
 		from item
 		where item_division = '상품'
-		order by i_no ASC
+		order by i_no desc
 		]]>
 	</select>
-	
+
 	<!-- 옵션 조회 -->
 	<select id="list2" resultType="Item">
 		<![CDATA[
@@ -62,10 +66,10 @@
 			item_price
 		from item
 		where item_division = '옵션'
-		order by i_no ASC
+		order by i_no desc
 		]]>
 	</select>
-	
+
 	<select id="getINo" resultType="Integer">
 		<![CDATA[
 		select 
@@ -78,40 +82,55 @@
 	<!-- 수정 처리 -->
 	<update id="update">
 		update item
-		set 
+		set
 		item_no = #{itemNo},
 		item_name = #{itemName},
 		item_price = #{itemPrice}
-		where i_no  = #{i_no}
+		where
+		i_no = #{i_no}
 	</update>
-	
+
 	<!-- 옵션 처리 -->
 	<update id="updateOption">
 		update item
-		set 
+		set
 		item_name = #{itemName},
 		item_price = #{itemPrice}
-		where i_no  = #{i_no}
+		where i_no = #{i_no}
 	</update>
-	
-	<select id = "read" resultType="Item">
+
+	<select id="read" resultType="Item">
 		select item_No,
 		item_name,
 		item_price
 		from item
 		where item_no = #{itemNo}
 	</select>
-	
-		<select id = "optionRead" resultType="Item">
+
+	<select id="optionRead" resultType="Item">
 		select
 		item_name,
 		item_price
 		from item
 		where item_name = #{itemName}
 	</select>
-	
+
 	<delete id="delete">
 		delete from item
 		where item_name = #{itemName}
 	</delete>
+
+	<!-- 원본 이미지 -->
+	<select id="getPicture" resultType="String">
+		select item_img
+		from item
+		where item_no = #{itemNo}
+	</select>
+
+	<!-- 썸네일 이미지 -->
+	<select id="getThumb" resultType="String">
+		select item_img_thumb
+		from item
+		where item_no = #{itemNo}
+	</select>
 </mapper>
