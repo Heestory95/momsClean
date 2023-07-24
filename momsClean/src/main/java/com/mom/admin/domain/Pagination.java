@@ -36,6 +36,7 @@ public class Pagination {
 		prev = startPage == 1 ? false : true;
 		next = endPage * pageRequest.getSizePerPage() >= totalCount ? false:true;
 	}
+	
 	public int getTotalCount() {
 		return totalCount;
 	}

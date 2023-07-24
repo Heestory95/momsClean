@@ -9,8 +9,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<if test="searchType != null">
 			<if test="searchType == 'ca'.toString()">
 				AND (user_no LIKE CONCAT('%', CONCAT(#{keyword}, '%'))
-				OR user_id LIKE CONCAT('%', CONCAT(#{keyword}, '%'))
-				OR user_name LIKE CONCAT('%', CONCAT(#{keyword}, '%')))
+				OR
+				user_id LIKE CONCAT('%', CONCAT(#{keyword}, '%'))
+				OR user_name LIKE
+				CONCAT('%', CONCAT(#{keyword}, '%')))
 			</if>
 			<if test="searchType == 'no'.toString()">
 				AND user_no LIKE CONCAT('%', CONCAT(#{keyword}, '%'))
@@ -26,7 +28,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<sql id="total_list">
 		<if test="searchType == null">
 			AND rnum BETWEEN #{sizePerPage} * #{page} - 9
-			AND #{sizePerPage} * #{page}
+			AND
+			#{sizePerPage} * #{page}
 		</if>
 	</sql>
 
@@ -34,11 +37,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="list" resultType="User">
 		<![CDATA[
 		SELECT user_no, user_id, user_name, user_phone, user_email, email_auth, reg_date, user_division
-		FROM (SELECT user_no, user_id, user_name, user_phone, user_email, email_auth, reg_date, user_division, rownum as rnum FROM user_tbl)
-		WHERE user_division = '유지'
-		AND rnum between #{sizePerPage}*#{page}-9 and #{sizePerPage}*#{page}
+		FROM (SELECT user_no, user_id, user_name, user_phone, user_email, email_auth, reg_date, user_division, rownum as rnum FROM user_tbl WHERE user_division = '유지')
+		WHERE rnum between #{sizePerPage}*#{page}-9 and #{sizePerPage}*#{page}
+		AND user_division = '유지'
 		]]>
-		
+
 		<include refid="total_list" />
 		<include refid="search" />
 		
@@ -46,9 +49,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		ORDER BY user_no ASC
 		]]>
 	</select>
-	
-	
-	
+
+	<!-- 회원리스트 전체 건수 조회 -->
+	<select id="count" resultType="int">
+		<![CDATA[
+			SELECT count(user_no)
+			FROM user_tbl
+			WHERE user_no > 0
+		]]>
+
+		<include refid="search" />
+		
+		<![CDATA[
+			ORDER BY user_no ASC
+		]]>
+	</select>
+
 	<!-- 탈퇴회원리스트 조회 -->
 	<select id="withdraw" resultType="User">
 		<![CDATA[
@@ -57,7 +73,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE user_division = '탈퇴'
 		AND rnum between #{sizePerPage}*#{page}-9 and #{sizePerPage}*#{page}
 		]]>
-		
+
 		<include refid="total_list" />
 		<include refid="search" />
 		
@@ -65,35 +81,32 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		ORDER BY withdraw_date DESC
 		]]>
 	</select>
-	
+
 	<!-- 회원 상세조회 -->
 	<select id="read" resultType="User">
-		SELECT user_no, user_id, user_name, user_phone, user_email, reg_date, user_division
+		SELECT user_no, user_id, user_name,
+		user_phone, user_email, reg_date, user_division
 		FROM user_tbl
-		WHERE user_no = #{userNo}
+		WHERE
+		user_no = #{userNo}
 	</select>
+
 	
-	<!-- 회원목록 전체 건수 조회 -->
-	<select id="count" resultType="int">
-		<![CDATA[
-			SELECT count(user_no)
-			FROM user_tbl
-			WHERE user_no > 0
-		]]>
-		<include refid="search" />
-	</select>
-	
+
 	<!-- 회원 탈퇴처리 -->
 	<update id="update">
 		UPDATE user_tbl
-		SET user_division = '탈퇴', withdraw_date = sysdate
-		WHERE user_no = #{userNo} AND user_division = '유지'
+		SET user_division = '탈퇴',
+		withdraw_date = sysdate
+		WHERE user_no = #{userNo} AND user_division =
+		'유지'
 	</update>
-	
+
 	<!-- 회원 복구처리 -->
 	<update id="restoreUpdate">
 		UPDATE user_tbl
-		SET user_division = '유지', withdraw_date = null
+		SET user_division = '유지',
+		withdraw_date = null
 		WHERE user_no = #{userNo} AND user_division = '탈퇴'
 	</update>
 </mapper>

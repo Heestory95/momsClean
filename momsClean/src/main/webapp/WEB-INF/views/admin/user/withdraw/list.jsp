@@ -29,13 +29,13 @@
 					code="user.admin.userDivision" /></th>
 			<th align="center" width="120"><spring:message
 					code="user.admin.withdrawDate" /></th>
-			<th align="center" width="60"><spring:message
+			<th align="center" width="40"><spring:message
 					code="user.admin.treatment" /></th>
 		</tr>
 		<c:choose>
 			<c:when test="${empty withdraw}">
 				<tr>
-					<td colspan="10"><spring:message code="common.user.listEmpty"></spring:message>
+					<td colspan="10" align="center"><spring:message code="common.user.listEmpty"></spring:message>
 					</td>
 				</tr>
 			</c:when>
@@ -75,7 +75,7 @@
 		<a href="${pagination.endPage + 1}">&raquo;</a>
 	</c:if>
 </div>
-<!-- 검색 폼을 만든다. -->
+<!-- 검색 폼 -->
 <form:form modelAttribute="pgrq" method="get" action="list${pgrq.toUriStringByPage(1)}" align="center">
 	<form:select path="searchType" items="${searchTypeCodeValueList}" itemValue="value" itemLabel="label" />
 	

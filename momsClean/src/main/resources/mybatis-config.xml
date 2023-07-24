@@ -5,6 +5,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 <configuration>
 
 	<!-- mapUnderscore ToCamelCase 프로퍼티 값을 true로 지정한다. -->
+	<!-- DB의 snake_case 명명규칙을 JAVA의 camelCase로 자동 변환하여 매핑해준다. -->
   	<settings>
   		<setting name="mapUnderscoreToCamelCase" value="true"/>
  	</settings>

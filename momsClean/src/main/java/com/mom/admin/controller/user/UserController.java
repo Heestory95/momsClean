@@ -30,6 +30,7 @@ public class UserController {
 	public void list(@ModelAttribute("pgrq") PageRequest pageRequest, Model model) throws Exception {
 		// 뷰에 페이징 처리를 한 회원리스트를 전달한다.
 		model.addAttribute("list", service.list(pageRequest));
+		
 
 		// 페이징 네비게이션 정보를 뷰에 전달한다.
 		Pagination pagination = new Pagination();
@@ -71,11 +72,13 @@ public class UserController {
 		return "redirect:/admin/user/list";
 	}
 
+	// 탈퇴회원 리스트 페이지
+	// 페이징 요청 정보를 매개 변수로 받고 다시 뷰에 전달
 	@GetMapping("/withdraw/list")
 	public void withdraw(@ModelAttribute("pgrq") PageRequest pageRequest, Model model) throws Exception {
 		// 뷰에 페이징 처리를 한 게시글 목록을 전달한다.
 		model.addAttribute("withdraw", service.withdraw(pageRequest));
-
+		
 		// 페이징 네비게이션 정보를 뷰에 전달한다.
 		Pagination pagination = new Pagination();
 		pagination.setPageRequest(pageRequest);
