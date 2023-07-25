@@ -2,13 +2,17 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mom.admin.mapper.reserve.ReserveMapper">
-<!-- 검색 조건을 나타내는 쿼리 조각 -->
+	<!-- 검색 조건을 나타내는 쿼리 조각 -->
 	<sql id="search">
 		<if test="searchType != null">
 			<if test="searchType == 'ca'.toString()">
-				AND (user_no LIKE CONCAT('%', CONCAT(#{keyword}, '%'))
+				AND (reserve_no LIKE CONCAT('%', CONCAT(#{keyword}, '%'))
+				OR user_no LIKE CONCAT('%', CONCAT(#{keyword}, '%'))
 				OR user_id LIKE CONCAT('%', CONCAT(#{keyword}, '%'))
 				OR user_name LIKE CONCAT('%', CONCAT(#{keyword}, '%')))
+			</if>
+			<if test="searchType == 'rno'.toString()">
+				AND reserve_no LIKE CONCAT('%', CONCAT(#{keyword}, '%'))
 			</if>
 			<if test="searchType == 'no'.toString()">
 				AND user_no LIKE CONCAT('%', CONCAT(#{keyword}, '%'))
@@ -53,4 +57,19 @@
 		]]>
 		<include refid="search" />
 	</select>
+	
+	<!-- 예약 상세조회 -->
+	<select id="read" resultType="Reserve">
+		SELECT reserve_no, user_no, user_id, user_name, item_no, reserve_state, reserve_addr, reserve_item_name, reserve_item_price, COALESCE(reserve_option_name, '없음') as reserve_option_name, reserve_option_price, reserve_date, clean_date, reserve_request, clean_done
+		FROM reserve
+		WHERE
+		reserve_no = #{reserveNo}
+	</select>
+	
+	<!-- 회원 탈퇴처리 -->
+	<update id="update">
+		UPDATE reserve
+		SET reserve_request = '예약완료', reserve_state = '예약완료'
+		WHERE reserve_request = '예약요청' AND reserve_state = '예약대기'
+	</update>
 </mapper>

@@ -17,4 +17,10 @@ public interface ReserveMapper {
 	// 승인요청리스트 전체 건수 반환
 	public int count() throws Exception;
 
+	// 승인, 승인취소 페이지
+	public Reserve read(String reserveNo) throws Exception;
+
+	// 승인처리
+	public void update(Reserve reserve) throws Exception;
+
 }
