@@ -66,10 +66,51 @@
 		reserve_no = #{reserveNo}
 	</select>
 	
-	<!-- 예약승인처리 -->
-	<update id="completeUpdate">
+	<!-- 예약요청 승인처리 -->
+	<update id="requestUpdate">
 		UPDATE reserve
 		SET reserve_request = '예약완료', reserve_state = '예약완료'
 		WHERE reserve_request = '예약요청' AND reserve_state = '예약대기'
+	</update>
+	
+	
+	<!-- 예약완료리스트 조회 -->
+	<select id="complete" resultType="Reserve">
+		<![CDATA[
+		SELECT reserve_no, user_no, user_id, user_name, item_no, reserve_state, reserve_addr, reserve_item_price, reserve_option_price, reserve_date, clean_date, reserve_request, clean_done
+		FROM (SELECT reserve_no, user_no, user_id, user_name, item_no, reserve_state, reserve_addr, reserve_item_price, reserve_option_price, reserve_date, clean_date, reserve_request, clean_done, rownum as rnum FROM reserve)
+		WHERE reserve_state = '예약완료'
+		AND rnum between #{sizePerPage}*#{page}-9 and #{sizePerPage}*#{page}
+		]]>
+		
+		<include refid="total_list" />
+		<include refid="search" />
+		
+		<![CDATA[
+		ORDER BY reserve_date ASC
+		]]>
+	</select>
+	<!-- 예약완료리스트 전체 건수 조회 -->
+	<select id="count2" resultType="int">
+		<![CDATA[
+			SELECT count(reserve_no)
+			FROM reserve
+			WHERE reserve_no > 0
+		]]>
+		<include refid="search" />
+	</select>
+	
+	<!-- 예약완료 청소완료처리 -->
+	<update id="finishUpdate">
+		UPDATE reserve
+		SET clean_done = 'Y'
+		WHERE clean_done = 'N' AND reserve_request = '예약완료' AND reserve_state = '예약완료'
+	</update>
+	
+	<!-- 예약완료 복구처리 -->
+	<update id="completeUpdate">
+		UPDATE reserve
+		SET reserve_request = '예약요청', reserve_state = '예약대기'
+		WHERE reserve_request = '예약완료' AND reserve_state = '예약완료'AND NOT clean_done = 'Y'
 	</update>
 </mapper>

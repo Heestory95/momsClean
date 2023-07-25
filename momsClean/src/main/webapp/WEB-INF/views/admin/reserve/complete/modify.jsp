@@ -10,7 +10,7 @@
 </h2>
 <form:form modelAttribute="reserve" action="modify">
 	<table border="1" align="center">
-		<c:forEach var="reserve" items="${requestModifyForm}">
+		<c:forEach var="reserve" items="${completeModifyForm}">
 			<tr>
 				<td><spring:message code="reserve.reserveNo" /></td>
 				<td>${reserve.reserveNo}</td>
@@ -60,8 +60,11 @@
 	</table>
 </form:form>
 <div align="center">
-	<button type="submit" id="btnApproval">
-		<spring:message code="action.approval" />
+	<button type="submit" id="btnFinish">
+		<spring:message code="action.finish" />
+	</button>
+	<button type="submit" id="btnRestore">
+		<spring:message code="action.restore" />
 	</button>
 	<button type="submit" id="btnList">
 		<spring:message code="action.list" />
@@ -70,11 +73,15 @@
 <script>
 	$(document).ready(function() {
 		var formObj = $("#reserve");
-		$("#btnApproval").on("click", function() {
+		$("#btnFinish").on("click", function() {
+			formObj.attr("action", "finish");
+			formObj.submit();
+		});
+		$("#btnRestore").on("click", function() {
 			formObj.submit();
 		});
 		$("#btnList").on("click", function() {
-			self.location = "/admin/reserve/request/list${pgrq.toUriString()}";
+			self.location = "/admin/reserve/complete/list${pgrq2.toUriString()}";
 		});
 	});
 </script>
