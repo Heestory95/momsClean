@@ -19,5 +19,5 @@ public interface ReserveService {
 	public Reserve read(String reserveNo) throws Exception;
 
 	// 승인처리
-	public void modify(Reserve reserve) throws Exception;
+	public void complete(Reserve reserve) throws Exception;
 }

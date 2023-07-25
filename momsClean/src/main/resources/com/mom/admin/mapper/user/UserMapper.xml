@@ -120,7 +120,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<!-- 회원 탈퇴처리 -->
-	<update id="update">
+	<update id="withdrawUpdate">
 		UPDATE user_tbl
 		SET user_division = '탈퇴', withdraw_date = sysdate
 		WHERE user_no = #{userNo} AND user_division = '유지'

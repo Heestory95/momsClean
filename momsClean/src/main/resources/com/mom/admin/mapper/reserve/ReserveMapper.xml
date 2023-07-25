@@ -66,8 +66,8 @@
 		reserve_no = #{reserveNo}
 	</select>
 	
-	<!-- 회원 탈퇴처리 -->
-	<update id="update">
+	<!-- 예약승인처리 -->
+	<update id="completeUpdate">
 		UPDATE reserve
 		SET reserve_request = '예약완료', reserve_state = '예약완료'
 		WHERE reserve_request = '예약요청' AND reserve_state = '예약대기'

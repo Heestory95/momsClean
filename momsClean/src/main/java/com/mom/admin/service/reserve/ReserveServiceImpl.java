@@ -18,20 +18,6 @@ public class ReserveServiceImpl implements ReserveService {
 	// 페이징 요청 정보를 매개 변수로 받아 페이징 처리를 한 승인요청리스트 반환
 	@Override
 	public List<Reserve> request(PageRequest pageRequest) throws Exception {
-
-		/*
-		 * List<Reserve> reserves = mapper.request(pageRequest);
-		 * 
-		 * for (Reserve reserve : reserves) {
-		 * 
-		 * 
-		 * Integer optionPrice = reserve.getReserveOptionPrice(); Integer totalPrice =
-		 * optionPrice != null ? optionPrice : 0;
-		 * 
-		 * reserve.setReserveOptionPrice(totalPrice); }
-		 * 
-		 * return reserves;
-		 */
 		return mapper.request(pageRequest);
 	}
 
@@ -47,7 +33,7 @@ public class ReserveServiceImpl implements ReserveService {
 	}
 	
 	// 승인처리
-	public void modify(Reserve reserve) throws Exception {
-		mapper.update(reserve);
+	public void complete(Reserve reserve) throws Exception {
+		mapper.completeUpdate(reserve);
 	}
 }

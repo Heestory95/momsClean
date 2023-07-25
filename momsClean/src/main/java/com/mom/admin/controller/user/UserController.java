@@ -64,7 +64,7 @@ public class UserController {
 	// 회원 탈퇴 처리
 	@PostMapping("/modify")
 	public String modify(User user, PageRequest pageRequest, RedirectAttributes rttr) throws Exception {
-		service.modify(user);
+		service.withdraw(user);
 
 		// RedirectAttributes 객체에 일회성 데이터를 지정하여 전달한다.
 		rttr.addAttribute("page", pageRequest.getPage());

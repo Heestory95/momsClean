@@ -26,7 +26,7 @@ public interface UserService {
 	public User read(int userNo) throws Exception;
 
 	// 회원 탈퇴처리
-	public void modify(User user) throws Exception;
+	public void withdraw(User user) throws Exception;
 
 	// 회원 복구처리
 	public void restore(User user) throws Exception;

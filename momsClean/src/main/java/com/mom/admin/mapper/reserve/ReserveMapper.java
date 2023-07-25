@@ -21,6 +21,6 @@ public interface ReserveMapper {
 	public Reserve read(String reserveNo) throws Exception;
 
 	// 승인처리
-	public void update(Reserve reserve) throws Exception;
+	public void completeUpdate(Reserve reserve) throws Exception;
 
 }

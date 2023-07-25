@@ -60,10 +60,10 @@ public class ReserveController {
 		return "admin/reserve/request/modify";
 	}
 
-	// 회원 탈퇴 처리
+	// 예약승인 처리
 	@PostMapping("/request/modify")
 	public String modify(Reserve reserve, PageRequest pageRequest, RedirectAttributes rttr) throws Exception {
-		service.modify(reserve);
+		service.complete(reserve);
 
 		// RedirectAttributes 객체에 일회성 데이터를 지정하여 전달한다.
 		rttr.addAttribute("page", pageRequest.getPage());
