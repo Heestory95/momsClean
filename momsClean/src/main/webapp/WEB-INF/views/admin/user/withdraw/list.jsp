@@ -62,21 +62,21 @@
 </form:form>
 <!-- 페이징 네비게이션 -->
 <div align="center">
-	<c:if test="${pagination.prev}">
-		<a href="${pagination.startPage - 1}">&laquo;</a>
+	<c:if test="${pagination2.prev}">
+		<a href="${pagination2.startPage - 1}">&laquo;</a>
 	</c:if>
 
-	<c:forEach begin="${pagination.startPage}" end="${pagination.endPage}"
+	<c:forEach begin="${pagination2.startPage}" end="${pagination2.endPage}"
 		var="idx">
-		<a href="/admin/user/withdraw/list${pagination.makeQuery(idx)}">${idx}</a>
+		<a href="/admin/user/withdraw/list${pagination2.makeQuery(idx)}">${idx}</a>
 	</c:forEach>
 
-	<c:if test="${pagination.next && pagination.endPage > 0}">
-		<a href="${pagination.endPage + 1}">&raquo;</a>
+	<c:if test="${pagination2.next && pagination2.endPage > 0}">
+		<a href="${pagination2.endPage + 1}">&raquo;</a>
 	</c:if>
 </div>
 <!-- 검색 폼 -->
-<form:form modelAttribute="pgrq" method="get" action="list${pgrq.toUriStringByPage(1)}" align="center">
+<form:form modelAttribute="pgrq2" method="get" action="list${pgrq2.toUriStringByPage(1)}" align="center">
 	<form:select path="searchType" items="${searchTypeCodeValueList}" itemValue="value" itemLabel="label" />
 	
 	<form:input path="keyword"/>

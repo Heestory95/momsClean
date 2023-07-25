@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mom.admin.domain.PageRequest;
+import com.mom.admin.domain.PageRequest2;
 import com.mom.admin.domain.User;
 import com.mom.admin.mapper.user.UserMapper;
 
@@ -22,14 +23,20 @@ public class UserServiceImpl implements UserService {
 
 	// 회원리스트 전체 건수 반환
 	@Override
-	public int count() throws Exception {
-		return mapper.count();
+	public int count(PageRequest pageRequest) throws Exception {
+		return mapper.count(pageRequest);
 	}
 
 	// 페이징 요청 정보를 매개 변수로 받아 페이징 처리를 한 탈퇴회원리스트 반환
 	@Override
-	public List<User> withdraw(PageRequest pageRequest) throws Exception {
-		return mapper.withdraw(pageRequest);
+	public List<User> withdraw(PageRequest2 pageRequest2) throws Exception {
+		return mapper.withdraw(pageRequest2);
+	}
+
+	// 회원리스트 전체 건수 반환
+	@Override
+	public int count2(PageRequest2 pageRequest2) throws Exception {
+		return mapper.count2(pageRequest2);
 	}
 
 	// 회원 탈퇴, 복구 페이지
@@ -39,11 +46,13 @@ public class UserServiceImpl implements UserService {
 	}
 
 	// 회원 탈퇴처리
+	@Override
 	public void modify(User user) throws Exception {
 		mapper.update(user);
 	}
 
 	// 회원 복구처리
+	@Override
 	public void restore(User user) throws Exception {
 		mapper.restoreUpdate(user);
 	}

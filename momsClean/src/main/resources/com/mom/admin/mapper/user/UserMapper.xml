@@ -35,16 +35,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<!-- 회원리스트 조회 -->
 	<select id="list" resultType="User">
+		<!-- 회원구분 '유지'인 데이터를 뽑아 회원번호 오름차순으로 정렬한 다음 rownum으로 번호를 붙이고 페이징처리 -->
 		<![CDATA[
 		SELECT user_no, user_id, user_name, user_phone, user_email, email_auth, reg_date, user_division
-		FROM (SELECT user_no, user_id, user_name, user_phone, user_email, email_auth, reg_date, user_division, rownum as rnum FROM user_tbl WHERE user_division = '유지')
-		WHERE rnum between #{sizePerPage}*#{page}-9 and #{sizePerPage}*#{page}
-		AND user_division = '유지'
-		]]>
+		FROM (SELECT user_no, user_id, user_name, user_phone, user_email, email_auth, reg_date, user_division, rownum as rnum
+			  FROM (SELECT user_no, user_id, user_name, user_phone, user_email, email_auth, reg_date, user_division
+					FROM user_tbl 
+					WHERE user_division = '유지'
+					ORDER BY user_no ASC)
+  		)
+  		WHERE rnum BETWEEN #{sizePerPage}*#{page}-9 AND #{sizePerPage}*#{page}
+  		AND user_division = '유지'
+  		]]>
 
 		<include refid="total_list" />
 		<include refid="search" />
-		
+
 		<![CDATA[
 		ORDER BY user_no ASC
 		]]>
@@ -55,7 +61,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<![CDATA[
 			SELECT count(user_no)
 			FROM user_tbl
-			WHERE user_no > 0
+			WHERE user_no > 0 AND user_division = '유지'
 		]]>
 
 		<include refid="search" />
@@ -67,20 +73,42 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<!-- 탈퇴회원리스트 조회 -->
 	<select id="withdraw" resultType="User">
+		<!-- 회원구분 '탈퇴'인 데이터를 뽑아 회원번호 오름차순으로 정렬한 다음 rownum으로 번호를 붙이고 페이징처리 -->
 		<![CDATA[
-		SELECT user_no, user_id, user_name, user_phone, user_email, email_auth, reg_date, user_division, withdraw_date
-		FROM (SELECT user_no, user_id, user_name, user_phone, user_email, email_auth, reg_date, user_division, withdraw_date, rownum as rnum FROM user_tbl)
-		WHERE user_division = '탈퇴'
-		AND rnum between #{sizePerPage}*#{page}-9 and #{sizePerPage}*#{page}
-		]]>
+		SELECT user_no, user_id, user_name, user_phone, user_email, email_auth, reg_date, user_division
+		FROM (SELECT user_no, user_id, user_name, user_phone, user_email, email_auth, reg_date, user_division, rownum as rnum
+			  FROM (SELECT user_no, user_id, user_name, user_phone, user_email, email_auth, reg_date, user_division
+					FROM user_tbl 
+					WHERE user_division = '탈퇴'
+					ORDER BY user_no ASC)
+  		)
+  		WHERE rnum BETWEEN #{sizePerPage}*#{page}-9 AND #{sizePerPage}*#{page}
+  		AND user_division = '탈퇴'
+  		]]>
 
 		<include refid="total_list" />
 		<include refid="search" />
-		
+
 		<![CDATA[
-		ORDER BY withdraw_date DESC
+		ORDER BY user_no ASC
 		]]>
 	</select>
+
+	<!-- 탈퇴회원리스트 전체 건수 조회 -->
+	<select id="count2" resultType="int">
+		<![CDATA[
+			SELECT count(user_no)
+			FROM user_tbl
+			WHERE user_no > 0 AND user_division = '탈퇴'
+		]]>
+
+		<include refid="search" />
+		
+		<![CDATA[
+			ORDER BY user_no ASC
+		]]>
+	</select>
+	
 
 	<!-- 회원 상세조회 -->
 	<select id="read" resultType="User">
@@ -91,7 +119,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		user_no = #{userNo}
 	</select>
 
-	
+
 
 	<!-- 회원 탈퇴처리 -->
 	<update id="update">
