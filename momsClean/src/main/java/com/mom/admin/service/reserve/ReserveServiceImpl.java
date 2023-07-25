@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.mom.admin.domain.PageRequest;
 import com.mom.admin.domain.PageRequest2;
+import com.mom.admin.domain.PageRequest3;
 import com.mom.admin.domain.Reserve;
 import com.mom.admin.mapper.reserve.ReserveMapper;
 
@@ -41,6 +42,19 @@ public class ReserveServiceImpl implements ReserveService {
 		return mapper.count2(pageRequest2);
 	}
 
+	// 예약취소리스트 페이지
+	// 페이징 요청 정보를 매개 변수로 받아 페이징 처리를 한 승인요청리스트 반환
+	@Override
+	public List<Reserve> cancel(PageRequest3 pageRequest3) throws Exception {
+		return mapper.cancel(pageRequest3);
+	}
+
+	// 예약취소리스트 전체 건수 반환
+	@Override
+	public int count3(PageRequest3 pageRequest3) throws Exception {
+		return mapper.count3(pageRequest3);
+	}
+
 	// 예약 상세페이지
 	public Reserve read(String reserveNo) throws Exception {
 		return mapper.read(reserveNo);
@@ -48,6 +62,7 @@ public class ReserveServiceImpl implements ReserveService {
 
 	// 예약요청 승인처리
 	public void requestModify(Reserve reserve) throws Exception {
+		mapper.cancelUpdate(reserve);
 		mapper.requestUpdate(reserve);
 	}
 

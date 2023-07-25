@@ -73,6 +73,12 @@
 		WHERE reserve_request = '예약요청' AND reserve_state = '예약대기'
 	</update>
 	
+	<!-- 취소요청 승인처리 -->
+	<update id="cancelUpdate">
+		UPDATE reserve
+		SET reserve_request = '취소완료', reserve_state = '취소완료'
+		WHERE reserve_request = '취소요청' AND reserve_state = '예약대기'
+	</update>
 	
 	<!-- 예약완료리스트 조회 -->
 	<select id="complete" resultType="Reserve">
@@ -113,4 +119,30 @@
 		SET reserve_request = '예약요청', reserve_state = '예약대기'
 		WHERE reserve_request = '예약완료' AND reserve_state = '예약완료'AND NOT clean_done = 'Y'
 	</update>
+	
+	<!-- 예약취소리스트 조회 -->
+	<select id="cancel" resultType="Reserve">
+		<![CDATA[
+		SELECT reserve_no, user_no, user_id, user_name, item_no, reserve_state, reserve_addr, reserve_item_price, reserve_option_price, reserve_date, clean_date, cancel_date, reserve_request
+		FROM (SELECT reserve_no, user_no, user_id, user_name, item_no, reserve_state, reserve_addr, reserve_item_price, reserve_option_price, reserve_date, clean_date, cancel_date, reserve_request, rownum as rnum FROM reserve)
+		WHERE reserve_state = '취소완료'
+		AND rnum between #{sizePerPage}*#{page}-9 and #{sizePerPage}*#{page}
+		]]>
+		
+		<include refid="total_list" />
+		<include refid="search" />
+		
+		<![CDATA[
+		ORDER BY reserve_date ASC
+		]]>
+	</select>
+	<!-- 예약완료리스트 전체 건수 조회 -->
+	<select id="count3" resultType="int">
+		<![CDATA[
+			SELECT count(reserve_no)
+			FROM reserve
+			WHERE reserve_no > 0
+		]]>
+		<include refid="search" />
+	</select>
 </mapper>
