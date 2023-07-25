@@ -1,12 +1,25 @@
 package com.mom.admin.controller.item;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.List;
+import java.util.UUID;
 
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.mom.admin.domain.Item;
@@ -22,6 +35,9 @@ public class ItemController {
 	@Autowired
 	private ItemService ItemService;
 
+	@Value("${upload.path}")
+	private String uploadPath;
+
 	// 상품 등록 페이지
 	@RequestMapping(value = "/itemRegister", method = RequestMethod.GET)
 	// @PreAuthorize("hasRole('ROLE_ADMIN')")
@@ -30,17 +46,27 @@ public class ItemController {
 
 		return "/admin/item/itemRegister";
 	}
-	
+
 	// 상품 등록 처리
 	@RequestMapping(value = "/itemRegister", method = RequestMethod.POST)
 	// @PreAuthorize("hasRole('ROLE_ADMIN')")
 	public String register(Item item, RedirectAttributes rttr) throws Exception {
+
+		MultipartFile pictureFile = item.getPicture();
+		MultipartFile thumbFile = item.getThumb();
+
+		String createdPictureFilename = uploadFile(pictureFile.getOriginalFilename(), pictureFile.getBytes());
+		String createdThumbFilename = uploadFile(thumbFile.getOriginalFilename(), thumbFile.getBytes());
+
+		item.setPictureUrl(createdPictureFilename);
+		item.setThumbUrl(createdThumbFilename);
 
 		ItemService.register(item);
 
 		rttr.addFlashAttribute("msg", "SUCCESS");
 		return "redirect:/admin/item/list";
 	}
+
 	// 옵션 등록 페이지
 	@RequestMapping(value = "/optionRegister", method = RequestMethod.GET)
 	// @PreAuthorize("hasRole('ROLE_ADMIN')")
@@ -49,6 +75,7 @@ public class ItemController {
 
 		return "/admin/item/optionRegister";
 	}
+
 	// 옵션 등록 처리
 	@RequestMapping(value = "/optionRegister", method = RequestMethod.POST)
 	// @PreAuthorize("hasRole('ROLE_ADMIN')")
@@ -60,11 +87,6 @@ public class ItemController {
 		return "redirect:/admin/item/list";
 	}
 
-	
-	
-	
-	
-	
 	// 상품 목록 페이지
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public void list(Model model) throws Exception {
@@ -75,7 +97,6 @@ public class ItemController {
 		model.addAttribute("itemList", itemList);
 	}
 
-	
 	// 상품 수정 페이지
 	@RequestMapping(value = "/itemModify", method = RequestMethod.GET)
 	// @PreAuthorize("hasRole('ROLE_ADMIN')")
@@ -86,6 +107,7 @@ public class ItemController {
 
 		return "/admin/item/itemModify";
 	}
+
 	// 옵션 수정 페이지
 	@RequestMapping(value = "/optionModify", method = RequestMethod.GET)
 	// @PreAuthorize("hasRole('ROLE_ADMIN')")
@@ -103,7 +125,7 @@ public class ItemController {
 	public String modify(Item item, RedirectAttributes rttr) throws Exception {
 		log.info(item.getItemName());
 		log.info(item.getItemNo());
-
+		
 		log.info(Integer.toString(item.getItemPrice()));
 		Integer iNo = ItemService.getINo(item.getItemName());
 		item.setI_no(iNo);
@@ -114,12 +136,13 @@ public class ItemController {
 
 		return "redirect:/admin/item/list";
 	}
+
 	// 옵션 수정 처리
 	@RequestMapping(value = "/optionModify", method = RequestMethod.POST)
 	// @PreAuthorize("hasRole('ROLE_ADMIN')")
 	public String optionModify(Item item, RedirectAttributes rttr) throws Exception {
 		log.info(item.getItemName());
-		//log.info(item.getItemNo());
+		// log.info(item.getItemNo());
 
 		log.info(Integer.toString(item.getItemPrice()));
 		Integer iNo = ItemService.getINo(item.getItemName());
@@ -138,23 +161,128 @@ public class ItemController {
 	public String remove(Item item, RedirectAttributes rttr) throws Exception {
 		log.info(item.toString());
 		ItemService.remove(item.getItemName());
-		//ItemService.remove(item.getItemNo());
+		// ItemService.remove(item.getItemNo());
 
 		rttr.addFlashAttribute("msg", "SUCCESS");
 
 		return "redirect:/admin/item/list";
 	}
-	
+
 	// 변경 페이지
-	@RequestMapping(value = "/itemChange",method = RequestMethod.GET)
-	public void read(String itemNo,Model model) throws Exception{
+	@RequestMapping(value = "/itemChange", method = RequestMethod.GET)
+	public void read(String itemNo, Model model) throws Exception {
 		model.addAttribute(ItemService.read(itemNo));
 	}
-	
+
 	// 변경 페이지
-	@RequestMapping(value = "/optionChange",method = RequestMethod.GET)
-	public void optionRead(String itemName,Model model) throws Exception{
+	@RequestMapping(value = "/optionChange", method = RequestMethod.GET)
+	public void optionRead(String itemName, Model model) throws Exception {
 		model.addAttribute(ItemService.optionRead(itemName));
 	}
 
+	// 이미지 업로드
+	private String uploadFile(String originalName, byte[] fileData) throws Exception {
+		UUID uid = UUID.randomUUID();
+
+		String createdFileName = "/thumb/" + originalName;
+
+		File target = new File(uploadPath, createdFileName);
+
+		FileCopyUtils.copy(fileData, target);
+
+		return createdFileName;
+	}
+
+	// 썸네일 이미지 표시
+	@ResponseBody
+	@RequestMapping("/thumb")
+	public ResponseEntity<byte[]> displayFile(String itemNo) throws Exception {
+		InputStream in = null;
+		ResponseEntity<byte[]> entity = null;
+
+		String fileName = ItemService.getThumb(itemNo);
+
+		try {
+			if (fileName != null) {
+
+				String formatName = fileName.substring(fileName.lastIndexOf(".") + 1);
+
+				MediaType mType = getMediaType(formatName);
+
+				HttpHeaders headers = new HttpHeaders();
+
+				in = new FileInputStream(uploadPath + File.separator + fileName);
+
+				if (mType != null) {
+					headers.setContentType(mType);
+				}
+
+				entity = new ResponseEntity<byte[]>(IOUtils.toByteArray(in), headers, HttpStatus.CREATED);
+			} else {
+				entity = null;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<byte[]>(HttpStatus.BAD_REQUEST);
+		} finally {
+			if (in != null) {
+				in.close();
+			}
+		}
+		return entity;
+	}
+
+	// 확장자로 이미지 형식 확인
+	private MediaType getMediaType(String formatName) {
+		if (formatName != null) {
+			if (formatName.equals("JPG")) {
+				return MediaType.IMAGE_JPEG;
+			}
+			if (formatName.equals("GIF")) {
+				return MediaType.IMAGE_GIF;
+			}
+			if (formatName.equals("PNG")) {
+				return MediaType.IMAGE_PNG;
+			}
+
+		}
+		return null;
+	}
+
+	// 원본 이미지 표시
+	@ResponseBody
+	@RequestMapping("/picture")
+	public ResponseEntity<byte[]> pictureFile(String itemNo) throws Exception {
+		InputStream in = null;
+		ResponseEntity<byte[]> entity = null;
+
+		String fileName = ItemService.getPicture(itemNo);
+
+		try {
+			if (fileName != null) {
+
+				String formatName = fileName.substring(fileName.lastIndexOf(".") + 1);
+				MediaType mType = getMediaType(formatName);
+
+				HttpHeaders headers = new HttpHeaders();
+				in = new FileInputStream(uploadPath + File.separator + fileName);
+
+				if (mType != null) {
+					headers.setContentType(mType);
+				}
+
+				entity = new ResponseEntity<byte[]>(IOUtils.toByteArray(in), headers, HttpStatus.CREATED);
+			} else {
+				entity = null;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<byte[]>(HttpStatus.BAD_REQUEST);
+		} finally {
+			if (in != null) {
+				in.close();
+			}
+		}
+		return entity;
+	}
 }

@@ -24,6 +24,14 @@
 			<td><form:input path="itemPrice" /></td>
 			<td><font color="red"><form:errors path="itemPrice" /></font></td>
 		</tr>
+		<tr>
+			<td><spring:message code="item.img"/></td>
+			<td><input type="file" name="picture"/></td>
+		</tr>
+		<tr>
+			<td><spring:message code="item.img.thumb"/></td>
+			<td><input type="file" name="thumb"/></td>
+ 		</tr>
 	</table>
 </form:form>
 
