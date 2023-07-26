@@ -28,7 +28,7 @@ public interface UserMapper {
 	public User read(int userNo) throws Exception;
 
 	// 회원 탈퇴처리
-	public void update(User user) throws Exception;
+	public void withdrawUpdate(User user) throws Exception;
 
 	// 회원 복구처리
 	public void restoreUpdate(User user) throws Exception;

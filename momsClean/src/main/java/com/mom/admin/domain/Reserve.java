@@ -17,7 +17,7 @@ public class Reserve {
 	private String userName;
 	private String userId;
 	private String itemNo;
-	private String reserve_itemName;
+	private String reserveItemName;
 	private int reserveItemPrice;
 	private String reserveOptionName;
 	private int reserveOptionPrice;

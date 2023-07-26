@@ -47,8 +47,8 @@ public class UserServiceImpl implements UserService {
 
 	// 회원 탈퇴처리
 	@Override
-	public void modify(User user) throws Exception {
-		mapper.update(user);
+	public void withdraw(User user) throws Exception {
+		mapper.withdrawUpdate(user);
 	}
 
 	// 회원 복구처리

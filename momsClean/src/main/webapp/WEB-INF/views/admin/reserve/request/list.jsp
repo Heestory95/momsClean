@@ -26,7 +26,7 @@
 					code="reserve.reserveState" /></th>
 			<th align="center" width="350"><spring:message
 					code="reserve.reserveAddr" /></th>
-			<th align="center" width="70"><spring:message
+			<th align="center" width="80"><spring:message
 					code="reserve.totalPrice" /></th>
 			<th align="center" width="90"><spring:message
 					code="reserve.reserveDate" /></th>
@@ -54,14 +54,14 @@
 						<td align="center">${reserve.itemNo}</td>
 						<td align="center">${reserve.reserveState}</td>
 						<td align="center">${reserve.reserveAddr}</td>
-						<td align="center">${reserve.reserveItemPrice + reserve.reserveOptionPrice}</td>
+						<td align="center">${reserve.reserveItemPrice + reserve.reserveOptionPrice}원</td>
 						<td align="center"><fmt:formatDate
 								value="${reserve.reserveDate}" pattern="yyyy-MM-dd" /></td>
 						<td align="center"><fmt:formatDate
 								value="${reserve.cleanDate}" pattern="yyyy-MM-dd" /></td>
 						<td align="center">${reserve.reserveRequest}</td>
 						<td align="center"><a
-							href='/admin/reserve/modify?reserveNo=${reserve.reserveNo}'>승인</a></td>
+							href='/admin/reserve/request/modify?reserveNo=${reserve.reserveNo}'>승인</a></td>
 					</tr>
 				</c:forEach>
 			</c:otherwise>
