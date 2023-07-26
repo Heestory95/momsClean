@@ -5,7 +5,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 public class PageRequest2 {
 	private int page;
-	private int sizePerPage;
+	private int sizePerPage = 10;
 	
 	// 검색 유형과 검색어를 멤버변수(필드)로 선언한다.
 	private String searchType;
@@ -51,6 +51,7 @@ public class PageRequest2 {
 	
 	public void setSearchType(String searchType) {
 		this.searchType = searchType;
+		this.sizePerPage = 10;
 	}
 	
 	public String getKeyword() {
@@ -88,6 +89,8 @@ public class PageRequest2 {
 		UriComponents uriComponents = UriComponentsBuilder.newInstance()
 				.queryParam("page", page)
 				.queryParam("size", this.sizePerPage)
+				.queryParam("searchType", this.searchType)
+				.queryParam("keyword", this.keyword)
 				.build();
 		
 		return uriComponents.toUriString();

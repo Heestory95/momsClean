@@ -9,6 +9,8 @@
 	<spring:message code="reserve.admin.header.info" />
 </h2>
 <form:form modelAttribute="reserve" action="modify">
+	<form:hidden path="reserveNo" />
+	
 	<table border="1" align="center">
 		<c:forEach var="reserve" items="${cancelModifyForm}">
 			<tr>

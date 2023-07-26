@@ -3,9 +3,10 @@ package com.mom.admin.domain;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
+// 페이지 리퀘스트
 public class PageRequest {
 	private int page;
-	private int sizePerPage;
+	private int sizePerPage = 10;
 	
 	// 검색 유형과 검색어를 멤버변수(필드)로 선언한다.
 	private String searchType;
@@ -51,6 +52,7 @@ public class PageRequest {
 	
 	public void setSearchType(String searchType) {
 		this.searchType = searchType;
+		this.sizePerPage = 10;
 	}
 	
 	public String getKeyword() {
@@ -88,6 +90,8 @@ public class PageRequest {
 		UriComponents uriComponents = UriComponentsBuilder.newInstance()
 				.queryParam("page", page)
 				.queryParam("size", this.sizePerPage)
+				.queryParam("searchType", this.searchType)
+				.queryParam("keyword", this.keyword)
 				.build();
 		
 		return uriComponents.toUriString();

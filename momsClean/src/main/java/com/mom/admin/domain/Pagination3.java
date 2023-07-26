@@ -33,6 +33,12 @@ public class Pagination3 {
 			endPage = tempEndPage;
 		}
 		
+		// 추가된 부분: 레코드 수가 10개 미만인 경우, 총 페이지 수를 1로 설정하여 한 페이지만 표시하도록 함
+	    int totalPage = (int) Math.ceil(totalCount / (double) pageRequest3.getSizePerPage());
+	    if (totalPage <= 1) {
+	        endPage = 1;
+	    }
+		
 		prev = startPage == 1 ? false : true;
 		next = endPage * pageRequest3.getSizePerPage() >= totalCount ? false:true;
 	}
@@ -66,7 +72,9 @@ public class Pagination3 {
 	
 	public String makeQuery(int page) {
 		UriComponents uriComponents = UriComponentsBuilder.newInstance().queryParam("page", page)
-				.queryParam("perPageNum", pageRequest3.getSizePerPage()).build();
+				.queryParam("searchType", pageRequest3.getSearchType())
+				.queryParam("keyword", pageRequest3.getKeyword())
+				.build();
 		
 		return uriComponents.toUriString();
 	}

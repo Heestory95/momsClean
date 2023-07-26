@@ -4,49 +4,44 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<h2>
+<h2 align="center">
 	<spring:message code="user.admin.header.modify" />
 </h2>
 <form:form modelAttribute="user" action="modify">
-	<table>
+	<form:hidden path="userNo" />
+
+	<table border="1" align="center">
 		<tr>
 			<td><spring:message code="user.userNo" /></td>
-			<td><form:input path="userNo" readonly="true" /></td>
-			<td><font color="red"><form:errors path="userNo" /></font></td>
+			<td>${user.userNo}</td>
 		</tr>
 		<tr>
 			<td><spring:message code="user.userId" /></td>
-			<td><form:input path="userId" readonly="true" /></td>
-			<td><font color="red"><form:errors path="userId" /></font></td>
+			<td>${user.userId}</td>
 		</tr>
 		<tr>
 			<td><spring:message code="user.userName" /></td>
-			<td><form:input path="userName" readonly="true" /></td>
-			<td><font color="red"><form:errors path="userName" /></font></td>
+			<td>${user.userName}</td>
 		</tr>
 		<tr>
 			<td><spring:message code="user.userPhone" /></td>
-			<td><form:input path="userPhone" readonly="true" /></td>
-			<td><font color="red"><form:errors path="userPhone" /></font></td>
+			<td>${user.userPhone}</td>
 		</tr>
 		<tr>
 			<td><spring:message code="user.userEmail" /></td>
-			<td><form:input path="userEmail" readonly="true" /></td>
-			<td><font color="red"><form:errors path="userEmail" /></font></td>
+			<td>${user.userEmail}</td>
 		</tr>
 		<tr>
 			<td><spring:message code="user.regDate" /></td>
 			<td><fmt:formatDate pattern="yyyy-MM-dd" value="${user.regDate}" /></td>
-			<td><font color="red"><form:errors path="regDate" /></font></td>
 		</tr>
 		<tr>
 			<td><spring:message code="user.userDivision" /></td>
-			<td><form:input path="userDivision" readonly="true" /></td>
-			<td><font color="red"><form:errors path="userDivision" /></font></td>
+			<td>${user.userDivision}</td>
 		</tr>
 	</table>
 </form:form>
-<div>
+<div align="center">
 	<button type="submit" id="btnWithdraw">
 		<spring:message code="action.withdraw" /></button>
 	<button type="submit" id="btnList">
