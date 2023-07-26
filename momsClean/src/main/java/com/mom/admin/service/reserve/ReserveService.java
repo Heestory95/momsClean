@@ -39,6 +39,12 @@ public interface ReserveService {
 	// 예약완료 청소완료처리
 	public void finishModify(Reserve reserve) throws Exception;
 
+	// 예약완료 청소완료처리
+	public void finishModify2(Reserve reserve) throws Exception;
+
 	// 예약완료 복구처리
 	public void completeModify(Reserve reserve) throws Exception;
+
+	// 취소완료 복구처리
+	public void cancelModify(Reserve reserve) throws Exception;
 }

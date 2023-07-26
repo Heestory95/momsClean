@@ -5,11 +5,11 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<h2 align="center">
+<h2>
 	<spring:message code="user.admin.header.list" />
 </h2>
 <form:form modelAttribute="user">
-	<table border="1" align="center">
+	<table border="1">
 		<tr>
 			<th align="center" width="70"><spring:message
 					code="user.admin.userNo" /></th>

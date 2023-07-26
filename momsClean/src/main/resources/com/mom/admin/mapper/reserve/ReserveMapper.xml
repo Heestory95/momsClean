@@ -67,7 +67,7 @@
 	</select>
 	
 	<!-- 예약요청 승인처리 -->
-	<update id="requestUpdate">
+	<update id="requestApproval">
 		UPDATE reserve
 		SET reserve_request = '예약완료', reserve_state = '예약완료'
 		WHERE reserve_request = '예약요청' AND reserve_state = '예약대기'
@@ -75,9 +75,9 @@
 	</update>
 	
 	<!-- 취소요청 승인처리 -->
-	<update id="cancelUpdate">
+	<update id="cancelApproval">
 		UPDATE reserve
-		SET reserve_request = '취소완료', reserve_state = '취소완료'
+		SET reserve_request = '취소완료', reserve_state = '취소완료', cancel_date = sysdate
 		WHERE reserve_request = '취소요청' AND reserve_state = '예약대기'
 		AND reserve_no = #{reserveNo}
 	</update>
@@ -116,8 +116,16 @@
 		AND reserve_no = #{reserveNo}
 	</update>
 	
+	<!-- 예약완료 청소완료처리 -->
+	<update id="finishCancel">
+		UPDATE reserve
+		SET clean_done = 'N'
+		WHERE clean_done = 'Y' AND reserve_request = '예약완료' AND reserve_state = '예약완료'
+		AND reserve_no = #{reserveNo}
+	</update>
+	
 	<!-- 예약완료 복구처리 -->
-	<update id="completeUpdate">
+	<update id="completeRestore">
 		UPDATE reserve
 		SET reserve_request = '예약요청', reserve_state = '예약대기'
 		WHERE reserve_request = '예약완료' AND reserve_state = '예약완료' AND NOT clean_done = 'Y'
@@ -140,7 +148,7 @@
 		ORDER BY reserve_date ASC
 		]]>
 	</select>
-	<!-- 예약완료리스트 전체 건수 조회 -->
+	<!-- 예약취소리스트 전체 건수 조회 -->
 	<select id="count3" resultType="int">
 		<![CDATA[
 			SELECT count(reserve_no)
@@ -149,4 +157,11 @@
 		]]>
 		<include refid="search" />
 	</select>
+	<!-- 예약취소 복구처리 -->
+	<update id="cancelRestore">
+		UPDATE reserve
+		SET reserve_request = '취소요청', reserve_state = '예약대기'
+		WHERE reserve_request = '취소완료' AND reserve_state = '취소완료' AND NOT clean_done = 'Y'
+		AND reserve_no = #{reserveNo}
+	</update>
 </mapper>
