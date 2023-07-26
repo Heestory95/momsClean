@@ -85,9 +85,11 @@
 		set
 		item_no = #{itemNo},
 		item_name = #{itemName},
-		item_price = #{itemPrice}
+		item_price = #{itemPrice},
+		item_img_thumb = #{itemImgThumb},
+		item_img = #{itemImg}
 		where
-		i_no = #{i_no}
+		item_no = #{itemNo}
 	</update>
 
 	<!-- 옵션 처리 -->
