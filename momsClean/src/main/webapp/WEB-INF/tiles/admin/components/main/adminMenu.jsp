@@ -6,7 +6,7 @@
 <div align="center">
 	<table>
 		<tr>
-			<td width="80"><a href="/"><spring:message code="header.home.admin" /></a></td>
+			<td width="80"><a href="/"><spring:message code="header.admin.home" /></a></td>
 
 					<!-- 상품관리를 메뉴에 추가한다. -->
 					<td width="120"><a href="/admin/item/list"><spring:message code="menu.item.admin" /></a></td>
