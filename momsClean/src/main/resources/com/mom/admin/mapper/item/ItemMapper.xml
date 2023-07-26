@@ -85,7 +85,9 @@
 		set
 		item_no = #{itemNo},
 		item_name = #{itemName},
-		item_price = #{itemPrice}
+		item_price = #{itemPrice},
+		item_img_thumb = #{thumbUrl},
+		item_img = #{pictureUrl}
 		where
 		i_no = #{i_no}
 	</update>
