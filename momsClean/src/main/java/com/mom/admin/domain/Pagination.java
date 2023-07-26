@@ -1,6 +1,5 @@
 package com.mom.admin.domain;
 
-<<<<<<< HEAD
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -81,8 +80,4 @@ public class Pagination {
 		return uriComponents.toUriString();
 	}
 
-=======
-public class Pagination {
-	
->>>>>>> origin/main
 }

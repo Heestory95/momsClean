@@ -1,6 +1,6 @@
 package com.mom.admin.domain;
 
-<<<<<<< HEAD
+
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -97,9 +97,4 @@ public class PageRequest {
 		
 		return uriComponents.toUriString();
 	}
-
-=======
-public class PageRequest {
-	
->>>>>>> origin/main
 }

@@ -3,12 +3,12 @@
 PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
  "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
  <tiles-definitions>
-<<<<<<< HEAD
+
  	<definition name="user/*" extends="main-template">
  		<put-attribute name="title" value="User" />
  		<put-attribute name="content" value="/WEB-INF/views/admin/user/{1}.jsp" />
  	</definition>
-=======
+
  	<definition name="main-template" template="/WEB-INF/tiles/admin/components/layouts/main_template.jsp">
  		<put-attribute name="title" value="Main" />
  		<put-attribute name="header" value="/WEB-INF/tiles/admin/components/main/adminHeader.jsp" />
@@ -25,5 +25,5 @@ PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
 	</definition>
 	
 	
->>>>>>> origin/main
+
  </tiles-definitions>
