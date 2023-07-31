@@ -16,7 +16,7 @@
 							<ul>
 								<a href="/admin/user/list"><spring:message code="menu.user.admin" /></a>
 								<li><a href="/admin/user/list"><spring:message code="menu.userList.admin"/></a></li>
-								<li><a href="/admin/user/withdraw/list"><spring:message code="menu.withDrawList.admin"/></a></li>
+								<li><a href="/admin/user/withdraw/list"><spring:message code="menu.withdrawList.admin"/></a></li>
 							</ul>
 					</td>
 					<!-- 예약정보 관리를 메뉴에 추가한다. -->
