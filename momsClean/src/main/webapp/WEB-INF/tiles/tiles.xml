@@ -23,7 +23,13 @@ PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
 		<put-attribute name="title" value="Notice" />
 		<put-attribute name="content" value="/WEB-INF/views/admin/notice/{1}.jsp" />
 	</definition>
-	
-	
+	<definition name="admin/reference/*" extends="main-template">
+		<put-attribute name="title" value="Reference" />
+		<put-attribute name="content" value="/WEB-INF/views/admin/reference/{1}.jsp" />
+	</definition>
+	<definition name="admin/item/*" extends="main-template">
+		<put-attribute name="title" value="Item" />
+		<put-attribute name="content" value="/WEB-INF/views/admin/item/{1}.jsp" />
+	</definition>
 
  </tiles-definitions>

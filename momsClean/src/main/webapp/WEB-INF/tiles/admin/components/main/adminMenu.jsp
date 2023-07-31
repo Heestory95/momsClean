@@ -10,8 +10,7 @@
 
 					<!-- 상품관리를 메뉴에 추가한다. -->
 					<td width="120"><a href="/admin/item/list"><spring:message code="menu.item.admin" /></a></td>
-					<!-- 상품정보 파일 업로드 페이지 수정을 메뉴에 추가한다. -->
-					<td width="200"><a href="/admin/upload/fileUpload"><spring:message code="menu.description.admin" /></a></td>
+					
 					<!-- 회원 관리를 메뉴에 추가한다. -->
 					<td width="160">
 						<li><a href="#"><spring:message code="menu.user.admin" /></a>
@@ -38,6 +37,7 @@
 								<a href="/admin/notice/list"><spring:message code="menu.notice.admin"></spring:message></a>
 								<li><a href="/admin/reference/list"><spring:message code="menu.reference.admin"></spring:message></a></li>
 								<li><a href="/admin/review/list"><spring:message code="menu.review.admin"></spring:message></a></li>
+								
 							</ul>  
 						</li>
 					</td>

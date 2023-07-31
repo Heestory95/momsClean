@@ -22,8 +22,8 @@
 		'상품',
 		#{itemName},
 		#{itemPrice},
-		#{pictureUrl},
-		#{thumbUrl}
+		#{itemImg},
+		#{itemImgThumb}
 		)
 	</insert>
 
