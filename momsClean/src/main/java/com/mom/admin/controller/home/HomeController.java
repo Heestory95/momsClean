@@ -24,6 +24,8 @@ DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
 		
 
 		return "home";
+		
+		
 
 	}
 }

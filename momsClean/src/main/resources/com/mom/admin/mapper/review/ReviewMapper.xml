@@ -60,7 +60,7 @@
 	<select id="read" resultType="Review">
 		SELECT review_no,
 		review_content,
-		review_grade
+		review_grade,
 		review_date
 		FROM review
 		WHERE review_no = #{reviewNo}

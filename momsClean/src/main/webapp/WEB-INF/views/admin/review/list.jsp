@@ -8,20 +8,20 @@
 
 <h2><spring:message code="review.header.list" /></h2>
 
-<form method="get" action="admin/review/list">
+<%-- <form method="get" action="admin/review/list">
     <label for="searchType">글 내용</label>
     <input type="text" name="keyword" id="keyword">
     
     <button id="searchBtn" type="submit">검색</button>
-</form>
+</form> --%>
 
 
-<%-- <form:form modelAttribute="pgrq" method="get" action="admin/review/list${pgrq.toUriStringByPage(1)}">		
+<form:form modelAttribute="pgrq" method="get" action="${pgrq.toUriStringByPage(1)}">		
 	<form:select path="searchType" items="${searchTypeCodeValueList}" itemValue="value" itemLabel="label" />
 	
 	<form:input path="keyword" />
 	<button id='searchBtn'><spring:message code="action.search" /></button>
-</form:form> --%>
+</form:form>
 
 
 
@@ -64,15 +64,18 @@
 <!-- 페이징 네비게이션 -->
 <div>
 	<c:if test="${pagination.prev}">
-		<a href="${pagination.startPage - 1}">&laquo;</a>
+		<a href="/admin/notice/list${pagination.makeQuery(pagination.startPage -1)}">&laquo;</a>
 	</c:if>
 
 	<c:forEach begin="${pagination.startPage }" end="${pagination.endPage }" var="idx">
 		<a href="/admin/review/list${pagination.makeQuery(idx)}">${idx}</a>
 	</c:forEach>
-	
+	<!-- 게시글 페이지가 10페이지를 넘어가면 엔드페이지에 +1을 해줘서 11페이지로 넘어갈 수 있게한다 -->
 	<c:if test="${pagination.next && pagination.endPage > 0}">
-		<a href="${pagination.endPage +1}">&raquo;</a>
+		<a href="/admin/review/list${pagination.makeQuery(pagination.endPage +1)}">&raquo;</a>
+		
+		<!-- 원래 있던 명령어 -->
+		<%-- <a href="${pagination.endPage +1}">&raquo;</a> --%>
 	</c:if>
 </div>
 

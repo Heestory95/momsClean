@@ -45,16 +45,17 @@
 <!-- 페이징 네비게이션 -->
 <div>
 	<c:if test="${pagination.prev}">
-		<a href="${pagination.startPage - 1}">&laquo;</a>
+		<a href="/admin/notice/list${pagination.makeQuery(pagination.startPage -1)}">&laquo;</a>
 	</c:if>
 
 	<c:forEach begin="${pagination.startPage }" end="${pagination.endPage }" var="idx">
 		<a href="/admin/notice/list${pagination.makeQuery(idx)}">${idx}</a>
 	</c:forEach>
-	
+	<!-- 게시글 페이지가 10페이지를 넘어가면 엔드페이지에 +1을 해줘서 11페이지로 넘어갈 수 있게한다 -->
 	<c:if test="${pagination.next && pagination.endPage > 0}">
-		<a href="${pagination.endPage +1}">&raquo;</a>
+		<a href="/admin/notice/list${pagination.makeQuery(pagination.endPage +1)}">&raquo;</a>
 	</c:if>
+	
 </div>
 
 <a href="register"><spring:message code="notice.new" /></a>

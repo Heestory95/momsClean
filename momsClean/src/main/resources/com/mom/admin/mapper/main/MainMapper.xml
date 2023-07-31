@@ -1,0 +1,46 @@
+<!-- <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mom.admin.mapper.main.MainMapper">
+
+사용자 정의 resultMap 요소 정의
+	<resultMap type="Main" id="mainMap">
+		<result property="reviewNo" column="review_no" />
+		<result property="reserveNo" column="reserve_no" />
+		<result property="userNo" column="user_no" />
+		<result property="reviewGrade" column="review_grade" />
+		<result property="reviewContent" column="review_content" />
+		<result property="reviewDate" column="review_date" />
+		<collection property="authList" resultMap="authMap">
+		</collection>
+	</resultMap>
+	<resultMap type="MainAuth" id="authMap">
+		<result property="reviewNo" column="review_no" />
+		<result property="auth" column="auth" />
+	</resultMap>
+	
+	<select id="list" resultType="Main">
+	 	<![CDATA[
+	 	WITH paginated_reviews AS (
+	 	select review_no, reserve_no, user_no, review_grade, review_content, review_date
+		from (SELECT review_no, reserve_no, user_no, review_grade, review_content, review_date, rownum as rnum
+		  FROM (select review_no, reserve_no, user_no, review_grade, review_content, review_date
+		  		from review
+		  		order by review_no desc)
+		  	
+		 where review_no > 0
+		]]>
+		include가 where절 밑에 있는 이유 = 위의 조건을 그룹화해서 include안의 명령어로 정리하기 위함
+		<include refid="search"></include>
+		<![CDATA[
+		order by review_no desc) paginated
+		OFFSET #{sizePerPage} * (#{page} - 1) ROWS FETCH NEXT #{sizePerPage} ROWS ONLY
+    		)
+    	SELECT review_no, reserve_no, user_no, review_grade, review_content, review_date
+    	FROM paginated_reviews
+    	where review_no > 0
+    	order by review_no desc
+		]]>
+	</select>
+</mapper> -->
