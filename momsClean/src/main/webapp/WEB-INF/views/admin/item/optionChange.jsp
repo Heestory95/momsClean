@@ -11,7 +11,7 @@
 	<spring:message code="item.header.change" />
 </h2>
 <form:form modelAttribute="item">
-	
+
 	<table>
 		<tr>
 			<td><spring:message code="item.itemName" /></td>
@@ -44,7 +44,7 @@
 			var itemName = $("#itemName");
 			var itemNameVal = itemName.val();
 
-			self.location = "/admin/item/optionModify?itemName="+itemNameVal;
+			self.location = "/admin/item/optionModify?itemName=" + itemNameVal;
 		});
 
 		$("#btnRemove").on("click", function() {

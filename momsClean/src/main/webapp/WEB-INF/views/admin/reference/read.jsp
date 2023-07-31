@@ -15,8 +15,8 @@
 </h2>
 <form:form modelAttribute="reference">
 
-	<input type = "hidden" name="page" value="${pgrq.page}">
-	<input type = "hidden" name="sizePerPage" value="${pgrq.sizePerPage}">
+	<input type="hidden" name="page" value="${pgrq.page}">
+	<input type="hidden" name="sizePerPage" value="${pgrq.sizePerPage}">
 	<table border="">
 		<tr>
 			<td><spring:message code="reference.no" /></td>
@@ -61,7 +61,7 @@
 <script>
 	$(document).ready(function() {
 		var formObj = $("#reference");
-		
+
 		var pageObj = $("#page");
 		var sizePerPageObj = $("#sizePerPage");
 		var pageVal = pageObj.val();
