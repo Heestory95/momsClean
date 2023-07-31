@@ -63,7 +63,7 @@
 <!-- 페이징 네비게이션 -->
 <div align="center">
 	<c:if test="${pagination2.prev}">
-		<a href="${pagination2.startPage - 1}">&laquo;</a>
+		<a href="/admin/user/withdraw/list${pagination2.makeQuery(pagination2.startPage - 1)}">&laquo;</a>
 	</c:if>
 
 	<c:forEach begin="${pagination2.startPage}" end="${pagination2.endPage}"
@@ -72,7 +72,7 @@
 	</c:forEach>
 
 	<c:if test="${pagination2.next && pagination2.endPage > 0}">
-		<a href="${pagination2.endPage + 1}">&raquo;</a>
+		<a href="/admin/user/withdraw/list${pagination2.makeQuery(pagination2.endPage + 1)}">&raquo;</a>
 	</c:if>
 </div>
 <!-- 검색 폼 -->

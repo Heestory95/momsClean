@@ -32,7 +32,7 @@ public class ReserveController {
 	// 페이징 요청 정보를 매개 변수로 받고 다시 뷰에 전달
 	@GetMapping("/request/list")
 	public void request(@ModelAttribute("pgrq") PageRequest pageRequest, Model model) throws Exception {
-		// 뷰에 페이징 처리를 한 예약요청 리스트를 전달한다.
+		// 뷰에 페이징 처리를 한 승인요청 리스트를 전달한다.
 		model.addAttribute("request", service.request(pageRequest));
 
 		// 페이징 네비게이션 정보를 뷰에 전달한다.
@@ -80,7 +80,7 @@ public class ReserveController {
 	// 페이징 요청 정보를 매개 변수로 받고 다시 뷰에 전달
 	@GetMapping("/complete/list")
 	public void complete(@ModelAttribute("pgrq2") PageRequest2 pageRequest2, Model model) throws Exception {
-		// 뷰에 페이징 처리를 한 승인요청 리스트를 전달한다.
+		// 뷰에 페이징 처리를 한 예약완료 리스트를 전달한다.
 		model.addAttribute("complete", service.complete(pageRequest2));
 
 		// 페이징 네비게이션 정보를 뷰에 전달한다.
@@ -111,7 +111,7 @@ public class ReserveController {
 		return "admin/reserve/complete/modify";
 	}
 
-	// 예약완료 청소완료처리
+	// 예약완료 청소완료처리 N -> Y
 	@PostMapping("/complete/finishUpdate")
 	public String finishModify(Reserve reserve, PageRequest pageRequest, RedirectAttributes rttr) throws Exception {
 		service.finishModify(reserve);
@@ -124,7 +124,7 @@ public class ReserveController {
 		return "redirect:/admin/reserve/complete/list";
 	}
 
-	// 예약완료 청소완료처리
+	// 예약완료 청소완료 취소처리 Y -> N
 	@PostMapping("/complete/finishCancel")
 	public String finishModify2(Reserve reserve, PageRequest pageRequest, RedirectAttributes rttr) throws Exception {
 		service.finishModify2(reserve);
@@ -154,7 +154,7 @@ public class ReserveController {
 	// 페이징 요청 정보를 매개 변수로 받고 다시 뷰에 전달
 	@GetMapping("/cancel/list")
 	public void cancel(@ModelAttribute("pgrq3") PageRequest3 pageRequest3, Model model) throws Exception {
-		// 뷰에 페이징 처리를 한 승인요청 리스트를 전달한다.
+		// 뷰에 페이징 처리를 한 예약취소 리스트를 전달한다.
 		model.addAttribute("cancel", service.cancel(pageRequest3));
 
 		// 페이징 네비게이션 정보를 뷰에 전달한다.

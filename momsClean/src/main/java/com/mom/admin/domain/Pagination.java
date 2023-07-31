@@ -72,9 +72,10 @@ public class Pagination {
 	}
 	
 	public String makeQuery(int page) {
-		UriComponents uriComponents = UriComponentsBuilder.newInstance().queryParam("page", page)
+		UriComponents uriComponents = UriComponentsBuilder.newInstance()
 				.queryParam("searchType", pageRequest.getSearchType())
 				.queryParam("keyword", pageRequest.getKeyword())
+				.queryParam("page", page)
 				.build();
 		
 		return uriComponents.toUriString();

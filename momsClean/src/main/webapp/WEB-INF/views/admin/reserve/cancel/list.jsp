@@ -75,7 +75,7 @@
 <!-- 페이징 네비게이션 -->
 <div align="center">
 	<c:if test="${pagination3.prev}">
-		<a href="${pagination3.startPage - 1}">&laquo;</a>
+		<a href="/admin/reserve/cancel/list${pagination3.makeQuery(pagination3.startPage - 1)}">&laquo;</a>
 	</c:if>
 
 	<c:forEach begin="${pagination3.startPage}" end="${pagination3.endPage}"
@@ -84,7 +84,7 @@
 	</c:forEach>
 
 	<c:if test="${pagination3.next && pagination3.endPage > 0}">
-		<a href="${pagination3.endPage + 1}">&raquo;</a>
+		<a href="/admin/reserve/cancel/list${pagination3.makeQuery(pagination3.endPage + 1)}">&raquo;</a>
 	</c:if>
 </div>
 <!-- 검색 폼 -->
