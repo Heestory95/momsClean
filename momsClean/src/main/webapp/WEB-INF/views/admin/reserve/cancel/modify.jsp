@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
@@ -21,6 +22,10 @@
 			<tr>
 				<td><spring:message code="reserve.reserveUserName" /></td>
 				<td>${reserve.userName}(${reserve.userId})</td>
+			</tr>
+			<tr>
+				<td><spring:message code="reserve.reserveAddr" /></td>
+				<td>${reserve.reserveAddr}</td>
 			</tr>
 			<tr>
 				<td rowspan="2"><spring:message code="reserve.itemInfo" /></td>
@@ -49,6 +54,11 @@
 			<tr>
 				<td><spring:message code="reserve.reserveState" /></td>
 				<td>${reserve.reserveState}</td>
+			</tr>
+			<tr>
+				<td><spring:message code="reserve.cancelDate" /></td>
+				<td><fmt:formatDate pattern="yyyy-MM-dd"
+						value="${reserve.cancelDate}" /></td>
 			</tr>
 			<tr>
 				<td><spring:message code="reserve.cleanDone" /></td>

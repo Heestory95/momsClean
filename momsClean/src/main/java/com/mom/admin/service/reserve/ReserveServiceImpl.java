@@ -72,13 +72,13 @@ public class ReserveServiceImpl implements ReserveService {
 	@Override
 	public void finishModify(Reserve reserve) throws Exception {
 		mapper.finishUpdate(reserve);
-		
+
 	}
 
 	// 예약완료 청소완료처리
 	@Override
 	public void finishModify2(Reserve reserve) throws Exception {
-		
+
 		mapper.finishCancel(reserve);
 	}
 

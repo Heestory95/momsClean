@@ -32,7 +32,7 @@ public class ReserveController {
 	// 페이징 요청 정보를 매개 변수로 받고 다시 뷰에 전달
 	@GetMapping("/request/list")
 	public void request(@ModelAttribute("pgrq") PageRequest pageRequest, Model model) throws Exception {
-		// 뷰에 페이징 처리를 한 승인요청 리스트를 전달한다.
+		// 뷰에 페이징 처리를 한 예약요청 리스트를 전달한다.
 		model.addAttribute("request", service.request(pageRequest));
 
 		// 페이징 네비게이션 정보를 뷰에 전달한다.
