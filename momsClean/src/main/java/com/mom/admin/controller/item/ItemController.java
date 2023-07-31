@@ -55,11 +55,11 @@ public class ItemController {
 		MultipartFile pictureFile = item.getPicture();
 		MultipartFile thumbFile = item.getThumb();
 
-		String createdPictureFilename = uploadFile(pictureFile.getOriginalFilename(), pictureFile.getBytes());
-		String createdThumbFilename = uploadFile(thumbFile.getOriginalFilename(), thumbFile.getBytes());
+		String createdPictureFilename = uploadImg(pictureFile.getOriginalFilename(), pictureFile.getBytes());
+		String createdThumbFilename = uploadThumb(thumbFile.getOriginalFilename(), thumbFile.getBytes());
 
-		item.setPictureUrl(createdPictureFilename);
-		item.setThumbUrl(createdThumbFilename);
+		item.setItemImg(createdPictureFilename);
+		item.setItemImgThumb(createdThumbFilename);
 
 		ItemService.register(item);
 
@@ -123,13 +123,24 @@ public class ItemController {
 	@RequestMapping(value = "/itemModify", method = RequestMethod.POST)
 	// @PreAuthorize("hasRole('ROLE_ADMIN')")
 	public String modify(Item item, RedirectAttributes rttr) throws Exception {
-		log.info(item.getItemName());
-		log.info(item.getItemNo());
-		
-		log.info(Integer.toString(item.getItemPrice()));
-		Integer iNo = ItemService.getINo(item.getItemName());
-		item.setI_no(iNo);
-		log.info(Integer.toString(item.getI_no()));
+		/*
+		 * log.info(item.getItemName()); log.info(item.getItemNo());
+		 * 
+		 * log.info(Integer.toString(item.getItemPrice())); Integer iNo =
+		 * ItemService.getINo(item.getItemName()); item.setINo(iNo);
+		 * log.info(Integer.toString(item.getI_no()));
+		 */
+		MultipartFile pictureFile = item.getPicture();
+		if (pictureFile != null && pictureFile.getSize() > 0) {
+			String createdFilename = uploadImg(pictureFile.getOriginalFilename(), pictureFile.getBytes());
+			item.setItemImg(createdFilename);
+		}
+		MultipartFile thumbFile = item.getThumb();
+		if (thumbFile != null && thumbFile.getSize() > 0) {
+			String createdFilename = uploadThumb(thumbFile.getOriginalFilename(), thumbFile.getBytes());
+			item.setItemImgThumb(createdFilename);
+		}
+
 		ItemService.modify(item);
 
 		rttr.addFlashAttribute("msg", "SUCCESS");
@@ -146,8 +157,8 @@ public class ItemController {
 
 		log.info(Integer.toString(item.getItemPrice()));
 		Integer iNo = ItemService.getINo(item.getItemName());
-		item.setI_no(iNo);
-		log.info(Integer.toString(item.getI_no()));
+		item.setINo(iNo);
+		log.info(Integer.toString(item.getINo()));
 		ItemService.optionModify(item);
 
 		rttr.addFlashAttribute("msg", "SUCCESS");
@@ -181,7 +192,20 @@ public class ItemController {
 	}
 
 	// 이미지 업로드
-	private String uploadFile(String originalName, byte[] fileData) throws Exception {
+	private String uploadImg(String originalName, byte[] fileData) throws Exception {
+		UUID uid = UUID.randomUUID();
+
+		String createdFileName = "/info/" + originalName;
+
+		File target = new File(uploadPath, createdFileName);
+
+		FileCopyUtils.copy(fileData, target);
+
+		return createdFileName;
+	}
+
+	// 이미지 업로드
+	private String uploadThumb(String originalName, byte[] fileData) throws Exception {
 		UUID uid = UUID.randomUUID();
 
 		String createdFileName = "/thumb/" + originalName;

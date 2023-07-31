@@ -76,7 +76,7 @@
 			formObj.submit();
 		});
 		$("#btnList").on("click", function() {
-			self.location = "/admin/reserve/cancel/list${pgrq2.toUriString()}";
+			self.location = "/admin/reserve/cancel/list${pgrq3.toUriString()}";
 		});
 	});
 </script>

@@ -37,15 +37,21 @@ public interface ReserveMapper {
 	public Reserve read(String reserveNo) throws Exception;
 
 	// 예약요청 승인처리
-	public void requestUpdate(Reserve reserve) throws Exception;
+	public void requestApproval(Reserve reserve) throws Exception;
 
 	// 취소요청 승인처리
-	public void cancelUpdate(Reserve reserve) throws Exception;
+	public void cancelApproval(Reserve reserve) throws Exception;
 
 	// 예약요청 청소완료처리
 	public void finishUpdate(Reserve reserve) throws Exception;
 
+	// 예약요청 청소완료처리
+	public void finishCancel(Reserve reserve) throws Exception;
+
 	// 예약요청 복구처리
-	public void completeUpdate(Reserve reserve) throws Exception;
+	public void completeRestore(Reserve reserve) throws Exception;
+
+	// 예약요청 복구처리
+	public void cancelRestore(Reserve reserve) throws Exception;
 
 }

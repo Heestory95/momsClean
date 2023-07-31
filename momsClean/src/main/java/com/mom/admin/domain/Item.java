@@ -14,15 +14,11 @@ public class Item {
 	private String itemNo;
 	private String itemName;
 	private Integer itemPrice;
-	private Integer i_no;
+	private Integer iNo;
 	private MultipartFile picture;
-	private String pictureUrl;
+	private String itemImg;
 	private MultipartFile thumb;
-	private String thumbUrl;
-	private MultipartFile option;
-	private String optionUrl;
-	private MultipartFile faq;
-	private String faqUrl;
+	private String itemImgThumb;
 	
 	
 }

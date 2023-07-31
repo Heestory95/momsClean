@@ -4,11 +4,6 @@ PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
  "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
  <tiles-definitions>
 
- 	<definition name="admin/user/*" extends="main-template">
- 		<put-attribute name="title" value="User" />
- 		<put-attribute name="content" value="/WEB-INF/views/admin/user/{1}.jsp" />
- 	</definition>
-
  	<definition name="main-template" template="/WEB-INF/tiles/admin/components/layouts/main_template.jsp">
  		<put-attribute name="title" value="Main" />
  		<put-attribute name="header" value="/WEB-INF/tiles/admin/components/main/adminHeader.jsp" />
@@ -19,10 +14,19 @@ PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
 		<put-attribute name="title" value="Home" />
 		<put-attribute name="content" value="/WEB-INF/views/admin/home.jsp" />
 	</definition>
+	<definition name="admin/user/*" extends="main-template">
+ 		<put-attribute name="title" value="User" />
+ 		<put-attribute name="content" value="/WEB-INF/views/admin/user/{1}.jsp" />
+ 	</definition>
+ 	<definition name="admin/user/withdraw/*" extends="main-template">
+ 		<put-attribute name="title" value="User" />
+ 		<put-attribute name="content" value="/WEB-INF/views/admin/user/withdraw/{1}.jsp" />
+ 	</definition>
 	<definition name="admin/notice/*" extends="main-template">
 		<put-attribute name="title" value="Notice" />
 		<put-attribute name="content" value="/WEB-INF/views/admin/notice/{1}.jsp" />
 	</definition>
+<<<<<<< HEAD
 	<definition name="admin/user/withdraw/*" extends="main-template">
  		<put-attribute name="title" value="User" />
  		<put-attribute name="content" value="/WEB-INF/views/admin/user/{1}.jsp" />
@@ -33,4 +37,18 @@ PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
 	</definition>
 	
 
+=======
+	<definition name="admin/reserve/request/*" extends="main-template">
+		<put-attribute name="title" value="Reserve" />
+		<put-attribute name="content" value="/WEB-INF/views/admin/reserve/request/{1}.jsp" />
+	</definition>
+	<definition name="admin/reserve/complete/*" extends="main-template">
+		<put-attribute name="title" value="Reserve" />
+		<put-attribute name="content" value="/WEB-INF/views/admin/reserve/complete/{1}.jsp" />
+	</definition>
+	<definition name="admin/reserve/cancel/*" extends="main-template">
+		<put-attribute name="title" value="Reserve" />
+		<put-attribute name="content" value="/WEB-INF/views/admin/reserve/cancel/{1}.jsp" />
+	</definition>
+>>>>>>> ea300c98296872b94b80118d78b63da0fde0ab04
  </tiles-definitions>

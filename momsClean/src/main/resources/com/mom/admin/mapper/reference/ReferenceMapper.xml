@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.mom.admin.mapper.reference.ReferenceMapper">
+	<sql id="search">
+		<if test="searchType != null">
+			<if test="searchType == 'n'.toString()">
+				And reference_No LIKE CONCAT('%',CONCAT(#{keyword}, '%'))
+			</if>
+			<if test="searchType == 'u'.toString()">
+				And user_No LIKE CONCAT('%',CONCAT(#{keyword}, '%'))
+			</if>
+			<if test="searchType == 't'.toString()">
+				And reference_Title LIKE CONCAT('%',CONCAT(#{keyword},
+				'%'))
+			</if>
+			<if test="searchType == 'r'.toString()">
+				And #{keyword} IN (SELECT user_name FROM user_tbl)
+			</if>
+			<if test="searchType == 'ca'.toString()">
+				And( reference_No LIKE CONCAT('%',CONCAT(#{keyword},
+				'%'))
+				OR user_No LIKE CONCAT('%',CONCAT(#{keyword}, '%'))
+				OR
+				reference_Title LIKE CONCAT('%',CONCAT(#{keyword}, '%'))
+				OR
+				#{keyword} IN (SELECT user_name FROM user_tbl))
+			</if>
+		</if>
+	</sql>
+	<sql id="total_list">
+		<if test="searchType == null">
+			and rnum between #{sizePerPage} *#{page}-9
+			and #{sizePerPage} *#{page}
+		</if>
+	</sql>
+	
+	<!-- <select id="list" resultType="User">
+    <![CDATA[
+    WITH paginated_users AS (
+        SELECT user_no, user_id, user_name, user_phone, user_email, email_auth, reg_date, user_division, rownum as rnum
+        FROM (
+            SELECT user_no, user_id, user_name, user_phone, user_email, email_auth, reg_date, user_division
+            FROM user_tbl
+            WHERE user_division = '유지'
+    ]]>
+    <include refid="search" />
+    <![CDATA[
+            ORDER BY user_no ASC) paginated
+           OFFSET #{sizePerPage} * (#{page} - 1) ROWS FETCH NEXT #{sizePerPage} ROWS ONLY
+          )
+       SELECT user_no, user_id, user_name, user_phone, user_email, email_auth, reg_date, user_division
+       FROM paginated_users
+       WHERE user_division = '유지'
+       ORDER BY user_no ASC
+   ]]>
+</select> -->
+	
+	<select id="list" resultType="Reference">
+		<![CDATA[
+		 WITH paginated_references AS (
+		SELECT reference_no, user_no, reference_title ,reference_date , rownum as rnum
+		FROM (
+			SELECT reference_no, user_no, reference_title , reference_date 
+			FROM reference 
+			WHERE reference_no > 0
+			]]>
+		<include refid="search" />
+		<![CDATA[
+            ORDER BY user_no ASC) paginated
+           OFFSET #{sizePerPage} * (#{page} - 1) ROWS FETCH NEXT #{sizePerPage} ROWS ONLY
+          ) 
+          SELECT a.reference_no, a.user_no, a.reference_title, b.user_name,a.reference_date
+          FROM paginated_references a inner join user_tbl b on a.user_no = b.user_no
+          WHERE a.reference_no > 0
+          ]]>
+	</select>
+
+	<!-- 게시글 목록 전체 건수 조회 -->
+	<select id="count" resultType="int">
+		<![CDATA[
+			SELECT count(reference_no)
+			FROM reference
+			WHERE reference_no > 0
+		]]>
+		<include refid="search"></include>
+	</select>
+
+	<!-- 게시글 상세 -->
+	<select id="read" resultType="Reference">
+		select a.reference_no,
+		b.user_name,
+		b.user_phone,
+		a.reference_title,
+		a.reference_content,
+		a.reference_date
+		from reference a inner join user_tbl b on a.user_no = b.user_no
+		where
+		reference_no = #{reference.referenceNo}
+		order by reference_no DESC
+	</select>
+</mapper>
