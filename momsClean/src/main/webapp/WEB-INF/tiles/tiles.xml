@@ -26,7 +26,6 @@ PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
 		<put-attribute name="title" value="Notice" />
 		<put-attribute name="content" value="/WEB-INF/views/admin/notice/{1}.jsp" />
 	</definition>
-<<<<<<< HEAD
 	<definition name="admin/user/withdraw/*" extends="main-template">
  		<put-attribute name="title" value="User" />
  		<put-attribute name="content" value="/WEB-INF/views/admin/user/{1}.jsp" />
@@ -35,9 +34,6 @@ PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
 		<put-attribute name="title" value="Review" />
 		<put-attribute name="content" value="/WEB-INF/views/admin/review/{1}.jsp" />
 	</definition>
-	
-
-=======
 	<definition name="admin/reserve/request/*" extends="main-template">
 		<put-attribute name="title" value="Reserve" />
 		<put-attribute name="content" value="/WEB-INF/views/admin/reserve/request/{1}.jsp" />
@@ -50,5 +46,4 @@ PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
 		<put-attribute name="title" value="Reserve" />
 		<put-attribute name="content" value="/WEB-INF/views/admin/reserve/cancel/{1}.jsp" />
 	</definition>
->>>>>>> ea300c98296872b94b80118d78b63da0fde0ab04
  </tiles-definitions>

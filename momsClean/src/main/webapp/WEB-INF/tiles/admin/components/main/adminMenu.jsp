@@ -30,22 +30,12 @@
 					</td>
 					<!-- 게시판 관리 메뉴에 추가한다. -->
 					<td>
-<<<<<<< HEAD
-						<li><a href="#"><spring:message code="menu.board.admin" /></a>
-							<ul>
-								<li><a href="/admin/notice/list"><spring:message code="menu.notice.admin"></spring:message></a></li>
-								<li><a href="/admin/reference/list"><spring:message code="menu.reference.admin"></spring:message></a></li>
-								<li><a href="/admin/review/list"><spring:message code="menu.review.admin"></spring:message></a></li>
-							</ul>  
-						</li>
-=======
 						<ul>
 							<a href="/admin/notice/list"><spring:message code="menu.board.admin"/></a>
 							<li><a href="/admin/notice/list"><spring:message code="menu.admin.notice"/></a></li>	
 							<li><a href="/admin/reference/list"><spring:message code="menu.reference.admin"/></a></li>
 							<li><a href="/admin/review/list"><spring:message code="menu.review.admin"/></a></li>
 						</ul>
->>>>>>> ea300c98296872b94b80118d78b63da0fde0ab04
 					</td>
 		</tr>
 	</table>
