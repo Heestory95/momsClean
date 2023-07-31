@@ -12,13 +12,13 @@
 				AND user_No LIKE CONCAT('%',CONCAT(#{keyword}, '%'))
 			</if>
 			<if test="searchType == 't'.toString()">
-				AND reference_Title LIKE CONCAT('%',CONCAT(#{keyword},
+				AND upper(reference_Title) LIKE CONCAT('%',CONCAT(upper(#{keyword}),
 				'%'))
 			</if>
 			<if test="searchType == 'r'.toString()">
 				AND user_No IN (SELECT user_No FROM user_tbl WHERE
-				user_name LIKE
-				CONCAT('%',CONCAT(#{keyword}, '%')))
+				upper(user_name) LIKE
+				CONCAT('%',CONCAT(upper(#{keyword}), '%')))
 			</if>
 			<if test="searchType == 'ca'.toString()">
 				AND (
