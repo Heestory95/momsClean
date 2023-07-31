@@ -12,25 +12,25 @@
 	<table border="1" align="center">
 		<tr>
 			<th align="center" width="70"><spring:message
-					code="user.admin.userNo" /></th>
+					code="user.userNo" /></th>
 			<th align="center" width="70"><spring:message
-					code="user.admin.userId" /></th>
+					code="user.userId" /></th>
 			<th align="center" width="70"><spring:message
-					code="user.admin.userName" /></th>
+					code="user.userName" /></th>
 			<th align="center" width="110"><spring:message
-					code="user.admin.userPhone" /></th>
+					code="user.userPhone" /></th>
 			<th align="center" width="170"><spring:message
-					code="user.admin.userEmail" /></th>
+					code="user.userEmail" /></th>
 			<th align="center" width="120"><spring:message
-					code="user.admin.emailAuth" /></th>
+					code="user.emailAuth" /></th>
 			<th align="center" width="120"><spring:message
-					code="user.admin.regDate" /></th>
+					code="user.regDate" /></th>
 			<th align="center" width="70"><spring:message
-					code="user.admin.userDivision" /></th>
+					code="user.userDivision" /></th>
 			<th align="center" width="120"><spring:message
-					code="user.admin.withdrawDate" /></th>
+					code="user.withdrawDate" /></th>
 			<th align="center" width="40"><spring:message
-					code="user.admin.treatment" /></th>
+					code="user.treatment" /></th>
 		</tr>
 		<c:choose>
 			<c:when test="${empty withdraw}">

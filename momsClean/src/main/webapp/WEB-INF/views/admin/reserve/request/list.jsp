@@ -9,6 +9,8 @@
 <h2 align="center">
 	<spring:message code="reserve.admin.header.request" />
 </h2>
+<hr>
+<!-- 예약요청 리스트 폼 -->
 <form:form modelAttribute="request">
 	<table border="1" align="center">
 		<tr>
