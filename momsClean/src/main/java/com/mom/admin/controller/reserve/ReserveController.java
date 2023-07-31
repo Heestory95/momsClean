@@ -32,7 +32,7 @@ public class ReserveController {
 	// 페이징 요청 정보를 매개 변수로 받고 다시 뷰에 전달
 	@GetMapping("/request/list")
 	public void request(@ModelAttribute("pgrq") PageRequest pageRequest, Model model) throws Exception {
-		// 뷰에 페이징 처리를 한 승인요청 리스트를 전달한다.
+		// 뷰에 페이징 처리를 한 예약요청 리스트를 전달한다.
 		model.addAttribute("request", service.request(pageRequest));
 
 		// 페이징 네비게이션 정보를 뷰에 전달한다.
@@ -112,9 +112,22 @@ public class ReserveController {
 	}
 
 	// 예약완료 청소완료처리
-	@PostMapping("/complete/finish")
+	@PostMapping("/complete/finishUpdate")
 	public String finishModify(Reserve reserve, PageRequest pageRequest, RedirectAttributes rttr) throws Exception {
 		service.finishModify(reserve);
+
+		// RedirectAttributes 객체에 일회성 데이터를 지정하여 전달한다.
+		rttr.addAttribute("page", pageRequest.getPage());
+		rttr.addAttribute("sizePerPage", pageRequest.getSizePerPage());
+		rttr.addFlashAttribute("msg", "SUCCESS");
+
+		return "redirect:/admin/reserve/complete/list";
+	}
+
+	// 예약완료 청소완료처리
+	@PostMapping("/complete/finishCancel")
+	public String finishModify2(Reserve reserve, PageRequest pageRequest, RedirectAttributes rttr) throws Exception {
+		service.finishModify2(reserve);
 
 		// RedirectAttributes 객체에 일회성 데이터를 지정하여 전달한다.
 		rttr.addAttribute("page", pageRequest.getPage());
@@ -163,10 +176,19 @@ public class ReserveController {
 		model.addAttribute("searchTypeCodeValueList", searchTypeCodeValueList);
 	}
 
-	// 예약완료 복구처리
+	// 예약완료 복구처리 페이지
+	@GetMapping("/cancel/modify")
+	public String cancelModifyForm(String reserveNo, @ModelAttribute("pgrq3") PageRequest3 pageRequest3, Model model)
+			throws Exception {
+		Reserve reserve = service.read(reserveNo);
+		model.addAttribute(reserve);
+		return "admin/reserve/cancel/modify";
+	}
+
+	// 취소완료 복구처리
 	@PostMapping("/cancel/modify")
 	public String cancelModify(Reserve reserve, PageRequest3 pageRequest3, RedirectAttributes rttr) throws Exception {
-		service.completeModify(reserve);
+		service.cancelModify(reserve);
 
 		// RedirectAttributes 객체에 일회성 데이터를 지정하여 전달한다.
 		rttr.addAttribute("page", pageRequest3.getPage());

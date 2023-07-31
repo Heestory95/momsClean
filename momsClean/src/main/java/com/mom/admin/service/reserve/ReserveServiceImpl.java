@@ -56,23 +56,41 @@ public class ReserveServiceImpl implements ReserveService {
 	}
 
 	// 예약 상세페이지
+	@Override
 	public Reserve read(String reserveNo) throws Exception {
 		return mapper.read(reserveNo);
 	}
 
 	// 예약요청 승인처리
+	@Override
 	public void requestModify(Reserve reserve) throws Exception {
-		mapper.cancelUpdate(reserve);
-		mapper.requestUpdate(reserve);
+		mapper.cancelApproval(reserve);
+		mapper.requestApproval(reserve);
 	}
 
 	// 예약완료 청소완료처리
+	@Override
 	public void finishModify(Reserve reserve) throws Exception {
 		mapper.finishUpdate(reserve);
+
+	}
+
+	// 예약완료 청소완료처리
+	@Override
+	public void finishModify2(Reserve reserve) throws Exception {
+
+		mapper.finishCancel(reserve);
 	}
 
 	// 예약완료 복구처리
+	@Override
 	public void completeModify(Reserve reserve) throws Exception {
-		mapper.completeUpdate(reserve);
+		mapper.completeRestore(reserve);
+	}
+
+	// 취소완료 복구처리
+	@Override
+	public void cancelModify(Reserve reserve) throws Exception {
+		mapper.cancelRestore(reserve);
 	}
 }

@@ -13,25 +13,24 @@
 					
 					<!-- 회원 관리를 메뉴에 추가한다. -->
 					<td width="160">
-						<li><a href="#"><spring:message code="menu.user.admin" /></a>
 							<ul>
-								<li><a href="/admin/user/list"><spring:message code="menu.userList.admin"></spring:message></a></li>
-								<li><a href="/"><spring:message code="menu.withDrawList.admin"></spring:message></a></li>
+								<a href="/admin/user/list"><spring:message code="menu.user.admin" /></a>
+								<li><a href="/admin/user/list"><spring:message code="menu.userList.admin"/></a></li>
+								<li><a href="/admin/user/withdraw/list"><spring:message code="menu.withdrawList.admin"/></a></li>
 							</ul>
-						</li>
 					</td>
 					<!-- 예약정보 관리를 메뉴에 추가한다. -->
 					<td>
-						<li><a href="#"><spring:message code="menu.reserve.admin" /></a>
 							<ul>
-								<li><a href="/"><spring:message code="menu.approval.admin"></spring:message></a></li>
-								<li><a href="/"><spring:message code="menu.reserveComplete.admin"></spring:message></a></li>
-								<li><a href="/"><spring:message code="menu.reserveCancel.admin"></spring:message></a></li>
+								<a href="/admin/reserve/request/list"><spring:message code="menu.reserve.admin" /></a>
+								<li><a href="/admin/reserve/request/list"><spring:message code="menu.approval.admin"/></a></li>
+								<li><a href="/admin/reserve/complete/list"><spring:message code="menu.reserveComplete.admin"/></a></li>
+								<li><a href="/admin/reserve/cancel/list"><spring:message code="menu.reserveCancel.admin"/></a></li>
 							</ul>
-						</li>
 					</td>
 					<!-- 게시판 관리 메뉴에 추가한다. -->
 					<td>
+<<<<<<< HEAD
 						<li><a href="#"><spring:message code="menu.board.admin" /></a>
 							<ul>
 								<a href="/admin/notice/list"><spring:message code="menu.notice.admin"></spring:message></a>
@@ -40,6 +39,14 @@
 								
 							</ul>  
 						</li>
+=======
+						<ul>
+							<a href="/admin/notice/list"><spring:message code="menu.board.admin"/></a>
+							<li><a href="/admin/notice/list"><spring:message code="menu.admin.notice"/></a></li>	
+							<li><a href="/admin/reference/list"><spring:message code="menu.reference.admin"/></a></li>
+							<li><a href="/admin/review/list"><spring:message code="menu.review.admin"/></a></li>
+						</ul>
+>>>>>>> c5940a435187569b31009dc380ecede0f4c15f41
 					</td>
 		</tr>
 	</table>

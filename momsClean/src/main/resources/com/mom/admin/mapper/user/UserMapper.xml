@@ -10,18 +10,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<if test="searchType == 'ca'.toString()">
 				AND (user_no LIKE CONCAT('%', CONCAT(#{keyword}, '%'))
 				OR
-				user_id LIKE CONCAT('%', CONCAT(#{keyword}, '%'))
-				OR user_name LIKE
-				CONCAT('%', CONCAT(#{keyword}, '%')))
+				UPPER(user_id) LIKE CONCAT('%', CONCAT(UPPER(#{keyword}), '%'))
+				OR UPPER(user_name) LIKE
+				CONCAT('%', CONCAT(UPPER(#{keyword}), '%')))
 			</if>
 			<if test="searchType == 'no'.toString()">
 				AND user_no LIKE CONCAT('%', CONCAT(#{keyword}, '%'))
 			</if>
 			<if test="searchType == 'id'.toString()">
-				AND user_id LIKE CONCAT('%', CONCAT(#{keyword}, '%'))
+				AND UPPER(user_id) LIKE CONCAT('%', CONCAT(UPPER(#{keyword}), '%'))
 			</if>
 			<if test="searchType == 'na'.toString()">
-				AND user_name LIKE CONCAT('%', CONCAT(#{keyword}, '%'))
+				AND UPPER(user_name) LIKE CONCAT('%', CONCAT(UPPER(#{keyword}), '%'))
 			</if>
 		</if>
 	</sql>
@@ -33,31 +33,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</sql>
 
 	<!-- 회원리스트 조회 -->
-	<!-- <select id="list" resultType="User">
-		1. 회원구분 '유지'인 데이터를 뽑아 회원번호 오름차순으로 정렬 
-		2. rownum으로 번호를 붙이고 페이징처리
-		3. 출력
-		<![CDATA[
-		SELECT user_no, user_id, user_name, user_phone, user_email, email_auth, reg_date, user_division
-		FROM (SELECT user_no, user_id, user_name, user_phone, user_email, email_auth, reg_date, user_division, rownum as rnum
-			  FROM (SELECT user_no, user_id, user_name, user_phone, user_email, email_auth, reg_date, user_division
-					FROM user_tbl 
-					WHERE user_division = '유지'
-					ORDER BY user_no ASC
-					)
-			  OFFSET #{sizePerPage} * (#{page} - 1) ROWS FETCH NEXT #{sizePerPage} ROWS ONLY
-  		)
-  		WHERE user_division = '유지'
-  		]]>
-
-		<include refid="total_list" />
-		<include refid="search" />
-
-		<![CDATA[
-		ORDER BY user_no ASC
-		
-		]]>
-	</select> -->
 	<select id="list" resultType="User">
     <![CDATA[
     WITH paginated_users AS (
@@ -91,25 +66,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<!-- 탈퇴회원리스트 조회 -->
 	<select id="withdraw" resultType="User">
-		<!-- 회원구분 '탈퇴'인 데이터를 뽑아 회원번호 오름차순으로 정렬한 다음 rownum으로 번호를 붙이고 페이징처리 -->
-		<!-- <![CDATA[
-		SELECT user_no, user_id, user_name, user_phone, user_email, email_auth, reg_date, user_division, withdraw_date
-		FROM (SELECT user_no, user_id, user_name, user_phone, user_email, email_auth, reg_date, user_division, withdraw_date, rownum as rnum
-			  FROM (SELECT user_no, user_id, user_name, user_phone, user_email, email_auth, reg_date, user_division, withdraw_date
-					FROM user_tbl 
-					WHERE user_division = '탈퇴'
-					ORDER BY user_no ASC)
-  		)
-  		WHERE rnum BETWEEN #{sizePerPage}*#{page}-9 AND #{sizePerPage}*#{page}
-  		AND user_division = '탈퇴'
-  		]]>
-
-		<include refid="total_list" />
-		<include refid="search" />
-
-		<![CDATA[
-		ORDER BY user_no ASC
-		]]> -->
+		
 	<![CDATA[
    	WITH paginated_users AS (
 		SELECT user_no, user_id, user_name, user_phone, user_email, email_auth, reg_date, user_division, withdraw_date, rownum as rnum
@@ -138,19 +95,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			FROM user_tbl
 			WHERE user_division = '탈퇴'
 		]]>
-
 		<include refid="search" />
-		
-		<![CDATA[
-			ORDER BY user_no ASC
-		]]>
 	</select>
 	
 
 	<!-- 회원 상세조회 -->
 	<select id="read" resultType="User">
-		SELECT user_no, user_id, user_name,
-		user_phone, user_email, reg_date, user_division, withdraw_date
+		SELECT user_no, user_id, user_name,	user_phone, user_email, reg_date, user_division, withdraw_date
 		FROM user_tbl
 		WHERE
 		user_no = #{userNo}

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
@@ -18,9 +19,12 @@
 				<td>${reserve.reserveNo}</td>
 			</tr>
 			<tr>
-			<tr>
 				<td><spring:message code="reserve.reserveUserName" /></td>
 				<td>${reserve.userName}(${reserve.userId})</td>
+			</tr>
+			<tr>
+				<td><spring:message code="reserve.reserveAddr" /></td>
+				<td>${reserve.reserveAddr}</td>
 			</tr>
 			<tr>
 				<td rowspan="2"><spring:message code="reserve.itemInfo" /></td>
@@ -75,10 +79,16 @@
 <script>
 	$(document).ready(function() {
 		var formObj = $("#reserve");
-		$("#btnFinish").on("click", function() {
-			formObj.attr("action", "finish");
-			formObj.submit();
-		});
+		 $("#btnFinish").on("click", function() {
+	            var cleanDoneValue = "${reserve.cleanDone}"; // 현재의 cleanDone 값 가져오기
+
+	            if (cleanDoneValue === 'N') { // 'N'인 경우
+	                formObj.attr("action", "finishUpdate"); // form의 action을 finishUpdate로 변경
+	            } else if (cleanDoneValue === 'Y') { // 'Y'인 경우
+	                formObj.attr("action", "finishCancel"); // form의 action을 finishCancel로 변경
+	            }
+	            formObj.submit(); // submit 실행
+	        });
 		$("#btnRestore").on("click", function() {
 			formObj.submit();
 		});
