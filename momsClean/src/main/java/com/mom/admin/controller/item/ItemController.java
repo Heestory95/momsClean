@@ -2,6 +2,7 @@ package com.mom.admin.controller.item;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 import java.util.UUID;
@@ -55,9 +56,22 @@ public class ItemController {
 		MultipartFile pictureFile = item.getPicture();
 		MultipartFile thumbFile = item.getThumb();
 
-		String createdPictureFilename = uploadImg(pictureFile.getOriginalFilename(), pictureFile.getBytes());
-		String createdThumbFilename = uploadThumb(thumbFile.getOriginalFilename(), thumbFile.getBytes());
-
+		//String createdPictureFilename = uploadImg(pictureFile.getOriginalFilename(), pictureFile.getBytes());
+		//String createdThumbFilename = uploadThumb(thumbFile.getOriginalFilename(), thumbFile.getBytes());
+		String createdPictureFilename = null;
+		String createdThumbFilename =null;
+	    try {
+	        if (pictureFile != null && !pictureFile.isEmpty()) {
+	            createdPictureFilename = uploadImg(pictureFile.getOriginalFilename(), pictureFile.getBytes());
+	        }else { createdPictureFilename = "";
+	        }
+	        if (thumbFile != null && !thumbFile.isEmpty()) {
+	            createdThumbFilename = uploadThumb(thumbFile.getOriginalFilename(), thumbFile.getBytes());
+	        }else {createdThumbFilename="";}
+	    } catch (IOException e) {
+	       
+	    }
+		
 		item.setItemImg(createdPictureFilename);
 		item.setItemImgThumb(createdThumbFilename);
 
@@ -102,7 +116,7 @@ public class ItemController {
 	// @PreAuthorize("hasRole('ROLE_ADMIN')")
 	public String modifyForm(String itemNo, Model model) throws Exception {
 		Item item = ItemService.read(itemNo);
-
+		
 		model.addAttribute(item);
 
 		return "/admin/item/itemModify";
@@ -112,8 +126,9 @@ public class ItemController {
 	@RequestMapping(value = "/optionModify", method = RequestMethod.GET)
 	// @PreAuthorize("hasRole('ROLE_ADMIN')")
 	public String optionModifyForm(String itemName, Model model) throws Exception {
+		
 		Item item = ItemService.optionRead(itemName);
-
+		
 		model.addAttribute(item);
 
 		return "/admin/item/optionModify";
@@ -123,26 +138,48 @@ public class ItemController {
 	@RequestMapping(value = "/itemModify", method = RequestMethod.POST)
 	// @PreAuthorize("hasRole('ROLE_ADMIN')")
 	public String modify(Item item, RedirectAttributes rttr) throws Exception {
+		
 		/*
 		 * log.info(item.getItemName()); log.info(item.getItemNo());
 		 * 
 		 * log.info(Integer.toString(item.getItemPrice())); Integer iNo =
 		 * ItemService.getINo(item.getItemName()); item.setINo(iNo);
-		 * log.info(Integer.toString(item.getI_no()));
+		 * log.info(Integer.toString(item.getINo()));
 		 */
+		 
+		//ItemService.modify(item);
+		
+		
 		MultipartFile pictureFile = item.getPicture();
-		if (pictureFile != null && pictureFile.getSize() > 0) {
-			String createdFilename = uploadImg(pictureFile.getOriginalFilename(), pictureFile.getBytes());
-			item.setItemImg(createdFilename);
+		String createdPictureFilename = null;
+		try {
+		    if (pictureFile != null && pictureFile.getSize() > 0) {
+		        createdPictureFilename = uploadImg(pictureFile.getOriginalFilename(), pictureFile.getBytes());
+		    } else {
+		        createdPictureFilename = ""; // 빈 문자열로 설정
+		    }
+		} catch (IOException e) {
+		    // 예외 처리
 		}
+		item.setItemImg(createdPictureFilename); // 한 번만 설정하도록 수정
+
 		MultipartFile thumbFile = item.getThumb();
-		if (thumbFile != null && thumbFile.getSize() > 0) {
-			String createdFilename = uploadThumb(thumbFile.getOriginalFilename(), thumbFile.getBytes());
-			item.setItemImgThumb(createdFilename);
+		String createdThumbFilename = null;
+		try {
+		    if (thumbFile != null && thumbFile.getSize() > 0) {
+		        createdThumbFilename = uploadThumb(thumbFile.getOriginalFilename(), thumbFile.getBytes());
+		    } else {
+		        createdThumbFilename = ""; 
+		    }
+		} catch (IOException e) {
+		    // 예외 처리
 		}
+		item.setItemImgThumb(createdThumbFilename);
 
 		ItemService.modify(item);
 
+
+		
 		rttr.addFlashAttribute("msg", "SUCCESS");
 
 		return "redirect:/admin/item/list";
@@ -152,15 +189,14 @@ public class ItemController {
 	@RequestMapping(value = "/optionModify", method = RequestMethod.POST)
 	// @PreAuthorize("hasRole('ROLE_ADMIN')")
 	public String optionModify(Item item, RedirectAttributes rttr) throws Exception {
-		log.info(item.getItemName());
-		// log.info(item.getItemNo());
-
-		log.info(Integer.toString(item.getItemPrice()));
-		Integer iNo = ItemService.getINo(item.getItemName());
-		item.setINo(iNo);
-		log.info(Integer.toString(item.getINo()));
+		/*
+		 * log.info(item.getItemName()); log.info(item.getItemNo());
+		 * 
+		 * log.info(Integer.toString(item.getItemPrice())); Integer iNo =
+		 * ItemService.getINo(item.getItemName()); item.setINo(iNo);
+		 * log.info(Integer.toString(item.getINo())); 
+		 */
 		ItemService.optionModify(item);
-
 		rttr.addFlashAttribute("msg", "SUCCESS");
 
 		return "redirect:/admin/item/list";

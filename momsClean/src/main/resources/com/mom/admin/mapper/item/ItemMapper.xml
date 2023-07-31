@@ -18,7 +18,7 @@
 		values
 		(
 		item_seq.NEXTVAL,
-		#{itemNo},
+		LPAD(#{itemNo},2,'0'),
 		'상품',
 		#{itemName},
 		#{itemPrice},
@@ -70,26 +70,25 @@
 		]]>
 	</select>
 
-	<select id="getINo" resultType="Integer">
+	<!--  <select id="getINo" resultType="Integer">
 		<![CDATA[
 		select 
 			i_no
 		from item
 		where item_name = #{itemName}
 		]]>
-	</select>
+	</select>  -->
 
 	<!-- 수정 처리 -->
 	<update id="update">
 		update item
 		set
-		item_no = #{itemNo},
+		item_no = LPAD(#{itemNo}, 2, '0'),
 		item_name = #{itemName},
 		item_price = #{itemPrice},
 		item_img_thumb = #{itemImgThumb},
 		item_img = #{itemImg}
-		where
-		item_no = #{itemNo}
+		where i_no = #{iNo}
 	</update>
 
 	<!-- 옵션 처리 -->
@@ -98,11 +97,13 @@
 		set
 		item_name = #{itemName},
 		item_price = #{itemPrice}
-		where i_no = #{i_no}
+		where i_no = #{iNo}
 	</update>
 
 	<select id="read" resultType="Item">
-		select item_No,
+		select
+		i_no,
+		item_No,
 		item_name,
 		item_price
 		from item
@@ -111,6 +112,7 @@
 
 	<select id="optionRead" resultType="Item">
 		select
+		i_no,
 		item_name,
 		item_price
 		from item

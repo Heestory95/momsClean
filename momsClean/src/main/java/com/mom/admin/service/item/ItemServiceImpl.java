@@ -69,11 +69,11 @@ public class ItemServiceImpl implements ItemService {
 		return mapper.list2();
 	}
 
-	@Override
-	public Integer getINo(String itemName) throws Exception {
-
-		return mapper.getINo(itemName);
-	}
+	/*
+	 * @Override public Integer getINo(String itemName) throws Exception {
+	 * 
+	 * return mapper.getINo(itemName); }
+	 */
 
 	// 썸네일 이미지 표시
 	@Override

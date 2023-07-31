@@ -36,6 +36,11 @@
 		var formObj = $("#item");
 
 		$("#btnRegister").on("click", function() {
+			// 폼 전송 전에 숫자 입력 여부와 빈 칸 여부를 확인합니다.
+			if (!validateInput()) {
+				return false; // 제출 취소
+			}
+
 			formObj.submit();
 		});
 
@@ -43,4 +48,32 @@
 			self.location = "list";
 		});
 	});
+
+	function validateInput() {
+		var itemNameInput = $("input[name='itemName']");
+		var inputValue2 = itemNameInput.val();
+		
+		var itemPriceInput = $("input[name='itemPrice']");
+		var inputValue3 = itemPriceInput.val();
+
+		// 빈 칸인지 확인합니다.
+		if (!inputValue2.trim()) {
+			alert("옵션명을 입력하지 않았습니다.");
+			return false;
+		}
+		if (!inputValue3.trim()) {
+			alert("가격을 입력하지 않았습니다.");
+			return false;
+		}
+		if (!/^\d*$/.test(inputValue3)) {
+			alert("가격은 숫자만 입력 가능합니다.");
+			return false;
+		}
+		
+
+
+		return true;
+	}
+	
+	
 </script>

@@ -46,10 +46,15 @@
 
 			self.location = "/admin/item/optionModify?itemName="+itemNameVal;
 		});
+
 		$("#btnRemove").on("click", function() {
-			formObj.attr("action", "/admin/item/remove");
-			formObj.submit();
+			// confirm 함수로 확인 메시지를 띄웁니다.
+			if (confirm("정말로 옵션 상품을 삭제하시겠습니까?")) {
+				formObj.attr("action", "/admin/item/remove");
+				formObj.submit();
+			}
 		});
+
 		$("#btnCancel").on("click", function() {
 			self.location = "/admin/item/list";
 		});

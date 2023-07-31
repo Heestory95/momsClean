@@ -33,7 +33,7 @@ public interface ItemMapper {
 	// 옵션 목록 페이지
 	public List<Item> list2() throws Exception;
 	
-	public Integer getINo(String itemName) throws Exception;
+	/* public Integer getINo(String itemName) throws Exception; */
 	
 	// 원본 이미지 표시
 	public String getPicture(String itemNo) throws Exception;

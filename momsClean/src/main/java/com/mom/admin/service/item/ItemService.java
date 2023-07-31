@@ -34,7 +34,7 @@ public interface ItemService {
 	public Item read(String itemNo) throws Exception;
 	public Item optionRead(String itemName) throws Exception;
 	
-	public Integer getINo(String itemName) throws Exception;
+	/* public Integer getINo(String itemName) throws Exception; */
 	
 	
 	

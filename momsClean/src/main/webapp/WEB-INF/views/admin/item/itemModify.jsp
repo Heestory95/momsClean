@@ -11,6 +11,8 @@
 
 <form:form modelAttribute="item" action="itemModify"
 	enctype="multipart/form-data">
+	
+<form:hidden path="iNo"/>
 
 	<table border="1">
 		<tr>
@@ -60,10 +62,56 @@
 		var formObj = $("#item");
 
 		$("#btnModify").on("click", function() {
+			// 폼 전송 전에 숫자 입력 여부와 빈 칸 여부를 확인합니다.
+			if (!validateInput()) {
+				return false; // 제출 취소
+			}
+
 			formObj.submit();
 		});
+
 		$("#btnCancel").on("click", function() {
-			self.location = "/admin/item/list";
+			self.location = "list";
 		});
 	});
+
+	function validateInput() {
+		var itemNoInput = $("input[name='itemNo']");
+		var inputValue = itemNoInput.val();
+		
+		var itemNameInput = $("input[name='itemName']");
+		var inputValue2 = itemNameInput.val();
+		
+		var itemPriceInput = $("input[name='itemPrice']");
+		var inputValue3 = itemPriceInput.val();
+
+		// 빈 칸인지 확인합니다.
+		if (!inputValue.trim()) {
+			alert("상품번호를 입력하지 않았습니다.");
+			return false;
+		}
+		if (!/^\d*$/.test(inputValue)) {
+			alert("상품번호는 숫자만 입력 가능합니다.");
+			return false;
+		}
+		
+		if (!inputValue2.trim()) {
+			alert("상품명을 입력하지 않았습니다.");
+			return false;
+		}
+		if (!inputValue3.trim()) {
+			alert("가격을 입력하지 않았습니다.");
+			return false;
+		}
+		if (!/^\d*$/.test(inputValue3)) {
+			alert("가격은 숫자만 입력 가능합니다.");
+			return false;
+		}
+		
+
+
+		return true;
+	}
+	
+	
 </script>
