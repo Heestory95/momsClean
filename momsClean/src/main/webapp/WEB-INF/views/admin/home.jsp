@@ -9,8 +9,10 @@
 
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!-- 신규 문의 -->
+<div>
 <h3>
-	<spring:message code="reference.header" />
+	<spring:message code="home.admin.reference" />
 </h3>
 
 <table border="1">
@@ -44,4 +46,10 @@
 		</c:otherwise>
 	</c:choose>
 </table>
-
+</div>
+<!-- 신규 예약 -->
+<div></div>
+<!-- 신규 리뷰 -->
+<div></div>
+<!-- 통계 차트 -->
+<div></div>

@@ -50,6 +50,28 @@
 		reference_no = #{reference.referenceNo}
 		order by reference_no DESC
 	</select>
+	
+	<select id="request" resultType="Home">
+
+		<![CDATA[
+		WITH paginated_reserves_req AS (
+			SELECT reserve_no, user_no, user_id, user_name, item_no, reserve_state, reserve_addr, reserve_item_price, reserve_option_price, reserve_date, clean_date, reserve_request, rownum as rnum
+			FROM (
+				SELECT reserve_no, user_no, user_id, user_name, item_no, reserve_state, reserve_addr, reserve_item_price, reserve_option_price, reserve_date, clean_date, reserve_request
+				FROM reserve
+				WHERE reserve_state = '예약대기'
+		]]>
+		<include refid="search" />
+    	<![CDATA[
+    		ORDER BY reserve_date ASC) paginated
+    		OFFSET #{sizePerPage} * (#{page} - 1) ROWS FETCH NEXT #{sizePerPage} ROWS ONLY
+    		)
+		SELECT reserve_no, user_no, user_id, user_name, item_no, reserve_state, reserve_addr, reserve_item_price, reserve_option_price, reserve_date, clean_date, reserve_request
+		FROM paginated_reserves_req
+		WHERE reserve_state = '예약대기'
+		ORDER BY reserve_date ASC
+		]]>
+	</select>
 
 <!-- 신규 예약현황의 select문 where절에 들어갈 현재날짜와 예약날짜 비교 쿼리 -->
 <!-- TRUNC(reserve_date) = TRUNC(sysdate) -->
