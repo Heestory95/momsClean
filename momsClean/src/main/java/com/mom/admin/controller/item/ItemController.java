@@ -41,7 +41,6 @@ public class ItemController {
 
 	// 상품 등록 페이지
 	@RequestMapping(value = "/itemRegister", method = RequestMethod.GET)
-	// @PreAuthorize("hasRole('ROLE_ADMIN')")
 	public String registerForm(Model model) {
 		model.addAttribute(new Item());
 
@@ -50,14 +49,11 @@ public class ItemController {
 
 	// 상품 등록 처리
 	@RequestMapping(value = "/itemRegister", method = RequestMethod.POST)
-	// @PreAuthorize("hasRole('ROLE_ADMIN')")
 	public String register(Item item, RedirectAttributes rttr) throws Exception {
 
 		MultipartFile pictureFile = item.getPicture();
 		MultipartFile thumbFile = item.getThumb();
 
-		//String createdPictureFilename = uploadImg(pictureFile.getOriginalFilename(), pictureFile.getBytes());
-		//String createdThumbFilename = uploadThumb(thumbFile.getOriginalFilename(), thumbFile.getBytes());
 		String createdPictureFilename = null;
 		String createdThumbFilename =null;
 	    try {
@@ -83,7 +79,6 @@ public class ItemController {
 
 	// 옵션 등록 페이지
 	@RequestMapping(value = "/optionRegister", method = RequestMethod.GET)
-	// @PreAuthorize("hasRole('ROLE_ADMIN')")
 	public String optionRegisterForm(Model model) {
 		model.addAttribute(new Item());
 
@@ -92,7 +87,6 @@ public class ItemController {
 
 	// 옵션 등록 처리
 	@RequestMapping(value = "/optionRegister", method = RequestMethod.POST)
-	// @PreAuthorize("hasRole('ROLE_ADMIN')")
 	public String optionRegister(Item item, RedirectAttributes rttr) throws Exception {
 
 		ItemService.optionRegister(item);
@@ -113,7 +107,6 @@ public class ItemController {
 
 	// 상품 수정 페이지
 	@RequestMapping(value = "/itemModify", method = RequestMethod.GET)
-	// @PreAuthorize("hasRole('ROLE_ADMIN')")
 	public String modifyForm(String itemNo, Model model) throws Exception {
 		Item item = ItemService.read(itemNo);
 		
@@ -124,7 +117,6 @@ public class ItemController {
 
 	// 옵션 수정 페이지
 	@RequestMapping(value = "/optionModify", method = RequestMethod.GET)
-	// @PreAuthorize("hasRole('ROLE_ADMIN')")
 	public String optionModifyForm(String itemName, Model model) throws Exception {
 		
 		Item item = ItemService.optionRead(itemName);
@@ -136,19 +128,7 @@ public class ItemController {
 
 	// 상품 수정 처리
 	@RequestMapping(value = "/itemModify", method = RequestMethod.POST)
-	// @PreAuthorize("hasRole('ROLE_ADMIN')")
 	public String modify(Item item, RedirectAttributes rttr) throws Exception {
-		
-		/*
-		 * log.info(item.getItemName()); log.info(item.getItemNo());
-		 * 
-		 * log.info(Integer.toString(item.getItemPrice())); Integer iNo =
-		 * ItemService.getINo(item.getItemName()); item.setINo(iNo);
-		 * log.info(Integer.toString(item.getINo()));
-		 */
-		 
-		//ItemService.modify(item);
-		
 		
 		MultipartFile pictureFile = item.getPicture();
 		String createdPictureFilename = null;
@@ -187,15 +167,8 @@ public class ItemController {
 
 	// 옵션 수정 처리
 	@RequestMapping(value = "/optionModify", method = RequestMethod.POST)
-	// @PreAuthorize("hasRole('ROLE_ADMIN')")
 	public String optionModify(Item item, RedirectAttributes rttr) throws Exception {
-		/*
-		 * log.info(item.getItemName()); log.info(item.getItemNo());
-		 * 
-		 * log.info(Integer.toString(item.getItemPrice())); Integer iNo =
-		 * ItemService.getINo(item.getItemName()); item.setINo(iNo);
-		 * log.info(Integer.toString(item.getINo())); 
-		 */
+
 		ItemService.optionModify(item);
 		rttr.addFlashAttribute("msg", "SUCCESS");
 
@@ -204,11 +177,9 @@ public class ItemController {
 
 	// 상품 삭제 처리
 	@RequestMapping(value = "/remove", method = RequestMethod.POST)
-	// @PreAuthorize("hasRole('ROLE_ADMIN')")
 	public String remove(Item item, RedirectAttributes rttr) throws Exception {
 		log.info(item.toString());
 		ItemService.remove(item.getItemName());
-		// ItemService.remove(item.getItemNo());
 
 		rttr.addFlashAttribute("msg", "SUCCESS");
 

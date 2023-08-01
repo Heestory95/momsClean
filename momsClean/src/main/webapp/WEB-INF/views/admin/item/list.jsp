@@ -57,7 +57,9 @@
 	</tr>
 </table>
 
-<br><br><br>
+<br>
+<br>
+<br>
 
 <h2>
 	<spring:message code="item.header.optionList" />
@@ -97,7 +99,8 @@
 						<td align="right">${item.itemPrice}원</td>
 
 
-						<td align="center"><a href="optionChange?itemName=${item.itemName}"><spring:message
+						<td align="center"><a
+							href="optionChange?itemName=${item.itemName}"><spring:message
 									code="item.change" /></a></td>
 					</tr>
 				</c:forEach>

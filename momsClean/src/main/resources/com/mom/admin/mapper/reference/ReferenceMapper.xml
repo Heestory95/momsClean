@@ -6,57 +6,42 @@
 	<sql id="search">
 		<if test="searchType != null">
 			<if test="searchType == 'n'.toString()">
-				And reference_No LIKE CONCAT('%',CONCAT(#{keyword}, '%'))
+				AND reference_No LIKE CONCAT('%',CONCAT(#{keyword}, '%'))
 			</if>
 			<if test="searchType == 'u'.toString()">
-				And user_No LIKE CONCAT('%',CONCAT(#{keyword}, '%'))
+				AND user_No LIKE CONCAT('%',CONCAT(#{keyword}, '%'))
 			</if>
 			<if test="searchType == 't'.toString()">
-				And reference_Title LIKE CONCAT('%',CONCAT(#{keyword},
+				AND upper(reference_Title) LIKE CONCAT('%',CONCAT(upper(#{keyword}),
 				'%'))
 			</if>
 			<if test="searchType == 'r'.toString()">
-				And #{keyword} IN (SELECT user_name FROM user_tbl)
+				AND user_No IN (SELECT user_No FROM user_tbl WHERE
+				upper(user_name) LIKE
+				CONCAT('%',CONCAT(upper(#{keyword}), '%')))
 			</if>
 			<if test="searchType == 'ca'.toString()">
-				And( reference_No LIKE CONCAT('%',CONCAT(#{keyword},
+				AND (
+				reference_No LIKE CONCAT('%',CONCAT(#{keyword},
 				'%'))
-				OR user_No LIKE CONCAT('%',CONCAT(#{keyword}, '%'))
+				OR user_name LIKE CONCAT('%',CONCAT(#{keyword}, '%'))
 				OR
 				reference_Title LIKE CONCAT('%',CONCAT(#{keyword}, '%'))
-				OR
-				#{keyword} IN (SELECT user_name FROM user_tbl))
+				OR user_No
+				IN (SELECT user_No FROM user_tbl WHERE user_name LIKE
+				CONCAT('%',CONCAT(#{keyword}, '%')))
+				)
 			</if>
 		</if>
 	</sql>
 	<sql id="total_list">
 		<if test="searchType == null">
 			and rnum between #{sizePerPage} *#{page}-9
-			and #{sizePerPage} *#{page}
+			and
+			#{sizePerPage} *#{page}
 		</if>
 	</sql>
-	
-	<!-- <select id="list" resultType="User">
-    <![CDATA[
-    WITH paginated_users AS (
-        SELECT user_no, user_id, user_name, user_phone, user_email, email_auth, reg_date, user_division, rownum as rnum
-        FROM (
-            SELECT user_no, user_id, user_name, user_phone, user_email, email_auth, reg_date, user_division
-            FROM user_tbl
-            WHERE user_division = '유지'
-    ]]>
-    <include refid="search" />
-    <![CDATA[
-            ORDER BY user_no ASC) paginated
-           OFFSET #{sizePerPage} * (#{page} - 1) ROWS FETCH NEXT #{sizePerPage} ROWS ONLY
-          )
-       SELECT user_no, user_id, user_name, user_phone, user_email, email_auth, reg_date, user_division
-       FROM paginated_users
-       WHERE user_division = '유지'
-       ORDER BY user_no ASC
-   ]]>
-</select> -->
-	
+
 	<select id="list" resultType="Reference">
 		<![CDATA[
 		 WITH paginated_references AS (

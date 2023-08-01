@@ -11,7 +11,7 @@
 	<spring:message code="item.header.change" />
 </h2>
 <form:form modelAttribute="item">
-	
+
 	<table>
 		<tr>
 			<td><spring:message code="item.itemNo" /></td>
@@ -29,11 +29,11 @@
 			<td><font color="red"><form:errors path="itemPrice" /></font></td>
 		</tr>
 		<tr>
-			<td><spring:message code="item.img"/></td>
+			<td><spring:message code="item.img" /></td>
 			<td><img src="picture?itemNo=${item.itemNo}" width="210"></td>
 		</tr>
 		<tr>
-			<td><spring:message code="item.img.thumb"/></td>
+			<td><spring:message code="item.img.thumb" /></td>
 			<td><img src="thumb?itemNo=${item.itemNo}" width="210"></td>
 		</tr>
 	</table>
@@ -57,7 +57,7 @@
 			var itemNo = $("#itemNo");
 			var itemNoVal = itemNo.val();
 
-			self.location = "/admin/item/itemModify?itemNo="+itemNoVal;
+			self.location = "/admin/item/itemModify?itemNo=" + itemNoVal;
 		});
 
 		$("#btnRemove").on("click", function() {
