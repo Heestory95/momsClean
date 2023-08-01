@@ -11,7 +11,7 @@
 
 <form:form modelAttribute="item" action="optionModify"
 	enctype="multipart/form-data">
-	<form:hidden path="iNo"/>
+	<form:hidden path="iNo" />
 
 	<table border="1">
 		<tr>
@@ -56,7 +56,7 @@
 	function validateInput() {
 		var itemNameInput = $("input[name='itemName']");
 		var inputValue2 = itemNameInput.val();
-		
+
 		var itemPriceInput = $("input[name='itemPrice']");
 		var inputValue3 = itemPriceInput.val();
 
@@ -73,11 +73,7 @@
 			alert("가격은 숫자만 입력 가능합니다.");
 			return false;
 		}
-		
-
 
 		return true;
 	}
-	
-	
 </script>

@@ -2,7 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <h2>
 	<spring:message code="item.itemRegist" />
 </h2>
@@ -10,7 +11,7 @@
 	enctype="multipart/form-data">
 	<table border="1">
 		<tr>
-			<td><spring:message  code="item.itemNo" /></td>
+			<td><spring:message code="item.itemNo" /></td>
 			<td><form:input maxlength="2" path="itemNo" /></td>
 			<td><font color="red"><form:errors path="itemNo" /></font></td>
 		</tr>
@@ -25,13 +26,13 @@
 			<td><font color="red"><form:errors path="itemPrice" /></font></td>
 		</tr>
 		<tr>
-			<td><spring:message code="item.img"/></td>
-			<td><input type="file" name="picture"/></td>
+			<td><spring:message code="item.img" /></td>
+			<td><input type="file" name="picture" /></td>
 		</tr>
 		<tr>
-			<td><spring:message code="item.img.thumb"/></td>
-			<td><input type="file" name="thumb"/></td>
- 		</tr>
+			<td><spring:message code="item.img.thumb" /></td>
+			<td><input type="file" name="thumb" /></td>
+		</tr>
 	</table>
 </form:form>
 
@@ -65,10 +66,10 @@
 	function validateInput() {
 		var itemNoInput = $("input[name='itemNo']");
 		var inputValue = itemNoInput.val();
-		
+
 		var itemNameInput = $("input[name='itemName']");
 		var inputValue2 = itemNameInput.val();
-		
+
 		var itemPriceInput = $("input[name='itemPrice']");
 		var inputValue3 = itemPriceInput.val();
 
@@ -81,7 +82,7 @@
 			alert("상품번호는 숫자만 입력 가능합니다.");
 			return false;
 		}
-		
+
 		if (!inputValue2.trim()) {
 			alert("상품명을 입력하지 않았습니다.");
 			return false;
@@ -94,11 +95,7 @@
 			alert("가격은 숫자만 입력 가능합니다.");
 			return false;
 		}
-		
-
 
 		return true;
 	}
-	
-	
 </script>

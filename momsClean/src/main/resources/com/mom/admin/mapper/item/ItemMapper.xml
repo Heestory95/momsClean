@@ -70,14 +70,8 @@
 		]]>
 	</select>
 
-	<!--  <select id="getINo" resultType="Integer">
-		<![CDATA[
-		select 
-			i_no
-		from item
-		where item_name = #{itemName}
-		]]>
-	</select>  -->
+	<!-- <select id="getINo" resultType="Integer"> <![CDATA[ select i_no from 
+		item where item_name = #{itemName} ]]> </select> -->
 
 	<!-- 수정 처리 -->
 	<update id="update">
@@ -86,7 +80,8 @@
 		item_no = LPAD(#{itemNo}, 2, '0'),
 		item_name = #{itemName},
 		item_price = #{itemPrice},
-		item_img_thumb = #{itemImgThumb},
+		item_img_thumb =
+		#{itemImgThumb},
 		item_img = #{itemImg}
 		where i_no = #{iNo}
 	</update>
@@ -96,7 +91,8 @@
 		update item
 		set
 		item_name = #{itemName},
-		item_price = #{itemPrice}
+		item_price =
+		#{itemPrice}
 		where i_no = #{iNo}
 	</update>
 

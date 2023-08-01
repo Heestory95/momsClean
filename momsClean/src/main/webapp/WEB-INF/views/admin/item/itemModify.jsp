@@ -11,8 +11,8 @@
 
 <form:form modelAttribute="item" action="itemModify"
 	enctype="multipart/form-data">
-	
-<form:hidden path="iNo"/>
+
+	<form:hidden path="iNo" />
 
 	<table border="1">
 		<tr>
@@ -31,20 +31,20 @@
 			<td><font color="red"><form:errors path="itemPrice" /></font></td>
 		</tr>
 		<tr>
-			<td><spring:message code="item.img"/></td>
+			<td><spring:message code="item.img" /></td>
 			<td><img src="picture?itemNo=${item.itemNo}" width="210"></td>
 		</tr>
 		<tr>
-			<td><spring:message code="item.img.thumb"/></td>
+			<td><spring:message code="item.img.thumb" /></td>
 			<td><img src="thumb?itemNo=${item.itemNo}" width="210"></td>
 		</tr>
 		<tr>
-			<td><spring:message code="item.imgFile"/></td>
-			<td><input type="file" name="picture"/></td>
+			<td><spring:message code="item.imgFile" /></td>
+			<td><input type="file" name="picture" /></td>
 		</tr>
 		<tr>
-			<td><spring:message code="item.img.thumbFile"/></td>
-			<td><input type="file" name="thumb"/></td>
+			<td><spring:message code="item.img.thumbFile" /></td>
+			<td><input type="file" name="thumb" /></td>
 		</tr>
 	</table>
 </form:form>
@@ -78,10 +78,10 @@
 	function validateInput() {
 		var itemNoInput = $("input[name='itemNo']");
 		var inputValue = itemNoInput.val();
-		
+
 		var itemNameInput = $("input[name='itemName']");
 		var inputValue2 = itemNameInput.val();
-		
+
 		var itemPriceInput = $("input[name='itemPrice']");
 		var inputValue3 = itemPriceInput.val();
 
@@ -94,7 +94,7 @@
 			alert("상품번호는 숫자만 입력 가능합니다.");
 			return false;
 		}
-		
+
 		if (!inputValue2.trim()) {
 			alert("상품명을 입력하지 않았습니다.");
 			return false;
@@ -107,11 +107,7 @@
 			alert("가격은 숫자만 입력 가능합니다.");
 			return false;
 		}
-		
-
 
 		return true;
 	}
-	
-	
 </script>
