@@ -33,5 +33,9 @@ public class Home {
 	private Date cancelDate;
 	private String reserveRequest;
 	private String cleanDone;
+	private int reviewNo;
+	private int reviewGrade;	
+	private String reviewContent;
+	private Date reviewDate;
 	
 }

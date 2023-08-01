@@ -36,20 +36,6 @@
 			WHERE reference_no > 0
 		]]>
 	</select>
-
-	<!-- 게시글 상세 -->
-	<select id="read" resultType="Home">
-		select a.reference_no,
-		b.user_name,
-		b.user_phone,
-		a.reference_title,
-		a.reference_content,
-		a.reference_date
-		from reference a inner join user_tbl b on a.user_no = b.user_no
-		where
-		reference_no = #{reference.referenceNo}
-		order by reference_no DESC
-	</select>
 	
 	<select id="request" resultType="Home">
 
@@ -59,10 +45,7 @@
 			FROM (
 				SELECT reserve_no, user_no, user_id, user_name, item_no, reserve_state, reserve_addr, reserve_item_price, reserve_option_price, reserve_date, clean_date, reserve_request
 				FROM reserve
-				WHERE reserve_state = '예약대기'
-		]]>
-		<include refid="search" />
-    	<![CDATA[
+				WHERE reserve_state = '예약대기' and TRUNC(reserve_date) = TRUNC(sysdate)
     		ORDER BY reserve_date ASC) paginated
     		OFFSET #{sizePerPage} * (#{page} - 1) ROWS FETCH NEXT #{sizePerPage} ROWS ONLY
     		)
@@ -72,7 +55,27 @@
 		ORDER BY reserve_date ASC
 		]]>
 	</select>
-
+	
+	<select id="review" resultType="Home">
+	 	<![CDATA[
+	 	WITH paginated_reviews AS (
+	 	select review_no, reserve_no, user_no, review_grade, review_content, review_date
+		from (SELECT review_no, reserve_no, user_no, review_grade, review_content, review_date, rownum as rnum
+		  FROM (select review_no, reserve_no, user_no, review_grade, review_content, review_date
+		  		from review
+		  		order by review_no desc)
+		  	
+		 where review_no > 0 and TRUNC(review_date) = TRUNC(sysdate)
+		order by review_no desc) paginated
+		OFFSET #{sizePerPage} * (#{page} - 1) ROWS FETCH NEXT #{sizePerPage} ROWS ONLY
+    		)
+    	SELECT review_no, reserve_no, user_no, review_grade, review_content, review_date
+    	FROM paginated_reviews
+    	where review_no > 0
+    	order by review_no desc
+		]]>
+	</select>
+	
 <!-- 신규 예약현황의 select문 where절에 들어갈 현재날짜와 예약날짜 비교 쿼리 -->
 <!-- TRUNC(reserve_date) = TRUNC(sysdate) -->
 </mapper>

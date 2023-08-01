@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mom.admin.domain.PageRequest;
+import com.mom.admin.domain.Reserve;
 import com.mom.admin.domain.Home;
 import com.mom.admin.mapper.home.HomeMapper;
 
@@ -31,6 +32,19 @@ public class HomeServiceImpl implements HomeService{
 	@Override
 	public int count(PageRequest pageRequest) throws Exception {
 		return mapper.count(pageRequest);
+		
+	
 	}
+	
+	@Override
+	public List<Home> request(PageRequest pageRequest) throws Exception {
+		return mapper.request(pageRequest);
+	}
+	
+	@Override
+	public List<Home> review(PageRequest pageRequest) throws Exception {
+		return mapper.review(pageRequest);
+	}
+
 
 }
