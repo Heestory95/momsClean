@@ -15,10 +15,18 @@
 
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
+<!-- <div align="center">
+<table>
+	<tr>
+		<td>ddd</td>
+	</tr>
+</table>
+</div>
+ -->
 <div align="right">
 <table>
 	<tr>
-		<td width="120"><a href="/admin/auth/loginForm"><spring:message
+		<td width="120"><a href="/login"><spring:message
 		code="header.admin.logout"></spring:message></a></td>
 	</tr>
 </table>

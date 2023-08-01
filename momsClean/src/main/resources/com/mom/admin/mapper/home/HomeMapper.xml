@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mom.admin.mapper.home.HomeMapper">
+
+<sql id="total_list">
+		<if test="searchType == null">
+			and rnum between #{sizePerPage} *#{page}-9
+			and
+			#{sizePerPage} *#{page}
+		</if>
+	</sql>
+
+	<select id="list" resultType="Home">
+		<![CDATA[
+		 WITH paginated_references AS (
+		SELECT reference_no, user_no, reference_title ,reference_date , rownum as rnum
+		FROM (
+			SELECT reference_no, user_no, reference_title , reference_date 
+			FROM reference 
+			WHERE reference_no > 0 and TRUNC(reference_date) = TRUNC(sysdate)
+            ORDER BY user_no ASC) paginated
+           OFFSET #{sizePerPage} * (#{page} - 1) ROWS FETCH NEXT #{sizePerPage} ROWS ONLY
+          ) 
+          SELECT a.reference_no, a.user_no, a.reference_title, b.user_name,a.reference_date
+          FROM paginated_references a inner join user_tbl b on a.user_no = b.user_no
+          WHERE a.reference_no > 0
+          ]]>
+	</select>
+
+	<!-- 게시글 목록 전체 건수 조회 -->
+	<select id="count" resultType="int">
+		<![CDATA[
+			SELECT count(reference_no)
+			FROM reference
+			WHERE reference_no > 0
+		]]>
+	</select>
+
+	<!-- 게시글 상세 -->
+	<select id="read" resultType="Home">
+		select a.reference_no,
+		b.user_name,
+		b.user_phone,
+		a.reference_title,
+		a.reference_content,
+		a.reference_date
+		from reference a inner join user_tbl b on a.user_no = b.user_no
+		where
+		reference_no = #{reference.referenceNo}
+		order by reference_no DESC
+	</select>
+
+<!-- 신규 예약현황의 select문 where절에 들어갈 현재날짜와 예약날짜 비교 쿼리 -->
+<!-- TRUNC(reserve_date) = TRUNC(sysdate) -->
+</mapper>
