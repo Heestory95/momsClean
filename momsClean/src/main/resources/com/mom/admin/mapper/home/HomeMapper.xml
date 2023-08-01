@@ -3,7 +3,7 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mom.admin.mapper.home.HomeMapper">
 
-<sql id="total_list">
+	<sql id="total_list">
 		<if test="searchType == null">
 			and rnum between #{sizePerPage} *#{page}-9
 			and
@@ -37,20 +37,6 @@
 		]]>
 	</select>
 
-	<!-- 게시글 상세 -->
-	<select id="read" resultType="Home">
-		select a.reference_no,
-		b.user_name,
-		b.user_phone,
-		a.reference_title,
-		a.reference_content,
-		a.reference_date
-		from reference a inner join user_tbl b on a.user_no = b.user_no
-		where
-		reference_no = #{reference.referenceNo}
-		order by reference_no DESC
-	</select>
-	
 	<select id="request" resultType="Home">
 
 		<![CDATA[
@@ -59,10 +45,16 @@
 			FROM (
 				SELECT reserve_no, user_no, user_id, user_name, item_no, reserve_state, reserve_addr, reserve_item_price, reserve_option_price, reserve_date, clean_date, reserve_request
 				FROM reserve
+
 				WHERE reserve_state = '예약대기'
     			ORDER BY reserve_date ASC) paginated
     			OFFSET #{sizePerPage} * (#{page} - 1) ROWS FETCH NEXT #{sizePerPage} ROWS ONLY
     			)
+
+				WHERE reserve_state = '예약대기' and TRUNC(reserve_date) = TRUNC(sysdate)
+    		ORDER BY reserve_date ASC) paginated
+    		OFFSET #{sizePerPage} * (#{page} - 1) ROWS FETCH NEXT #{sizePerPage} ROWS ONLY
+    		)
 		SELECT reserve_no, user_no, user_id, user_name, item_no, reserve_state, reserve_addr, reserve_item_price, reserve_option_price, reserve_date, clean_date, reserve_request
 		FROM paginated_reserves_req
 		WHERE reserve_state = '예약대기'
@@ -70,66 +62,88 @@
 		]]>
 	</select>
 
-<!-- 예약취소율 통계용 쿼리 -->
-<select id="reserveCount" resultType="int">
+	<select id="review" resultType="Home">
+	 	<![CDATA[
+	 	WITH paginated_reviews AS (
+	 	select review_no, reserve_no, user_no, review_grade, review_content, review_date
+		from (SELECT review_no, reserve_no, user_no, review_grade, review_content, review_date, rownum as rnum
+		  FROM (select review_no, reserve_no, user_no, review_grade, review_content, review_date
+		  		from review
+		  		order by review_no desc)
+		  	
+		 where review_no > 0 and TRUNC(review_date) = TRUNC(sysdate)
+		order by review_no desc) paginated
+		OFFSET #{sizePerPage} * (#{page} - 1) ROWS FETCH NEXT #{sizePerPage} ROWS ONLY
+    		)
+    	SELECT review_no, reserve_no, user_no, review_grade, review_content, review_date
+    	FROM paginated_reviews
+    	where review_no > 0
+    	order by review_no desc
+		]]>
+	</select>
+
+
+	<!-- 예약취소율 통계용 쿼리 -->
+	<select id="reserveCount" resultType="int">
 		<![CDATA[
 			SELECT count(reserve_no)
 			FROM reserve
 			WHERE reserve_state = '예약완료'
 		]]>
-</select>
+	</select>
 
-<select id="cancelCount" resultType="int">
+	<select id="cancelCount" resultType="int">
 		<![CDATA[
 			SELECT count(reserve_no)
 			FROM reserve
 			WHERE reserve_state = '취소완료'
 		]]>
-</select>
+	</select>
 
-<!-- 상품판매율 통계용 쿼리 -->
-<select id="itemCount1" resultType="int">
+	<!-- 상품판매율 통계용 쿼리 -->
+	<select id="itemCount1" resultType="int">
 		<![CDATA[
 			SELECT count(reserve_no)
 			FROM reserve
 			WHERE reserve_state = '예약완료' AND clean_done = 'Y' AND reserve_no LIKE '18%'
 		]]>
-</select>
-<select id="itemCount2" resultType="int">
+	</select>
+	<select id="itemCount2" resultType="int">
 		<![CDATA[
 			SELECT count(reserve_no)
 			FROM reserve
 			WHERE reserve_state = '예약완료' AND clean_done = 'Y' AND reserve_no LIKE '25%'
 		]]>
-</select>
-<select id="itemCount3" resultType="int">
+	</select>
+	<select id="itemCount3" resultType="int">
 		<![CDATA[
 			SELECT count(reserve_no)
 			FROM reserve
 			WHERE reserve_state = '예약완료' AND clean_done = 'Y' AND reserve_no LIKE '30%'
 		]]>
-</select>
-<select id="itemCount4" resultType="int">
+	</select>
+	<select id="itemCount4" resultType="int">
 		<![CDATA[
 			SELECT count(reserve_no)
 			FROM reserve
 			WHERE reserve_state = '예약완료' AND clean_done = 'Y' AND reserve_no LIKE '35%'
 		]]>
-</select>
-<select id="itemCount5" resultType="int">
+	</select>
+	<select id="itemCount5" resultType="int">
 		<![CDATA[
 			SELECT count(reserve_no)
 			FROM reserve
 			WHERE reserve_state = '예약완료' AND clean_done = 'Y' AND reserve_no LIKE '40%'
 		]]>
-</select>
-<select id="itemCount6" resultType="int">
+	</select>
+	<select id="itemCount6" resultType="int">
 		<![CDATA[
 			SELECT count(reserve_no)
 			FROM reserve
 			WHERE reserve_state = '예약완료' AND clean_done = 'Y' AND reserve_no LIKE '50%'
 		]]>
-</select>
-<!-- 신규 예약현황의 select문 where절에 들어갈 현재날짜와 예약날짜 비교 쿼리 -->
-<!-- TRUNC(reserve_date) = TRUNC(sysdate) -->
+	</select>
+
+	<!-- 신규 예약현황의 select문 where절에 들어갈 현재날짜와 예약날짜 비교 쿼리 -->
+	<!-- TRUNC(reserve_date) = TRUNC(sysdate) -->
 </mapper>

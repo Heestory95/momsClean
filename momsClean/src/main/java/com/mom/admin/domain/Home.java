@@ -33,6 +33,10 @@ public class Home {
 	private Date cancelDate;
 	private String reserveRequest;
 	private String cleanDone;
+	private int reviewNo;
+	private int reviewGrade;	
+	private String reviewContent;
+	private Date reviewDate;
 	
 	// 예약취소율 통계 카운트
 	private int reserveCount;

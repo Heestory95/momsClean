@@ -14,8 +14,13 @@ public interface HomeMapper {
 
 	public Home read(Integer referenceNo) throws Exception;
 
+
 	// 회원리스트 전체 건수 반환
 	public int count(PageRequest pageRequest) throws Exception;
+
+	public List<Home> request(PageRequest pageRequest) throws Exception;
+
+	public List<Home> review(PageRequest pageRequest) throws Exception;
 
 	//총 예약완료, 예약취소 전체 건수 반환
 	public int reserveCount(Home home) throws Exception;
@@ -30,4 +35,5 @@ public interface HomeMapper {
 	public int itemCount4(Home home) throws Exception;
 	public int itemCount5(Home home) throws Exception;
 	public int itemCount6(Home home) throws Exception;
+
 }

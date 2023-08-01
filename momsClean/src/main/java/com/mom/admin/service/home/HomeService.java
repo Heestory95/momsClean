@@ -25,4 +25,9 @@ public interface HomeService {
 	public int itemCount4(Home home) throws Exception;
 	public int itemCount5(Home home) throws Exception;
 	public int itemCount6(Home home) throws Exception;
+	
+	public List<Home> request(PageRequest pageRequest) throws Exception;
+	
+	public List<Home> review(PageRequest pageRequest) throws Exception;
+
 }

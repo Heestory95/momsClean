@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 
 import com.mom.admin.domain.Home;
 import com.mom.admin.domain.PageRequest;
-import com.mom.admin.domain.Reserve;
 import com.mom.admin.service.home.HomeService;
 
 @Controller
@@ -22,8 +21,13 @@ public class HomeController {
 
 	@GetMapping("/")
 	public String list(Home home, @ModelAttribute("pgrq") PageRequest pageRequest, Model model) throws Exception {
-		List<Home> references = service.list(pageRequest);
+		PageRequest mainPageRequest = new PageRequest();
+		mainPageRequest.setSizePerPage(5);
+		 List<Home> references = service.list(mainPageRequest);
 		model.addAttribute("list", references);
+		model.addAttribute("request", service.request(mainPageRequest));
+		model.addAttribute("review", service.review(mainPageRequest));
+		
 		int reserveCount = service.reserveCount(home);
 		int cancelCount = service.cancelCount(home);
 		int itemCount1 = service.itemCount1(home);
@@ -40,17 +44,8 @@ public class HomeController {
 		model.addAttribute("itemCount4", itemCount4);
 		model.addAttribute("itemCount5", itemCount5);
 		model.addAttribute("itemCount6", itemCount6);
+		
 		return "home";
 	}
-
-	/*
-	 * // 상세 페이지
-	 * 
-	 * @RequestMapping(value = "/read", method = RequestMethod.GET) public void
-	 * read(int referenceNo, @ModelAttribute("pgrq") PageRequest pageRequest, Model
-	 * model) throws Exception { Home home = service.read(referenceNo);
-	 * 
-	 * model.addAttribute(home); }
-	 */
 
 }

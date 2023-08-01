@@ -30,7 +30,20 @@ public class HomeServiceImpl implements HomeService {
 	@Override
 	public int count(PageRequest pageRequest) throws Exception {
 		return mapper.count(pageRequest);
+		
+	
 	}
+	
+	@Override
+	public List<Home> request(PageRequest pageRequest) throws Exception {
+		return mapper.request(pageRequest);
+	}
+	
+	@Override
+	public List<Home> review(PageRequest pageRequest) throws Exception {
+		return mapper.review(pageRequest);
+	}
+
 
 	// 총 예약완료, 예약취소 전체 건수 반환
 	@Override
@@ -63,4 +76,5 @@ public class HomeServiceImpl implements HomeService {
 	public int itemCount6(Home home) throws Exception {
 		return mapper.itemCount6(home);
 	}
+
 }
