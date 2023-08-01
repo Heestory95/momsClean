@@ -96,7 +96,7 @@
 			FROM (
 				SELECT reserve_no, user_no, user_id, user_name, item_no, reserve_state, reserve_addr, reserve_item_price, reserve_option_price, reserve_date, clean_date, reserve_request, clean_done
 				FROM reserve
-				WHERE reserve_state = '예약완료'
+				WHERE reserve_state = '예약완료' AND reserve_request = '예약완료'
 		]]>
 		<include refid="search" />
 		<![CDATA[
@@ -151,7 +151,7 @@
 			FROM (
 				SELECT reserve_no, user_no, user_id, user_name, item_no, reserve_state, reserve_addr, reserve_item_price, reserve_option_price, reserve_date, clean_date, cancel_date, reserve_request
 				FROM reserve
-				WHERE reserve_state = '취소완료'
+				WHERE reserve_state = '취소완료' AND reserve_request = '취소완료'
 		]]>
 		<include refid="search" />
 		<![CDATA[

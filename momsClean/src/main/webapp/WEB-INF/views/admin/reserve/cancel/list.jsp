@@ -12,7 +12,7 @@
 <form:form modelAttribute="cancel">
 	<table border="1" align="center">
 		<tr>
-			<th align="center" width="170"><spring:message
+			<th align="center" width="180"><spring:message
 					code="reserve.reserveNo" /></th>
 			<th align="center" width="70"><spring:message
 					code="reserve.userNo" /></th>
@@ -22,9 +22,7 @@
 					code="reserve.userName" /></th>
 			<th align="center" width="70"><spring:message
 					code="reserve.itemNo" /></th>
-			<th align="center" width="70"><spring:message
-					code="reserve.reserveState" /></th>
-			<th align="center" width="350"><spring:message
+			<th align="center" width="400"><spring:message
 					code="reserve.reserveAddr" /></th>
 			<th align="center" width="80"><spring:message
 					code="reserve.totalPrice" /></th>
@@ -35,6 +33,8 @@
 			<th align="center" width="90"><spring:message
 					code="reserve.cancelDate" /></th>
 			<th align="center" width="70"><spring:message
+					code="reserve.reserveState" /></th>
+			<th align="center" width="70"><spring:message
 					code="reserve.request" /></th>
 			<th align="center" width="40"><spring:message
 					code="reserve.treatment" /></th>
@@ -42,7 +42,7 @@
 		<c:choose>
 			<c:when test="${empty cancel}">
 				<tr>
-					<td colspan="12" align="center"><spring:message
+					<td colspan="13" align="center"><spring:message
 							code="common.listEmpty"></spring:message></td>
 				</tr>
 			</c:when>
@@ -54,7 +54,6 @@
 						<td align="center">${reserve.userId}</td>
 						<td align="center">${reserve.userName}</td>
 						<td align="center">${reserve.itemNo}</td>
-						<td align="center">${reserve.reserveState}</td>
 						<td align="center">${reserve.reserveAddr}</td>
 						<td align="center">${reserve.reserveItemPrice + reserve.reserveOptionPrice}원</td>
 						<td align="center"><fmt:formatDate
@@ -63,6 +62,7 @@
 								value="${reserve.cleanDate}" pattern="yyyy-MM-dd" /></td>
 						<td align="center"><fmt:formatDate
 								value="${reserve.cancelDate}" pattern="yyyy-MM-dd" /></td>
+						<td align="center">${reserve.reserveState}</td>
 						<td align="center">${reserve.reserveRequest}</td>
 						<td align="center"><a
 							href='/admin/reserve/cancel/modify?reserveNo=${reserve.reserveNo}'>수정</a></td>
