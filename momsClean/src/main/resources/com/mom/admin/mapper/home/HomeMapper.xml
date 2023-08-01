@@ -56,20 +56,6 @@
 			WHERE reference_no > 0
 		]]>
 	</select>
-
-	<!-- 게시글 상세 -->
-	<select id="read" resultType="Home">
-		select a.reference_no,
-		b.user_name,
-		b.user_phone,
-		a.reference_title,
-		a.reference_content,
-		a.reference_date
-		from reference a inner join user_tbl b on a.user_no = b.user_no
-		where
-		reference_no = #{reference.referenceNo}
-		order by reference_no DESC
-	</select>
 	
 	<select id="request" resultType="Home">
 
@@ -78,46 +64,13 @@
 			FROM (
 				SELECT reserve_no, user_no, user_id, user_name, item_no, reserve_state, reserve_addr, reserve_item_price, reserve_option_price, reserve_date, clean_date, reserve_request
 				FROM reserve
-<<<<<<< HEAD
-				WHERE reserve_state = '예약대기'
-    			ORDER BY reserve_date ASC) paginated
-    			OFFSET #{sizePerPage} * (#{page} - 1) ROWS FETCH NEXT #{sizePerPage} ROWS ONLY
-    			)
-		SELECT reserve_no, user_no, user_id, user_name, item_no, reserve_state, reserve_addr, reserve_item_price, reserve_option_price, reserve_date, clean_date, reserve_request
-		FROM paginated_reserves_req
-		WHERE reserve_state = '예약대기'
-		ORDER BY reserve_date ASC
-		]]>
-	</select>
-
-<!-- 예약취소율 통계용 쿼리 -->
-<select id="reserveCount" resultType="int">
-=======
 				WHERE reserve_state = '예약대기' and TRUNC(reserve_date) = TRUNC(sysdate)
     		ORDER BY reserve_date ASC) 
 		]]>
 	</select>
 
-	<select id="review" resultType="Home">
-	 	<![CDATA[
-	 	
-	 	select review_no, reserve_no, user_no, review_grade, review_content, review_date
-		from (SELECT review_no, reserve_no, user_no, review_grade, review_content, review_date, rownum as rnum
-		  FROM (select review_no, reserve_no, user_no, review_grade, review_content, review_date
-		  		from review
-		  		order by review_no desc)
-		  	
-		 where review_no > 0 and TRUNC(review_date) = TRUNC(sysdate)
-		order by review_no desc) paginated
-		OFFSET #{sizePerPage} * (#{page} - 1) ROWS FETCH NEXT #{sizePerPage} ROWS ONLY
-    		
-		]]>
-	</select>
-
-
 	<!-- 예약취소율 통계용 쿼리 -->
-	<select id="reserveCount" resultType="int">
->>>>>>> a277e47ff1b026b3214164edf7d985a0b5c47aa7
+<select id="reserveCount" resultType="int">
 		<![CDATA[
 			SELECT count(reserve_no)
 			FROM reserve

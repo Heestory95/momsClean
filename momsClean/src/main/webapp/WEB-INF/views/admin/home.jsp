@@ -180,19 +180,6 @@
 
 <!-- 통계 차트 -->
 
-<<<<<<< HEAD
-	.cancelChart {
-		float : left;
-	}
-	.itemChart {
-		float: left;
-	}
-
-	
-
-</style>
-=======
->>>>>>> a277e47ff1b026b3214164edf7d985a0b5c47aa7
 <div class="wrapper">
 	<h3>
 		<spring:message code="home.admin.chart" />
@@ -264,9 +251,5 @@
 		</div>
 	</div>
 </div>
-<<<<<<< HEAD
-	
-=======
->>>>>>> a277e47ff1b026b3214164edf7d985a0b5c47aa7
 
 
