@@ -22,9 +22,9 @@
             ORDER BY user_no ASC) paginated
            OFFSET #{sizePerPage} * (#{page} - 1) ROWS FETCH NEXT #{sizePerPage} ROWS ONLY
           ) 
-          SELECT a.reference_no, a.user_no, a.reference_title, b.user_name,a.reference_date
+          SELECT a.reference_no, a.user_no, a.reference_title, b.user_name, a.reference_date
           FROM paginated_references a inner join user_tbl b on a.user_no = b.user_no
-          WHERE a.reference_no > 0
+          WHERE a.reference_no > 0 
           ]]>
 	</select>
 
@@ -40,31 +40,18 @@
 	<select id="request" resultType="Home">
 
 		<![CDATA[
-		WITH paginated_reserves_req AS (
 			SELECT reserve_no, user_no, user_id, user_name, item_no, reserve_state, reserve_addr, reserve_item_price, reserve_option_price, reserve_date, clean_date, reserve_request, rownum as rnum
 			FROM (
 				SELECT reserve_no, user_no, user_id, user_name, item_no, reserve_state, reserve_addr, reserve_item_price, reserve_option_price, reserve_date, clean_date, reserve_request
 				FROM reserve
-
-				WHERE reserve_state = '예약대기'
-    			ORDER BY reserve_date ASC) paginated
-    			OFFSET #{sizePerPage} * (#{page} - 1) ROWS FETCH NEXT #{sizePerPage} ROWS ONLY
-    			)
-
 				WHERE reserve_state = '예약대기' and TRUNC(reserve_date) = TRUNC(sysdate)
-    		ORDER BY reserve_date ASC) paginated
-    		OFFSET #{sizePerPage} * (#{page} - 1) ROWS FETCH NEXT #{sizePerPage} ROWS ONLY
-    		)
-		SELECT reserve_no, user_no, user_id, user_name, item_no, reserve_state, reserve_addr, reserve_item_price, reserve_option_price, reserve_date, clean_date, reserve_request
-		FROM paginated_reserves_req
-		WHERE reserve_state = '예약대기'
-		ORDER BY reserve_date ASC
+    		ORDER BY reserve_date ASC) 
 		]]>
 	</select>
 
 	<select id="review" resultType="Home">
 	 	<![CDATA[
-	 	WITH paginated_reviews AS (
+	 	
 	 	select review_no, reserve_no, user_no, review_grade, review_content, review_date
 		from (SELECT review_no, reserve_no, user_no, review_grade, review_content, review_date, rownum as rnum
 		  FROM (select review_no, reserve_no, user_no, review_grade, review_content, review_date
@@ -74,11 +61,7 @@
 		 where review_no > 0 and TRUNC(review_date) = TRUNC(sysdate)
 		order by review_no desc) paginated
 		OFFSET #{sizePerPage} * (#{page} - 1) ROWS FETCH NEXT #{sizePerPage} ROWS ONLY
-    		)
-    	SELECT review_no, reserve_no, user_no, review_grade, review_content, review_date
-    	FROM paginated_reviews
-    	where review_no > 0
-    	order by review_no desc
+    		
 		]]>
 	</select>
 

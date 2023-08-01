@@ -17,31 +17,27 @@ public class HomeServiceImpl implements HomeService {
 
 	// 페이징 요청 정보를 매개 변수로 받아 페이징 처리를 한 회원리스트 반환
 	@Override
-	public List<Home> list(PageRequest pageRequest) throws Exception {
-		return mapper.list(pageRequest);
+	public List<Home> list(PageRequest mainPageRequest) throws Exception {
+		return mapper.list(mainPageRequest);
 	}
 
-	// 상세 페이지
-	public Home read(Integer referenceNo) throws Exception {
-		return mapper.read(referenceNo);
-	}
 
 	// 문의 글 전체 건수 반환
 	@Override
-	public int count(PageRequest pageRequest) throws Exception {
-		return mapper.count(pageRequest);
+	public int count(PageRequest mainPageRequest) throws Exception {
+		return mapper.count(mainPageRequest);
 		
 	
 	}
 	
 	@Override
-	public List<Home> request(PageRequest pageRequest) throws Exception {
-		return mapper.request(pageRequest);
+	public List<Home> request(PageRequest mainPageRequest) throws Exception {
+		return mapper.request(mainPageRequest);
 	}
 	
 	@Override
-	public List<Home> review(PageRequest pageRequest) throws Exception {
-		return mapper.review(pageRequest);
+	public List<Home> review(PageRequest mainPageRequest) throws Exception {
+		return mapper.review(mainPageRequest);
 	}
 
 

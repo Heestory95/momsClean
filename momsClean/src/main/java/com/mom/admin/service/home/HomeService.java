@@ -7,12 +7,10 @@ import com.mom.admin.domain.PageRequest;
 
 public interface HomeService {
 
-	public List<Home> list(PageRequest pageRequest) throws Exception;
-
-	public Home read(Integer referenceNo) throws Exception;
+	public List<Home> list(PageRequest mainPageRequest) throws Exception;
 
 	// 문의 게시글 전체 건수 반환
-	public int count(PageRequest pageRequest) throws Exception;
+	public int count(PageRequest mainPageRequest) throws Exception;
 
 	// 예약취소율 통계에 필요한 총 예약완료, 예약취소 전체 건수 반환
 	public int reserveCount(Home home) throws Exception;
@@ -26,8 +24,8 @@ public interface HomeService {
 	public int itemCount5(Home home) throws Exception;
 	public int itemCount6(Home home) throws Exception;
 	
-	public List<Home> request(PageRequest pageRequest) throws Exception;
+	public List<Home> request(PageRequest mainPageRequest) throws Exception;
 	
-	public List<Home> review(PageRequest pageRequest) throws Exception;
+	public List<Home> review(PageRequest mainPageRequest) throws Exception;
 
 }
