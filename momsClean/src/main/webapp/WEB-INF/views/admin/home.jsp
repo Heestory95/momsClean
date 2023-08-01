@@ -34,7 +34,6 @@
 }
 </style>
 
-<form>
 <!-- 신규 예약 -->
 <div class="mainReserve">
 <h2 align="center">
@@ -175,9 +174,9 @@
   		</c:forEach>
   	</c:otherwise>
   </c:choose>
-  
 </table>
 </div>
+
 <!-- 통계 차트 -->
 <style type="text/css">
 	.wrapper {
@@ -186,6 +185,9 @@
 
 	.cancelChart {
 		float : left;
+	}
+	.itemChart {
+		float: left;
 	}
 
 	
@@ -262,5 +264,6 @@
 		</div>
 	</div>
 </div>
-</form>
+	
+
 
