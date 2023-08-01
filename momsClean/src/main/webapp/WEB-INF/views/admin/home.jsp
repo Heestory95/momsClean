@@ -25,14 +25,15 @@
 </script>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<style>
+<!-- <style>
 .mainRef {
 	float: left;
 }
 .mainReview {
 	float: right;
 }
-</style>
+</style> -->
+
 
 <!-- 신규 예약 -->
 <div class="mainReserve">
@@ -178,11 +179,8 @@
 </div>
 
 <!-- 통계 차트 -->
-<style type="text/css">
-	.wrapper {
-		width : 100%;
-	}
 
+<<<<<<< HEAD
 	.cancelChart {
 		float : left;
 	}
@@ -193,6 +191,8 @@
 	
 
 </style>
+=======
+>>>>>>> a277e47ff1b026b3214164edf7d985a0b5c47aa7
 <div class="wrapper">
 	<h3>
 		<spring:message code="home.admin.chart" />
@@ -264,6 +264,9 @@
 		</div>
 	</div>
 </div>
+<<<<<<< HEAD
 	
+=======
+>>>>>>> a277e47ff1b026b3214164edf7d985a0b5c47aa7
 
 
