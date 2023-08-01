@@ -60,12 +60,9 @@
 				SELECT reserve_no, user_no, user_id, user_name, item_no, reserve_state, reserve_addr, reserve_item_price, reserve_option_price, reserve_date, clean_date, reserve_request
 				FROM reserve
 				WHERE reserve_state = '예약대기'
-		]]>
-		<include refid="search" />
-    	<![CDATA[
-    		ORDER BY reserve_date ASC) paginated
-    		OFFSET #{sizePerPage} * (#{page} - 1) ROWS FETCH NEXT #{sizePerPage} ROWS ONLY
-    		)
+    			ORDER BY reserve_date ASC) paginated
+    			OFFSET #{sizePerPage} * (#{page} - 1) ROWS FETCH NEXT #{sizePerPage} ROWS ONLY
+    			)
 		SELECT reserve_no, user_no, user_id, user_name, item_no, reserve_state, reserve_addr, reserve_item_price, reserve_option_price, reserve_date, clean_date, reserve_request
 		FROM paginated_reserves_req
 		WHERE reserve_state = '예약대기'
@@ -73,6 +70,66 @@
 		]]>
 	</select>
 
+<!-- 예약취소율 통계용 쿼리 -->
+<select id="reserveCount" resultType="int">
+		<![CDATA[
+			SELECT count(reserve_no)
+			FROM reserve
+			WHERE reserve_state = '예약완료'
+		]]>
+</select>
+
+<select id="cancelCount" resultType="int">
+		<![CDATA[
+			SELECT count(reserve_no)
+			FROM reserve
+			WHERE reserve_state = '취소완료'
+		]]>
+</select>
+
+<!-- 상품판매율 통계용 쿼리 -->
+<select id="itemCount1" resultType="int">
+		<![CDATA[
+			SELECT count(reserve_no)
+			FROM reserve
+			WHERE reserve_state = '예약완료' AND clean_done = 'Y' AND reserve_no LIKE '18%'
+		]]>
+</select>
+<select id="itemCount2" resultType="int">
+		<![CDATA[
+			SELECT count(reserve_no)
+			FROM reserve
+			WHERE reserve_state = '예약완료' AND clean_done = 'Y' AND reserve_no LIKE '25%'
+		]]>
+</select>
+<select id="itemCount3" resultType="int">
+		<![CDATA[
+			SELECT count(reserve_no)
+			FROM reserve
+			WHERE reserve_state = '예약완료' AND clean_done = 'Y' AND reserve_no LIKE '30%'
+		]]>
+</select>
+<select id="itemCount4" resultType="int">
+		<![CDATA[
+			SELECT count(reserve_no)
+			FROM reserve
+			WHERE reserve_state = '예약완료' AND clean_done = 'Y' AND reserve_no LIKE '35%'
+		]]>
+</select>
+<select id="itemCount5" resultType="int">
+		<![CDATA[
+			SELECT count(reserve_no)
+			FROM reserve
+			WHERE reserve_state = '예약완료' AND clean_done = 'Y' AND reserve_no LIKE '40%'
+		]]>
+</select>
+<select id="itemCount6" resultType="int">
+		<![CDATA[
+			SELECT count(reserve_no)
+			FROM reserve
+			WHERE reserve_state = '예약완료' AND clean_done = 'Y' AND reserve_no LIKE '50%'
+		]]>
+</select>
 <!-- 신규 예약현황의 select문 where절에 들어갈 현재날짜와 예약날짜 비교 쿼리 -->
 <!-- TRUNC(reserve_date) = TRUNC(sysdate) -->
 </mapper>

@@ -34,4 +34,15 @@ public class Home {
 	private String reserveRequest;
 	private String cleanDone;
 	
+	// 예약취소율 통계 카운트
+	private int reserveCount;
+	private int cancelCount;
+	
+	// 상품 및 옵션 선택 통계 카운트
+	private int itemCount1;
+	private int itemCount2;
+	private int itemCount3;
+	private int itemCount4;
+	private int itemCount5;
+	private int itemCount6;
 }
