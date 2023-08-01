@@ -5,6 +5,19 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+  $(document).ready(function() {
+    // 모든 게시글 내용의 길이를 체크하고 15자를 넘어가면 자르고 "..."을 붙입니다.
+    $(".review-content").each(function() {
+      var content = $(this).text();
+      var maxLength = 15;
+      if (content.length > maxLength) {
+        content = content.substring(0, maxLength) + "...";
+      }
+      $(this).text(content);
+    });
+  });
+</script>
 
 <h2><spring:message code="review.header.list" /></h2>
 
@@ -52,7 +65,7 @@
                      <c:otherwise>Unknown</c:otherwise>
                   </c:choose></td>
   				<!-- 게시글 상세보기할 때 페이징 요청 정보를 매개변수로 전달한다 -->
-  				<td align="left"><a href="/admin/review/read${pgrq.toUriString(pgrq.page)}&reviewNo=${review.reviewNo}"><c:out value="${review.reviewContent}" /></a></td>
+  				<td align="left"><a href="/admin/review/read?reviewNo=${review.reviewNo}"><span class="review-content"><c:out value="${review.reviewContent}" /></span></a></td>
   				<td align="center"><fmt:formatDate pattern="yyyy-MM-dd" value="${review.reviewDate}" /></td>
   			</tr>
   		</c:forEach>

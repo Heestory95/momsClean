@@ -5,6 +5,19 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+  $(document).ready(function() {
+    // 모든 게시글 내용의 길이를 체크하고 15자를 넘어가면 자르고 "..."을 붙입니다.
+    $(".notice-title").each(function() {
+      var content = $(this).text();
+      var maxLength = 15;
+      if (content.length > maxLength) {
+        content = content.substring(0, maxLength) + "...";
+      }
+      $(this).text(content);
+    });
+  });
+</script>
 
 <h2><spring:message code="notice.header.list" /></h2>
 
@@ -33,7 +46,7 @@
   				<td align="center">${notice.noticeNo}</td>
   				<%-- <td align="left"><a href="/admin/notice/read?noticeNo=${notice.noticeNo}"><c:out value="${notice.noticeTitle}" /></a></td> --%>
   				<!-- 게시글 상세보기할 때 페이징 요청 정보를 매개변수로 전달한다 -->
-  				<td align="left"><a href="/admin/notice/read${pgrq.toUriString(pgrq.page)}&noticeNo=${notice.noticeNo}"><c:out value="${notice.noticeTitle}" /></a></td>
+  				<td align="left"><a href="/admin/notice/read${pgrq.toUriString(pgrq.page)}&noticeNo=${notice.noticeNo}"><span class="notice-title"><c:out value="${notice.noticeTitle}" /></span></a></td>
   				<td align="center"><fmt:formatDate pattern="yyyy-MM-dd" value="${notice.noticeDate}" /></td>
   			</tr>
   		</c:forEach>
