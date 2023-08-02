@@ -77,7 +77,7 @@
 <!-- 페이징 네비게이션 -->
 <div>
 	<c:if test="${pagination.prev}">
-		<a href="/admin/notice/list${pagination.makeQuery(pagination.startPage -1)}">&laquo;</a>
+		<a href="/admin/review/list${pagination.makeQuery(pagination.startPage -1)}">&laquo;</a>
 	</c:if>
 
 	<c:forEach begin="${pagination.startPage }" end="${pagination.endPage }" var="idx">

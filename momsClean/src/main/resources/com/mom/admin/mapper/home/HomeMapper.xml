@@ -28,7 +28,7 @@
           ]]>
 	</select>
 	
-	<select id="review" resultType="Review">
+	<select id="review" resultType="Home">
 	 	<![CDATA[
 	 	WITH paginated_reviews AS (
 	 	select review_no, reserve_no, user_no, review_grade, review_content, review_date
@@ -36,9 +36,8 @@
 		  FROM (select review_no, reserve_no, user_no, review_grade, review_content, review_date
 		  		from review
 		  		order by review_no desc)
-		  	
-		 where review_no > 0
-		 order by review_no desc) paginated
+		 where review_no > 0 and TRUNC(review_date) = TRUNC(sysdate)
+		order by review_no desc) paginated
 		OFFSET #{sizePerPage} * (#{page} - 1) ROWS FETCH NEXT #{sizePerPage} ROWS ONLY
     		)
     	SELECT review_no, reserve_no, user_no, review_grade, review_content, review_date
