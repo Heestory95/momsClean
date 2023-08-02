@@ -3,7 +3,7 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mom.admin.mapper.home.HomeMapper">
 
-<sql id="total_list">
+	<sql id="total_list">
 		<if test="searchType == null">
 			and rnum between #{sizePerPage} *#{page}-9
 			and
@@ -27,8 +27,8 @@
           WHERE a.reference_no > 0 
           ]]>
 	</select>
-	
-	<select id="review" resultType="Review">
+
+	<select id="review" resultType="Home">
 	 	<![CDATA[
 	 	WITH paginated_reviews AS (
 	 	select review_no, reserve_no, user_no, review_grade, review_content, review_date
@@ -37,7 +37,7 @@
 		  		from review
 		  		order by review_no desc)
 		  	
-		 where review_no > 0
+		 where review_no > 0 and TRUNC(review_date) = TRUNC(sysdate)
 		 order by review_no desc) paginated
 		OFFSET #{sizePerPage} * (#{page} - 1) ROWS FETCH NEXT #{sizePerPage} ROWS ONLY
     		)
@@ -56,7 +56,7 @@
 			WHERE reference_no > 0
 		]]>
 	</select>
-	
+
 	<select id="request" resultType="Home">
 
 		<![CDATA[
@@ -70,65 +70,101 @@
 	</select>
 
 	<!-- 예약취소율 통계용 쿼리 -->
-<select id="reserveCount" resultType="int">
+	<select id="reserveCount" resultType="int">
 		<![CDATA[
 			SELECT count(reserve_no)
 			FROM reserve
 			WHERE reserve_state = '예약완료'
+			AND clean_done = 'Y'
 		]]>
-</select>
+	</select>
 
-<select id="cancelCount" resultType="int">
+	<select id="cancelCount" resultType="int">
 		<![CDATA[
 			SELECT count(reserve_no)
 			FROM reserve
 			WHERE reserve_state = '취소완료'
+			 AND clean_done = 'N'
 		]]>
-</select>
+	</select>
 
-<!-- 상품판매율 통계용 쿼리 -->
-<select id="itemCount1" resultType="int">
+	<!-- 상품판매율 통계용 쿼리 -->
+	<select id="itemCount1" resultType="int">
 		<![CDATA[
 			SELECT count(reserve_no)
 			FROM reserve
 			WHERE reserve_state = '예약완료' AND clean_done = 'Y' AND reserve_no LIKE '18%'
 		]]>
-</select>
-<select id="itemCount2" resultType="int">
+	</select>
+	<select id="itemCount2" resultType="int">
 		<![CDATA[
 			SELECT count(reserve_no)
 			FROM reserve
 			WHERE reserve_state = '예약완료' AND clean_done = 'Y' AND reserve_no LIKE '25%'
 		]]>
-</select>
-<select id="itemCount3" resultType="int">
+	</select>
+	<select id="itemCount3" resultType="int">
 		<![CDATA[
 			SELECT count(reserve_no)
 			FROM reserve
 			WHERE reserve_state = '예약완료' AND clean_done = 'Y' AND reserve_no LIKE '30%'
 		]]>
-</select>
-<select id="itemCount4" resultType="int">
+	</select>
+	<select id="itemCount4" resultType="int">
 		<![CDATA[
 			SELECT count(reserve_no)
 			FROM reserve
 			WHERE reserve_state = '예약완료' AND clean_done = 'Y' AND reserve_no LIKE '35%'
 		]]>
-</select>
-<select id="itemCount5" resultType="int">
+	</select>
+	<select id="itemCount5" resultType="int">
 		<![CDATA[
 			SELECT count(reserve_no)
 			FROM reserve
 			WHERE reserve_state = '예약완료' AND clean_done = 'Y' AND reserve_no LIKE '40%'
 		]]>
-</select>
-<select id="itemCount6" resultType="int">
+	</select>
+	<select id="itemCount6" resultType="int">
 		<![CDATA[
 			SELECT count(reserve_no)
 			FROM reserve
 			WHERE reserve_state = '예약완료' AND clean_done = 'Y' AND reserve_no LIKE '50%'
 		]]>
-</select>
-<!-- 신규 예약현황의 select문 where절에 들어갈 현재날짜와 예약날짜 비교 쿼리 -->
-<!-- TRUNC(reserve_date) = TRUNC(sysdate) -->
+	</select>
+	
+	<select id="itemSales7" resultType="int">
+		<![CDATA[
+			SELECT sum(reserve_item_price)
+			FROM reserve
+			WHERE reserve_state = '예약완료' AND clean_done = 'Y' AND TO_CHAR(reserve_date, 'YYYYMM') = '202307'
+		]]>
+	</select>
+	
+	<select id="optionSales7" resultType="int">
+		<![CDATA[
+			SELECT sum(reserve_option_price)
+			FROM reserve
+			WHERE reserve_state = '예약완료' AND clean_done = 'Y' AND TO_CHAR(reserve_date, 'YYYYMM') = '202307'
+		]]>
+	</select>
+	
+	<select id="totalSales7" resultType="int">
+		<![CDATA[
+			SELECT sum(reserve_item_price + reserve_option_price)
+			FROM reserve
+			WHERE reserve_state = '예약완료' AND clean_done = 'Y' AND TO_CHAR(reserve_date, 'YYYYMM') = '202307'
+		]]>
+	</select>
+	
+	<select id="monthlyReserveCount7" resultType="int">
+		<![CDATA[
+			SELECT 
+			count(TO_CHAR(reserve_date, 'YYYYMM'))
+			FROM reserve
+			WHERE reserve_state = '예약완료' AND clean_done = 'Y' AND TO_CHAR(reserve_date, 'YYYYMM') = '202307'
+			GROUP BY TO_CHAR(reserve_date, 'YYYYMM')
+		]]>
+	</select>
+	<!-- 신규 예약현황의 select문 where절에 들어갈 현재날짜와 예약날짜 비교 쿼리 -->
+	<!-- TRUNC(reserve_date) = TRUNC(sysdate) -->
 </mapper>

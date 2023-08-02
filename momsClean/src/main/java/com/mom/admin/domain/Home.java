@@ -49,4 +49,10 @@ public class Home {
 	private int itemCount4;
 	private int itemCount5;
 	private int itemCount6;
+	
+	// 월 별 매출액 통계 : 상품매출, 옵션매출, 총 매출, 총 예약수
+	private int itemSales;
+	private int optionSales;
+	private int totalSales;
+	private int monthlyReserveCount;
 }
