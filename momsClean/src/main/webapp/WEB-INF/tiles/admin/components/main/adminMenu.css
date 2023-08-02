@@ -1,0 +1,20 @@
+@charset "UTF-8";
+
+
+a{
+text-decoration: none;
+
+}
+
+#container {
+	margin:0 auto;
+	width:100%;
+}
+
+#logo{
+	float:left;
+	width:25%;
+	height:170px;
+	line-height: 100px;
+	padding-left: 20px;
+}

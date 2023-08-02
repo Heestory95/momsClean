@@ -7,6 +7,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+<style type="text/css">
+	.logout{background: #D1B2FF;}
+</style>
 </head>
 <body>
 	
@@ -26,7 +30,7 @@
 <div align="right">
 <table>
 	<tr>
-		<td width="120"><a href="/login"><spring:message
+		<td width="120" class="logout"><a href="/login"><spring:message
 		code="header.admin.logout"></spring:message></a></td>
 	</tr>
 </table>
