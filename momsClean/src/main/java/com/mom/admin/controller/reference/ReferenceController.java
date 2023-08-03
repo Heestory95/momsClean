@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.mom.admin.common.CodeLabelValue;
 import com.mom.admin.domain.PageRequest;
@@ -42,7 +43,6 @@ public class ReferenceController {
 		List<CodeLabelValue> searchTypeCodeValueList = new ArrayList<CodeLabelValue>();
 		searchTypeCodeValueList.add(new CodeLabelValue("ca", "카테고리"));
 		searchTypeCodeValueList.add(new CodeLabelValue("n", "게시글 번호"));
-		searchTypeCodeValueList.add(new CodeLabelValue("u", "유저 번호"));
 		searchTypeCodeValueList.add(new CodeLabelValue("t", "글 제목"));
 		searchTypeCodeValueList.add(new CodeLabelValue("r", "작성자"));
 
@@ -51,9 +51,31 @@ public class ReferenceController {
 
 	// 상세 페이지
 	@RequestMapping(value = "/read", method = RequestMethod.GET)
-	public void read(int referenceNo, @ModelAttribute("pgrq") PageRequest pageRequest, Model model) throws Exception {
+	public void read(Integer referenceNo, @ModelAttribute("pgrq") PageRequest pageRequest, Model model) throws Exception {
 		Reference reference = service.read(referenceNo);
 
 		model.addAttribute(reference);
 	}
+	
+	// 답글 작성 페이지 
+	@RequestMapping(value = "/reply", method = RequestMethod.GET)
+	public String registerForm(Model model, Integer referenceNo) throws Exception {
+		Reference reference = service.read(referenceNo);
+		
+		model.addAttribute("reference",reference);
+		return "/admin/reference/reply";
+		
+	}
+
+	// 답글 등록 처리
+
+	@RequestMapping(value = "/reply", method = RequestMethod.POST)
+	public String register(@ModelAttribute Reference reference, RedirectAttributes rttr) throws Exception {
+		
+		service.register(reference);
+		rttr.addFlashAttribute("msg", "SUCCESS");
+		return "redirect:/admin/reference/list";
+	}
 }
+
+

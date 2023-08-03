@@ -17,4 +17,6 @@ public interface ReferenceMapper {
 	// 회원리스트 전체 건수 반환
 	public int count(PageRequest pageRequest) throws Exception;
 	
+	public void create(Reference reference) throws Exception;
+	
 }
