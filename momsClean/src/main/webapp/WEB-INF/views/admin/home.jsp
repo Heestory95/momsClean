@@ -9,11 +9,7 @@
 
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<style>
-a{
-decoration:none;
-}
-</style>
+
 <script>
   $(document).ready(function() {
     // 모든 게시글 내용의 길이를 체크하고 15자를 넘어가면 자르고 "..."을 붙입니다.
@@ -40,7 +36,7 @@ decoration:none;
 
 
 
-<table>
+<table align="center">
 	<!-- 신규 예약 -->
 	<tr>
 		<th class="homeReserve" align="left"><spring:message code="home.admin.reserve" />

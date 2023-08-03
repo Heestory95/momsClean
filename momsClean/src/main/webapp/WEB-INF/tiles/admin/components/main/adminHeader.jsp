@@ -9,7 +9,15 @@
 <title>Insert title here</title>
 
 <style type="text/css">
-	.logout{background: #D1B2FF;}
+	.logout{
+	background: #d9d2e9ff;
+		
+}
+	.mom {
+	font-weight: 50px;
+	font-size: 80px;
+	color: #6AAAFF;
+	}
 </style>
 </head>
 <body>
@@ -19,18 +27,18 @@
 
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
-<!-- <div align="center">
+<div align="center" class="mom">
 <table>
 	<tr>
-		<td>ddd</td>
+		<td>MOM'S CLEAN</td>
 	</tr>
 </table>
 </div>
- -->
+
 <div align="right">
 <table>
 	<tr>
-		<td width="120" class="logout"><a href="/login"><spring:message
+		<td width="150" height="35" align="center" class="logout"><a href="/login"><spring:message
 		code="header.admin.logout"></spring:message></a></td>
 	</tr>
 </table>
