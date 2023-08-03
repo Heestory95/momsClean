@@ -4,6 +4,32 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<style>
+h2 {
+	font-family: "나눔바른고딕";
+}
+
+table {
+	font-family: "나눔바른고딕";
+	width: 300px;
+	border-collapse: collapse;
+	font-size: 14px;
+	letter-spacing: -0.3px;
+	margin-bottom: 10px;
+}
+
+td {
+	border-top: 1px solid #cfcbbb;
+	border-bottom: 1px solid #cfcbbb;
+	border-left: 1px solid #cfcbbb;
+	border-right: 1px solid #cfcbbb;
+	padding-left: 8px;
+	padding-top: 6px;
+	padding-bottom: 6px;
+	font-size: 16px;
+}
+
+</style>
 <h2 align="center">
 	<spring:message code="user.admin.header.modify" />
 </h2>
@@ -12,7 +38,7 @@
 
 	<table border="1" align="center">
 		<tr>
-			<td><spring:message code="user.userNo" /></td>
+			<td><spring:message code="user.userNo" class="info" /></td>
 			<td>${user.userNo}</td>
 		</tr>
 		<tr>
