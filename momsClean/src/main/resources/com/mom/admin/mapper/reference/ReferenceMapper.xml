@@ -99,7 +99,7 @@
 				WHERE root = #{root} AND step > #{step};
 				
 				INSERT INTO reference (reference_no, user_no, reference_title, reference_content , reference_date, root,step, indent, no)
-				VALUES (reference_seq.NEXTVAL, 22, #{referenceTitle}, #{referenceContent},sysdate ,#{root},#{step} + 1, #{indent} + 1 , null);
+				VALUES (reference_seq.NEXTVAL, 1, #{referenceTitle}, #{referenceContent},sysdate ,#{root},#{step} + 1, #{indent} + 1 , null);
 			
 			
 			END}
