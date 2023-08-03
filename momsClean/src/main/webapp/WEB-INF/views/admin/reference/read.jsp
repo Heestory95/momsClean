@@ -18,7 +18,7 @@
 
 	<input type = "hidden" name="page" value="${pgrq.page}">
 	<input type = "hidden" name="sizePerPage" value="${pgrq.sizePerPage}">
-	<table border="">
+	<table>
 		<tr>
 			<td><spring:message code="reference.no" /></td>
 			<td><form:input path="referenceNo" readonly="true" /></td>

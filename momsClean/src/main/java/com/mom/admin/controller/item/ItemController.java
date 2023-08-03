@@ -41,10 +41,10 @@ public class ItemController {
 
 	// 상품 등록 페이지
 	@RequestMapping(value = "/itemRegister", method = RequestMethod.GET)
-	public String registerForm(Model model) {
+	public void registerForm(Model model) {
 		model.addAttribute(new Item());
 
-		return "/admin/item/itemRegister";
+		
 	}
 
 	// 상품 등록 처리
