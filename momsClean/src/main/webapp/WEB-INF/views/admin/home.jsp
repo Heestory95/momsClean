@@ -279,7 +279,7 @@ decoration:none;
 				        title: '월 별 매출액',
 				        vAxes: {
 				            0: { title: '매출액' }, // 왼쪽 Y축 (막대 그래프용)
-				            1: { title: '예약수'} // 오른쪽 Y축 (선 그래프용)
+				            1: { title: '예약수' } // 오른쪽 Y축 (선 그래프용)
 				        },
 				        seriesType: 'bars',
 				        series: {
@@ -287,8 +287,7 @@ decoration:none;
 				            1: { targetAxisIndex: 0 }, // 왼쪽 Y축에 막대 그래프 설정
 				            2: { targetAxisIndex: 0 }, // 왼쪽 Y축에 막대 그래프 설정
 				            3: { type: 'line', targetAxisIndex: 1 } // 오른쪽 Y축에 선 그래프 설정
-				        },
-				        hAxis: { title: '월' }
+				        }
 				    };
 
 				

@@ -89,7 +89,7 @@ public class HomeServiceImpl implements HomeService {
 		return mapper.totalSales1(home);
 	}
 
-	public int monthlyReserveCount1(Home home) throws Exception {
+	public Integer monthlyReserveCount1(Home home) throws Exception {
 		return mapper.monthlyReserveCount1(home);
 	}
 
@@ -106,7 +106,7 @@ public class HomeServiceImpl implements HomeService {
 		return mapper.totalSales2(home);
 	}
 
-	public int monthlyReserveCount2(Home home) throws Exception {
+	public Integer monthlyReserveCount2(Home home) throws Exception {
 		return mapper.monthlyReserveCount2(home);
 	}
 
@@ -123,7 +123,7 @@ public class HomeServiceImpl implements HomeService {
 		return mapper.totalSales3(home);
 	}
 
-	public int monthlyReserveCount3(Home home) throws Exception {
+	public Integer monthlyReserveCount3(Home home) throws Exception {
 		return mapper.monthlyReserveCount3(home);
 	}
 
@@ -140,7 +140,7 @@ public class HomeServiceImpl implements HomeService {
 		return mapper.totalSales4(home);
 	}
 
-	public int monthlyReserveCount4(Home home) throws Exception {
+	public Integer monthlyReserveCount4(Home home) throws Exception {
 		return mapper.monthlyReserveCount4(home);
 	}
 
@@ -157,7 +157,7 @@ public class HomeServiceImpl implements HomeService {
 		return mapper.totalSales5(home);
 	}
 
-	public int monthlyReserveCount5(Home home) throws Exception {
+	public Integer monthlyReserveCount5(Home home) throws Exception {
 		return mapper.monthlyReserveCount5(home);
 	}
 
@@ -174,7 +174,7 @@ public class HomeServiceImpl implements HomeService {
 		return mapper.totalSales6(home);
 	}
 
-	public int monthlyReserveCount6(Home home) throws Exception {
+	public Integer monthlyReserveCount6(Home home) throws Exception {
 		return mapper.monthlyReserveCount6(home);
 	}
 
@@ -191,7 +191,7 @@ public class HomeServiceImpl implements HomeService {
 		return mapper.totalSales7(home);
 	}
 
-	public int monthlyReserveCount7(Home home) throws Exception {
+	public Integer monthlyReserveCount7(Home home) throws Exception {
 		return mapper.monthlyReserveCount7(home);
 	}
 
@@ -208,7 +208,7 @@ public class HomeServiceImpl implements HomeService {
 		return mapper.totalSales8(home);
 	}
 
-	public int monthlyReserveCount8(Home home) throws Exception {
+	public Integer monthlyReserveCount8(Home home) throws Exception {
 		return mapper.monthlyReserveCount8(home);
 	}
 
@@ -225,7 +225,7 @@ public class HomeServiceImpl implements HomeService {
 		return mapper.totalSales9(home);
 	}
 
-	public int monthlyReserveCount9(Home home) throws Exception {
+	public Integer monthlyReserveCount9(Home home) throws Exception {
 		return mapper.monthlyReserveCount9(home);
 	}
 
@@ -242,7 +242,7 @@ public class HomeServiceImpl implements HomeService {
 		return mapper.totalSales10(home);
 	}
 
-	public int monthlyReserveCount10(Home home) throws Exception {
+	public Integer monthlyReserveCount10(Home home) throws Exception {
 		return mapper.monthlyReserveCount10(home);
 	}
 
@@ -259,7 +259,7 @@ public class HomeServiceImpl implements HomeService {
 		return mapper.totalSales11(home);
 	}
 
-	public int monthlyReserveCount11(Home home) throws Exception {
+	public Integer monthlyReserveCount11(Home home) throws Exception {
 		return mapper.monthlyReserveCount11(home);
 	}
 
@@ -276,7 +276,7 @@ public class HomeServiceImpl implements HomeService {
 		return mapper.totalSales12(home);
 	}
 
-	public int monthlyReserveCount12(Home home) throws Exception {
+	public Integer monthlyReserveCount12(Home home) throws Exception {
 		return mapper.monthlyReserveCount12(home);
 	}
 }

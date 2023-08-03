@@ -45,73 +45,74 @@ public class HomeController {
 		int itemSales1 = service.itemSales1(home);
 		int optionSales1 = service.optionSales1(home);
 		int totalSales1 = service.totalSales1(home);
-		int monthlyReserveCount1 = service.monthlyReserveCount1(home);
+		
+		Integer monthlyReserveCount1 = service.monthlyReserveCount1(home);
 
 		// 2월 통계
 		int itemSales2 = service.itemSales2(home);
 		int optionSales2 = service.optionSales2(home);
 		int totalSales2 = service.totalSales2(home);
-		int monthlyReserveCount2 = service.monthlyReserveCount2(home);
+		Integer monthlyReserveCount2 = service.monthlyReserveCount2(home);
 
 		// 3월 통계
 		int itemSales3 = service.itemSales3(home);
 		int optionSales3 = service.optionSales3(home);
 		int totalSales3 = service.totalSales3(home);
-		int monthlyReserveCount3 = service.monthlyReserveCount3(home);
+		Integer monthlyReserveCount3 = service.monthlyReserveCount3(home);
 
 		// 4월 통계
 		int itemSales4 = service.itemSales4(home);
 		int optionSales4 = service.optionSales4(home);
 		int totalSales4 = service.totalSales4(home);
-		int monthlyReserveCount4 = service.monthlyReserveCount4(home);
+		Integer monthlyReserveCount4 = service.monthlyReserveCount4(home);
 
 		// 5월 통계
 		int itemSales5 = service.itemSales5(home);
 		int optionSales5 = service.optionSales5(home);
 		int totalSales5 = service.totalSales5(home);
-		int monthlyReserveCount5 = service.monthlyReserveCount5(home);
+		Integer monthlyReserveCount5 = service.monthlyReserveCount5(home);
 
 		// 6월 통계
 		int itemSales6 = service.itemSales6(home);
 		int optionSales6 = service.optionSales6(home);
 		int totalSales6 = service.totalSales6(home);
-		int monthlyReserveCount6 = service.monthlyReserveCount6(home);
+		Integer monthlyReserveCount6 = service.monthlyReserveCount6(home);
 
 		// 7월 통계
 		int itemSales7 = service.itemSales7(home);
 		int optionSales7 = service.optionSales7(home);
 		int totalSales7 = service.totalSales7(home);
-		int monthlyReserveCount7 = service.monthlyReserveCount7(home);
+		Integer monthlyReserveCount7 = service.monthlyReserveCount7(home);
 
 		// 8월 통계
 		int itemSales8 = service.itemSales8(home);
 		int optionSales8 = service.optionSales8(home);
 		int totalSales8 = service.totalSales8(home);
-		int monthlyReserveCount8 = service.monthlyReserveCount8(home);
+		Integer monthlyReserveCount8 = service.monthlyReserveCount8(home);
 
 		// 9월 통계
 		int itemSales9 = service.itemSales9(home);
 		int optionSales9 = service.optionSales9(home);
 		int totalSales9 = service.totalSales9(home);
-		int monthlyReserveCount9 = service.monthlyReserveCount9(home);
+		Integer monthlyReserveCount9 = service.monthlyReserveCount9(home);
 
 		// 10월 통계
 		int itemSales10 = service.itemSales10(home);
 		int optionSales10 = service.optionSales10(home);
 		int totalSales10 = service.totalSales10(home);
-		int monthlyReserveCount10 = service.monthlyReserveCount10(home);
+		Integer monthlyReserveCount10 = service.monthlyReserveCount10(home);
 
 		// 11월 통계
 		int itemSales11 = service.itemSales11(home);
 		int optionSales11 = service.optionSales11(home);
 		int totalSales11 = service.totalSales11(home);
-		int monthlyReserveCount11 = service.monthlyReserveCount11(home);
+		Integer monthlyReserveCount11 = service.monthlyReserveCount11(home);
 
 		// 12월 통계
 		int itemSales12 = service.itemSales12(home);
 		int optionSales12 = service.optionSales12(home);
 		int totalSales12 = service.totalSales12(home);
-		int monthlyReserveCount12 = service.monthlyReserveCount12(home);
+		Integer monthlyReserveCount12 = service.monthlyReserveCount12(home);
 
 		// 예약 완료 및 취소 통계의 값을 뷰로 전달
 		model.addAttribute("reserveCount", reserveCount);

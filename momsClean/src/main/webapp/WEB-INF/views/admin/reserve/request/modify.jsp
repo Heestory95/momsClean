@@ -77,11 +77,18 @@
 <script>
 	$(document).ready(function() {
 		var formObj = $("#reserve");
+		
+		function submitFormAndGoBack() {
+	        // Submit the form
+	        formObj.submit();
+	    }
+		
 		$("#btnApproval").on("click", function() {
 			formObj.submit();
 		});
 		$("#btnList").on("click", function() {
 			self.location = "/admin/reserve/request/list${pgrq.toUriString()}";
 		});
+		
 	});
 </script>

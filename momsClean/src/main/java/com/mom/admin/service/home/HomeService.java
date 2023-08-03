@@ -38,7 +38,7 @@ public interface HomeService {
 
 	public int totalSales1(Home home) throws Exception;
 
-	public int monthlyReserveCount1(Home home) throws Exception;
+	public Integer monthlyReserveCount1(Home home) throws Exception;
 
 	// 2월 통계
 	public int itemSales2(Home home) throws Exception;
@@ -47,7 +47,7 @@ public interface HomeService {
 
 	public int totalSales2(Home home) throws Exception;
 
-	public int monthlyReserveCount2(Home home) throws Exception;
+	public Integer monthlyReserveCount2(Home home) throws Exception;
 
 	// 3월 통계
 	public int itemSales3(Home home) throws Exception;
@@ -56,7 +56,7 @@ public interface HomeService {
 
 	public int totalSales3(Home home) throws Exception;
 
-	public int monthlyReserveCount3(Home home) throws Exception;
+	public Integer monthlyReserveCount3(Home home) throws Exception;
 
 	// 4월 통계
 	public int itemSales4(Home home) throws Exception;
@@ -65,7 +65,7 @@ public interface HomeService {
 
 	public int totalSales4(Home home) throws Exception;
 
-	public int monthlyReserveCount4(Home home) throws Exception;
+	public Integer monthlyReserveCount4(Home home) throws Exception;
 
 	// 5월 통계
 	public int itemSales5(Home home) throws Exception;
@@ -74,7 +74,7 @@ public interface HomeService {
 
 	public int totalSales5(Home home) throws Exception;
 
-	public int monthlyReserveCount5(Home home) throws Exception;
+	public Integer monthlyReserveCount5(Home home) throws Exception;
 
 	// 6월 통계
 	public int itemSales6(Home home) throws Exception;
@@ -83,7 +83,7 @@ public interface HomeService {
 
 	public int totalSales6(Home home) throws Exception;
 
-	public int monthlyReserveCount6(Home home) throws Exception;
+	public Integer monthlyReserveCount6(Home home) throws Exception;
 
 	// 7월 통계
 	public int itemSales7(Home home) throws Exception;
@@ -92,7 +92,7 @@ public interface HomeService {
 
 	public int totalSales7(Home home) throws Exception;
 
-	public int monthlyReserveCount7(Home home) throws Exception;
+	public Integer monthlyReserveCount7(Home home) throws Exception;
 
 	// 8월 통계
 	public int itemSales8(Home home) throws Exception;
@@ -101,7 +101,7 @@ public interface HomeService {
 
 	public int totalSales8(Home home) throws Exception;
 
-	public int monthlyReserveCount8(Home home) throws Exception;
+	public Integer monthlyReserveCount8(Home home) throws Exception;
 
 	// 9월 통계
 	public int itemSales9(Home home) throws Exception;
@@ -110,7 +110,7 @@ public interface HomeService {
 
 	public int totalSales9(Home home) throws Exception;
 
-	public int monthlyReserveCount9(Home home) throws Exception;
+	public Integer monthlyReserveCount9(Home home) throws Exception;
 
 	// 10월 통계
 	public int itemSales10(Home home) throws Exception;
@@ -119,7 +119,7 @@ public interface HomeService {
 
 	public int totalSales10(Home home) throws Exception;
 
-	public int monthlyReserveCount10(Home home) throws Exception;
+	public Integer monthlyReserveCount10(Home home) throws Exception;
 
 	// 11월 통계
 	public int itemSales11(Home home) throws Exception;
@@ -128,7 +128,7 @@ public interface HomeService {
 
 	public int totalSales11(Home home) throws Exception;
 
-	public int monthlyReserveCount11(Home home) throws Exception;
+	public Integer monthlyReserveCount11(Home home) throws Exception;
 
 	// 12월 통계
 	public int itemSales12(Home home) throws Exception;
@@ -137,7 +137,7 @@ public interface HomeService {
 
 	public int totalSales12(Home home) throws Exception;
 
-	public int monthlyReserveCount12(Home home) throws Exception;
+	public Integer monthlyReserveCount12(Home home) throws Exception;
 
 	
 	public List<Home> request(PageRequest mainPageRequest) throws Exception;
