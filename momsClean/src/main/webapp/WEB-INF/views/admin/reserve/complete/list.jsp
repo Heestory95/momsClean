@@ -12,7 +12,7 @@
 <form:form modelAttribute="complete">
 	<table border="1" align="center">
 		<tr>
-			<th align="center" width="170"><spring:message
+			<th align="center" width="180"><spring:message
 					code="reserve.reserveNo" /></th>
 			<th align="center" width="70"><spring:message
 					code="reserve.userNo" /></th>
@@ -22,9 +22,7 @@
 					code="reserve.userName" /></th>
 			<th align="center" width="70"><spring:message
 					code="reserve.itemNo" /></th>
-			<th align="center" width="70"><spring:message
-					code="reserve.reserveState" /></th>
-			<th align="center" width="350"><spring:message
+			<th align="center" width="400"><spring:message
 					code="reserve.reserveAddr" /></th>
 			<th align="center" width="80"><spring:message
 					code="reserve.totalPrice" /></th>
@@ -32,6 +30,8 @@
 					code="reserve.reserveDate" /></th>
 			<th align="center" width="90"><spring:message
 					code="reserve.cleanDate" /></th>
+			<th align="center" width="70"><spring:message
+					code="reserve.reserveState" /></th>
 			<th align="center" width="70"><spring:message
 					code="reserve.request" /></th>
 			<th align="center" width="70"><spring:message
@@ -42,7 +42,7 @@
 		<c:choose>
 			<c:when test="${empty complete}">
 				<tr>
-					<td colspan="12" align="center"><spring:message
+					<td colspan="13" align="center"><spring:message
 							code="common.listEmpty"></spring:message></td>
 				</tr>
 			</c:when>
@@ -54,13 +54,13 @@
 						<td align="center">${reserve.userId}</td>
 						<td align="center">${reserve.userName}</td>
 						<td align="center">${reserve.itemNo}</td>
-						<td align="center">${reserve.reserveState}</td>
 						<td align="center">${reserve.reserveAddr}</td>
 						<td align="center">${reserve.reserveItemPrice + reserve.reserveOptionPrice}원</td>
 						<td align="center"><fmt:formatDate
 								value="${reserve.reserveDate}" pattern="yyyy-MM-dd" /></td>
 						<td align="center"><fmt:formatDate
 								value="${reserve.cleanDate}" pattern="yyyy-MM-dd" /></td>
+						<td align="center">${reserve.reserveState}</td>
 						<td align="center">${reserve.reserveRequest}</td>
 						<td align="center">${reserve.cleanDone}</td>
 						<td align="center"><a
@@ -74,7 +74,7 @@
 <!-- 페이징 네비게이션 -->
 <div align="center">
 	<c:if test="${pagination2.prev}">
-		<a href="${pagination2.startPage - 1}">&laquo;</a>
+		<a href="/admin/reserve/complete/list${pagination2.makeQuery(pagination2.startPage - 1)}">&laquo;</a>
 	</c:if>
 
 	<c:forEach begin="${pagination2.startPage}" end="${pagination2.endPage}"
@@ -83,7 +83,7 @@
 	</c:forEach>
 
 	<c:if test="${pagination2.next && pagination2.endPage > 0}">
-		<a href="${pagination2.endPage + 1}">&raquo;</a>
+		<a href="/admin/reserve/complete/list${pagination2.makeQuery(pagination2.endPage + 1)}">&raquo;</a>
 	</c:if>
 </div>
 <!-- 검색 폼 -->

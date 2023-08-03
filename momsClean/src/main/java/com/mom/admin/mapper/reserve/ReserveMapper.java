@@ -20,14 +20,14 @@ public interface ReserveMapper {
 	public int count() throws Exception;
 
 	// 예약완료리스트 페이지
-	// 페이징 요청 정보를 매개 변수로 받아 페이징 처리를 한 승인요청리스트 반환
+	// 페이징 요청 정보를 매개 변수로 받아 페이징 처리를 한 예약완료리스트 반환
 	public List<Reserve> complete(PageRequest2 pageRequest2) throws Exception;
 
 	// 예약완료리스트 전체 건수 반환
 	public int count2(PageRequest2 pageRequest2) throws Exception;
 
 	// 예약취소리스트 페이지
-	// 페이징 요청 정보를 매개 변수로 받아 페이징 처리를 한 승인요청리스트 반환
+	// 페이징 요청 정보를 매개 변수로 받아 페이징 처리를 한 예약취소리스트 반환
 	public List<Reserve> cancel(PageRequest3 pageRequest3) throws Exception;
 
 	// 예약취소리스트 전체 건수 반환
@@ -45,13 +45,13 @@ public interface ReserveMapper {
 	// 예약요청 청소완료처리
 	public void finishUpdate(Reserve reserve) throws Exception;
 
-	// 예약요청 청소완료처리
+	// 예약요청 청소완료 취소처리
 	public void finishCancel(Reserve reserve) throws Exception;
 
 	// 예약요청 복구처리
 	public void completeRestore(Reserve reserve) throws Exception;
 
-	// 예약요청 복구처리
+	// 취소요청 복구처리
 	public void cancelRestore(Reserve reserve) throws Exception;
 
 }

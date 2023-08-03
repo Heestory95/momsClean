@@ -9,12 +9,11 @@
 <h2 align="center">
 	<spring:message code="reserve.admin.header.request" />
 </h2>
-<hr>
-<!-- 예약요청 리스트 폼 -->
+
 <form:form modelAttribute="request">
 	<table border="1" align="center">
 		<tr>
-			<th align="center" width="170"><spring:message
+			<th align="center" width="180"><spring:message
 					code="reserve.reserveNo" /></th>
 			<th align="center" width="70"><spring:message
 					code="reserve.userNo" /></th>
@@ -24,9 +23,7 @@
 					code="reserve.userName" /></th>
 			<th align="center" width="70"><spring:message
 					code="reserve.itemNo" /></th>
-			<th align="center" width="70"><spring:message
-					code="reserve.reserveState" /></th>
-			<th align="center" width="350"><spring:message
+			<th align="center" width="400"><spring:message
 					code="reserve.reserveAddr" /></th>
 			<th align="center" width="80"><spring:message
 					code="reserve.totalPrice" /></th>
@@ -34,6 +31,8 @@
 					code="reserve.reserveDate" /></th>
 			<th align="center" width="90"><spring:message
 					code="reserve.cleanDate" /></th>
+			<th align="center" width="70"><spring:message
+					code="reserve.reserveState" /></th>
 			<th align="center" width="70"><spring:message
 					code="reserve.request" /></th>
 			<th align="center" width="40"><spring:message
@@ -54,13 +53,13 @@
 						<td align="center">${reserve.userId}</td>
 						<td align="center">${reserve.userName}</td>
 						<td align="center">${reserve.itemNo}</td>
-						<td align="center">${reserve.reserveState}</td>
 						<td align="center">${reserve.reserveAddr}</td>
 						<td align="center">${reserve.reserveItemPrice + reserve.reserveOptionPrice}원</td>
 						<td align="center"><fmt:formatDate
 								value="${reserve.reserveDate}" pattern="yyyy-MM-dd" /></td>
 						<td align="center"><fmt:formatDate
 								value="${reserve.cleanDate}" pattern="yyyy-MM-dd" /></td>
+						<td align="center">${reserve.reserveState}</td>
 						<td align="center">${reserve.reserveRequest}</td>
 						<td align="center"><a
 							href='/admin/reserve/request/modify?reserveNo=${reserve.reserveNo}'>승인</a></td>
@@ -73,7 +72,7 @@
 <!-- 페이징 네비게이션 -->
 <div align="center">
 	<c:if test="${pagination.prev}">
-		<a href="${pagination.startPage - 1}">&laquo;</a>
+		<a href="/admin/reserve/request/list${pagination.makeQuery(pagination.startPage - 1)}">&laquo;</a>
 	</c:if>
 
 	<c:forEach begin="${pagination.startPage}" end="${pagination.endPage}"
@@ -82,7 +81,7 @@
 	</c:forEach>
 
 	<c:if test="${pagination.next && pagination.endPage > 0}">
-		<a href="${pagination.endPage + 1}">&raquo;</a>
+		<a href="/admin/reserve/request/list${pagination.makeQuery(pagination.endPage + 1)}">&raquo;</a>
 	</c:if>
 </div>
 <!-- 검색 폼 -->

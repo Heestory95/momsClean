@@ -5,7 +5,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-<h2><spring:message code="notice.header.read" /></h2>
+<h2><spring:message code="review.header.read" /></h2>
 
 <form:form modelAttribute="review">
 	
