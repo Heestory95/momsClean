@@ -59,11 +59,11 @@ public class ReferenceController {
 	
 	// 답글 작성 페이지 
 	@RequestMapping(value = "/reply", method = RequestMethod.GET)
-	public String registerForm(Model model, Integer referenceNo) throws Exception {
+	public void registerForm(Model model, Integer referenceNo) throws Exception {
 		Reference reference = service.read(referenceNo);
 		
 		model.addAttribute("reference",reference);
-		return "/admin/reference/reply";
+		
 		
 	}
 

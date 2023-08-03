@@ -12,7 +12,7 @@
 <h2>
 	<spring:message code="reference.header" />
 </h2>
-
+<form:form modelAttribute="reference">
 <table border="1">
 	<tr>
 		<th align="center" width="80"><spring:message code="reference.no" /></th>
@@ -23,6 +23,7 @@
 		<th align="center" width="100"><spring:message
 				code="reference.referenceDate" /></th>
 	</tr>
+
 	<c:choose>
 		<c:when test="${empty list}">
 			<tr>
@@ -31,9 +32,15 @@
 		</c:when>
 		<c:otherwise>
 		
+
+		
 	<c:forEach items="${list}" var="reference">
     <tr>
-        <td align="center">${reference.no}</td>
+        <td align="center">${reference.no}
+        	<c:choose>
+    <c:when test="${empty reference.no}"><B>└</B></c:when>
+    </c:choose>
+        </td>
         <td align="left">
             <a href="/admin/reference/read${pgrq.toUriString(pgrq.page)}&referenceNo=${reference.referenceNo}">
                 <c:out value="${reference.referenceTitle}" />
@@ -48,8 +55,7 @@
 		</c:otherwise>
 	</c:choose>
 </table>
-
-
+</form:form>
 
 <!-- 페이징 네비게이션 -->
 <!-- 페이징 네비게이션 -->
