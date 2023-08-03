@@ -19,6 +19,10 @@ public class Home {
 	private String referenceTitle;
 	private String referenceContent;
 	private Date referenceDate;
+	private int root;
+	private Integer step;
+	private int indent;
+	private Integer no;
 	private int rNo;
 	private String reserveNo;
 	private String userId;

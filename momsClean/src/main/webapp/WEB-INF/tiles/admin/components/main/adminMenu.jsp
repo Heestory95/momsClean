@@ -11,6 +11,7 @@
 	}
 	a {
 		text-decoration: none;
+		
 	}
 	
 	#container {
@@ -30,7 +31,7 @@
 		height:52px;
 		display: inline;
 		position: absolute;
-		width: 1300px;
+		width: 100%;
 		bottom: 0;
 		
 	}
@@ -96,22 +97,25 @@
 	#topMenu > li > ul > li > a:hover {
 		color: #f00;
 	}
+	#boardList {
+		color: inherit;
+	}
 </style>
 	<div align="center" id="container">
 		<nav>
 				<!-- 상품관리를 메뉴에 추가한다. -->
 			<ul id="topMenu">
 				<li id="logo"><a href="/"><img src="../image/momsImage.png" width="200px" height="150px"></a></li>
-				<li><a href="/admin/item/list"><spring:message	code="menu.item.admin" /></a></li>
+				<li><a href="/admin/item/list" id="boardList"><spring:message	code="menu.item.admin" /></a></li>
 					<!-- 회원 관리를 메뉴에 추가한다. -->
-				<li><a href="#"><spring:message code="menu.user.admin" /><span>▼</span></a>
+				<li><a href="#" id="boardList"><spring:message code="menu.user.admin" /><span>▼</span></a>
 					<ul>
 						<li><a href="/admin/user/list"><spring:message code="menu.userList.admin" /></a></li>
 						<li><a href="/admin/user/withdraw/list"><spring:message code="menu.withdrawList.admin" /></a></li>
 					</ul>
 				</li>
 					<!-- 예약정보 관리를 메뉴에 추가한다. -->
-				<li><a href="#"><spring:message code="menu.reserve.admin" /><span>▼</span></a>
+				<li><a href="#" id="boardList"><spring:message code="menu.reserve.admin" /><span>▼</span></a>
 					<ul>
 						<li><a href="/admin/reserve/request/list"><spring:message code="menu.approval.admin" /></a></li>
 						<li><a href="/admin/reserve/complete/list"><spring:message code="menu.reserveComplete.admin" /></a></li>
@@ -119,7 +123,7 @@
 					</ul>
 				</li>
 					<!-- 게시판 관리 메뉴에 추가한다. -->
-				<li><a href="#"><spring:message code="menu.board.admin" /><span>▼</span></a>
+				<li><a href="#" id="boardList"><spring:message code="menu.board.admin" /><span>▼</span></a>
 					<ul>
 						<li><a href="/admin/notice/list"><spring:message code="menu.admin.notice" /></a></li>
 						<li><a href="/admin/reference/list"><spring:message	code="menu.reference.admin" /></a></li>
