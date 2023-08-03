@@ -17,7 +17,7 @@
 	font-weight: 50px;
 	font-size: 80px;
 	color: #6AAAFF;
-	weight: 100px;
+	
 	}
 </style>
 </head>
@@ -32,7 +32,7 @@
 <table>
 	<tr>
 		<!-- <td>MOM'S CLEAN</td> -->
-		<a href="/">MOM'S CLEAN</a>
+		<a href="/" style="color: inherit;">MOM'S CLEAN</a>
 	</tr>
 </table>
 </div>

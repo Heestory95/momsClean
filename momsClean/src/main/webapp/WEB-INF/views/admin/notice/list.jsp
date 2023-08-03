@@ -21,7 +21,7 @@
 
 <h2><spring:message code="notice.header.list" /></h2>
 
-<form:form modelAttribute="pgrq" method="get" action="list${pgrq.toUriStringByPage(1)}">		
+<form:form modelAttribute="pgrq" method="get" action="list${pgrq.toUriStringByPage(1)}" >		
 	<form:select path="searchType" items="${searchTypeCodeValueList}" itemValue="value" itemLabel="label" />
 	
 	<form:input path="keyword" />
