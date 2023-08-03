@@ -51,11 +51,6 @@
 					pattern="yyyy-MM-dd" /></td>
 			<td><font color="red"><form:errors path="referenceDate" /></font></td>
 		</tr>
-		<tr>
-    <td><spring:message code="reference.root" /></td>
-    <td><c:out value="${reference.root}" /></td>
-</tr>
-		
 	</table>
 
 	
