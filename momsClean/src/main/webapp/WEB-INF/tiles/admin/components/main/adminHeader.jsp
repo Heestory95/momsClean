@@ -17,6 +17,7 @@
 	font-weight: 50px;
 	font-size: 80px;
 	color: #6AAAFF;
+	weight: 100px;
 	}
 </style>
 </head>
@@ -30,7 +31,8 @@
 <div align="center" class="mom">
 <table>
 	<tr>
-		<td>MOM'S CLEAN</td>
+		<!-- <td>MOM'S CLEAN</td> -->
+		<a href="/">MOM'S CLEAN</a>
 	</tr>
 </table>
 </div>
