@@ -11,7 +11,9 @@ public interface ReferenceService {
 
 	public Reference read(Integer referenceNo) throws Exception;
 	
+	public void register(Reference reference) throws Exception;
 	// 문의 게시글 전체 건수 반환
 	public int count(PageRequest pageRequest) throws Exception;
 	
-}
+	}
+

@@ -16,7 +16,6 @@
 <table border="1">
 	<tr>
 		<th align="center" width="80"><spring:message code="reference.no" /></th>
-		<th align="center" width="80"><spring:message code="user.no" /></th>
 		<th align="center" width="320"><spring:message
 				code="reference.title" /></th>
 		<th align="center" width="100"><spring:message
@@ -31,21 +30,26 @@
 			</tr>
 		</c:when>
 		<c:otherwise>
-			<c:forEach items="${list}" var="reference">
-				<tr>
-					<td align="center">${reference.referenceNo}</td>
-					<td align="center">${reference.userNo}</td>
-					<td align="left"><a
-						href="/admin/reference/read${pgrq.toUriString(pgrq.page)}&referenceNo=${reference.referenceNo}"><c:out
-								value="${reference.referenceTitle}" /></a></td>
-					<td align="center">${reference.userName}</td>
-					<td align="center"><fmt:formatDate pattern="yyyy-MM-dd"
-							value="${reference.referenceDate}" /></td>
-				</tr>
-			</c:forEach>
+		
+	<c:forEach items="${list}" var="reference">
+    <tr>
+        <td align="center">${reference.no}</td>
+        <td align="left">
+            <a href="/admin/reference/read${pgrq.toUriString(pgrq.page)}&referenceNo=${reference.referenceNo}">
+                <c:out value="${reference.referenceTitle}" />
+            </a>
+        </td>
+        <td align="center">${reference.userName}</td>
+        <td align="center">
+            <fmt:formatDate pattern="yyyy-MM-dd" value="${reference.referenceDate}" />
+        </td>
+    </tr>
+</c:forEach>
 		</c:otherwise>
 	</c:choose>
 </table>
+
+
 
 <!-- 페이징 네비게이션 -->
 <!-- 페이징 네비게이션 -->

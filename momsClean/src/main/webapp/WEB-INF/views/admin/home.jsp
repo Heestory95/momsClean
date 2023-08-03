@@ -196,12 +196,13 @@
 	<h3>
 		<spring:message code="home.admin.chart" />
 	</h3>
-	<div class="cancelChart">
 		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 	    <script type="text/javascript">
 	      google.charts.load("current", {packages:["corechart"]});
-	      google.charts.setOnLoadCallback(drawChart);
-	      function drawChart() {
+	      google.charts.setOnLoadCallback(drawCancelChart);
+	      google.charts.setOnLoadCallback(drawItemChart);
+	      google.charts.setOnLoadCallback(drawMonthlySalesChart);
+	      function drawCancelChart() {
 	    	var reserveCompleted = ${reserveCount};
 	    	var reserveCancelled = ${cancelCount};
 	    	  
@@ -223,16 +224,8 @@
 	        var chart = new google.visualization.PieChart(document.getElementById('cancelChart'));
 	        chart.draw(data, options);
 	      }
-	    </script>
-	    <div id="cancelChart" style="width: 400px; height: 300px;"></div>
-	</div>
-	<div>
-		<div class="itemChart">
-			<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-		    <script type="text/javascript">
-		      google.charts.load("current", {packages:["corechart"]});
-		      google.charts.setOnLoadCallback(drawChart);
-		      function drawChart() {
+	      
+	      function drawItemChart() {
 		    	var itemCount1 = ${itemCount1};
 		    	var itemCount2 = ${itemCount2};
 		    	var itemCount3 = ${itemCount3};
@@ -258,10 +251,61 @@
 		        var chart = new google.visualization.PieChart(document.getElementById('itemChart'));
 		        chart.draw(data, options);
 		      }
-		    </script>
-		    <div id="itemChart" style="width: 400px; height: 300px;"></div>
-		</div>
-	</div>
+	      
+	      function drawMonthlySalesChart() {
+	          
+				var data = google.visualization.arrayToDataTable([
+				['월매출', '상품판매액', '옵션판매액', '총 판매액', '총 예약수'],
+				['2023/01', ${itemSales1}, ${optionSales1}, ${totalSales1}, ${monthlyReserveCount1}],
+				['2023/02', ${itemSales2}, ${optionSales2}, ${totalSales2}, ${monthlyReserveCount2}],
+				['2023/03', ${itemSales3}, ${optionSales3}, ${totalSales3}, ${monthlyReserveCount3}],
+				['2023/04', ${itemSales4}, ${optionSales4}, ${totalSales4}, ${monthlyReserveCount4}],
+				['2023/05', ${itemSales5}, ${optionSales5}, ${totalSales5}, ${monthlyReserveCount5}],
+				['2023/06', ${itemSales6}, ${optionSales6}, ${totalSales6}, ${monthlyReserveCount6}],
+				['2023/07', ${itemSales7}, ${optionSales7}, ${totalSales7}, ${monthlyReserveCount7}],
+				['2023/08', ${itemSales8}, ${optionSales8}, ${totalSales8}, ${monthlyReserveCount8}],
+				['2023/09', ${itemSales9}, ${optionSales9}, ${totalSales9}, ${monthlyReserveCount9}],
+				['2023/10', ${itemSales10}, ${optionSales10}, ${totalSales10}, ${monthlyReserveCount10}],
+				['2023/11', ${itemSales11}, ${optionSales11}, ${totalSales11}, ${monthlyReserveCount11}],
+				['2023/12', ${itemSales12}, ${optionSales12}, ${totalSales12}, ${monthlyReserveCount12}]
+				
+				]);
+
+				var options = {
+				        title: '월 별 매출액',
+				        vAxes: {
+				            0: { title: '매출액' }, // 왼쪽 Y축 (막대 그래프용)
+				            1: { title: '예약수' } // 오른쪽 Y축 (선 그래프용)
+				        },
+				        seriesType: 'bars',
+				        series: {
+				            0: { targetAxisIndex: 0 }, // 왼쪽 Y축에 막대 그래프 설정
+				            1: { targetAxisIndex: 0 }, // 왼쪽 Y축에 막대 그래프 설정
+				            2: { targetAxisIndex: 0 }, // 왼쪽 Y축에 막대 그래프 설정
+				            3: { type: 'line', targetAxisIndex: 1 } // 오른쪽 Y축에 선 그래프 설정
+				        }
+				    };
+
+				
+				var chart = new google.visualization.ComboChart(document.getElementById('monthlySalesChart'));
+				chart.draw(data, options);
+			}
+	    </script>
+	    
+	    <table class="chart">
+	    	<tr align="center">
+	    		<td><div id="itemChart" style="border: 1px solid #ccc; width: 500px; height: 350px;"></div></td>
+	    		<td><div id="cancelChart" style="border: 1px solid #ccc; width: 500px; height: 350px;"></div></td>
+	    	</tr>
+	    	<tr>
+	    		<td colspan="2"><div id="monthlySalesChart" style="border: 1px solid #ccc; width: 1006px; height: 500px;"></div></td>
+	    	</tr>
+	    </table>
+		    
+			
+			
+		
+	
 </div>
 
 
