@@ -19,20 +19,69 @@
   });
 </script>
 
-<h2><spring:message code="notice.header.list" /></h2>
+<style>
+
+#noticeHeader {
+	font-size: 35px;
+}
+
+#keyword {
+	width: 300px;
+	height: 28px;
+	margin-left: 600px;
+}
+
+#searchBtn {
+	width: 60px;
+	height: 32px;
+}
+
+.listTitle {
+	height: 50px;
+	background-color: #6AAAFF;
+	font-size: 20px;
+	color: white;
+	border-color: black;
+}
+
+.listList {
+	height: 42px;
+	font-size: 18px;
+}
+
+.page {
+ 	margin-top: 20px;
+ 	font-size: 22px;
+}
+
+.page > a {
+	margin-left: 10px;
+	
+}
+
+#register {
+	border: 1px solid black;
+	width: 60px;
+	padding: 7px;
+	
+}
+
+</style>
+
+<h2 id="noticeHeader"><spring:message code="notice.header.list" /></h2>
 
 <form:form modelAttribute="pgrq" method="get" action="list${pgrq.toUriStringByPage(1)}" >		
-	<form:select path="searchType" items="${searchTypeCodeValueList}" itemValue="value" itemLabel="label" />
+	<form:select path="searchType" items="${searchTypeCodeValueList}" itemValue="value" itemLabel="label" style="display: none;"/>
 	
-	<form:input path="keyword" />
+	<form:input path="keyword" id="keyword"/>
 	<button id='searchBtn'><spring:message code="action.search" /></button>
 </form:form>
 
 <table border="1">
-  <tr>
-    <th align="center" width="80"><spring:message code="notice.no" /></th>
-    <th align="center" width="420"><spring:message code="notice.title" /></th>
-    <th align="center" width="180"><spring:message code="notice.date" /></th>
+  <tr class="listTitle">
+    <th align="center" width="170"><spring:message code="notice.no" /></th>
+    <th align="center" width="550"><spring:message code="notice.title" /></th>
+    <th align="center" width="230"><spring:message code="notice.date" /></th>
   </tr>
   <c:choose>
    	<c:when test="${empty list}">
@@ -42,7 +91,7 @@
   	</c:when>
   	<c:otherwise>
   		<c:forEach items="${list}" var="notice">
-  			<tr>
+  			<tr class="listList">
   				<td align="center">${notice.noticeNo}</td>
   				<%-- <td align="left"><a href="/admin/notice/read?noticeNo=${notice.noticeNo}"><c:out value="${notice.noticeTitle}" /></a></td> --%>
   				<!-- 게시글 상세보기할 때 페이징 요청 정보를 매개변수로 전달한다 -->
@@ -56,7 +105,7 @@
 </table>
 
 <!-- 페이징 네비게이션 -->
-<div>
+<div class="page">
 	<c:if test="${pagination.prev}">
 		<a href="/admin/notice/list${pagination.makeQuery(pagination.startPage -1)}">&laquo;</a>
 	</c:if>
@@ -69,6 +118,6 @@
 		<a href="/admin/notice/list${pagination.makeQuery(pagination.endPage +1)}">&raquo;</a>
 	</c:if>
 	
-</div>
 
-<a href="register"><spring:message code="notice.new" /></a>
+<a href="register" id="register"><spring:message code="notice.new" /></a>
+</div>

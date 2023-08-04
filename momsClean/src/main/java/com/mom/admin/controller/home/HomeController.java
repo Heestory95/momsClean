@@ -29,6 +29,7 @@ public class HomeController {
 		model.addAttribute("review", service.review(mainPageRequest));
 
 		// 예약취소율 통계 카운트 호출
+		int requestCount = service.requestCount(home);
 		int reserveCount = service.reserveCount(home);
 		int cancelCount = service.cancelCount(home);
 
@@ -115,6 +116,7 @@ public class HomeController {
 		Integer monthlyReserveCount12 = service.monthlyReserveCount12(home);
 
 		// 예약 완료 및 취소 통계의 값을 뷰로 전달
+		model.addAttribute("requestCount", requestCount);
 		model.addAttribute("reserveCount", reserveCount);
 		model.addAttribute("cancelCount", cancelCount);
 

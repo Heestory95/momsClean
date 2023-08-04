@@ -10,7 +10,7 @@ h2 {
 	font-family: "나눔바른고딕";
 }
 
-table {
+#userList {
 	font-family: "나눔바른고딕";
 	width: 1000px;
 	border-collapse: collapse;
@@ -20,11 +20,38 @@ table {
 }
 
 th {
-	
 	border: none;
 	padding-top: 8px;
 	padding-bottom: 8px;
 	font-size: 16px;
+}
+
+#u_no {
+	width: 48px;
+}
+#u_id {
+	width: 90px;
+}
+#u_name {
+	width: 70px;
+}
+#u_phone {
+	width: 100px
+}
+#u_email {
+	width: 180px;
+}
+#u_auth {
+	width: 85px;
+}
+#u_reg {
+	width: 85px;
+}
+#u_division {
+	width: 48px;
+}
+#u_treatment {
+	width: 30px;
 }
 
 td {
@@ -42,6 +69,13 @@ td {
 	margin-bottom: 10px;
 }
 
+select {
+	font-family: "나눔바른고딕";
+	padding: 5px 9px 3px 9px;
+	border: 1px solid #d8d3bd;
+	font-size: 13px;
+}
+
 #search {
 	font-family: "나눔바른고딕";
 }
@@ -53,7 +87,7 @@ input {
 	background-color: #fcfdf4;
 }
 
-button {
+#searchBtn {
 	position: relative;
 	margin: 0 auto;
 	cursor: pointer;
@@ -61,7 +95,7 @@ button {
 	margin-bottom: 14px;
 	padding: 3px 9px 5px 9px;
 	border: 1px solid #e4e0cd;
-	background-color: #292730;
+	background-color: #36343f;
 	color: white;
 }
 </style>
@@ -72,23 +106,23 @@ button {
 <form:form modelAttribute="user">
 	<table id="userList">
 		<tr>
-			<th align="center" width="70"><spring:message
+			<th id="u_no" align="center"><spring:message
 					code="user.userNo" /></th>
-			<th align="center" width="70"><spring:message
+			<th id="u_id" align="center"><spring:message
 					code="user.userId" /></th>
-			<th align="center" width="70"><spring:message
+			<th id="u_name" align="center"><spring:message
 					code="user.userName" /></th>
-			<th align="center" width="100"><spring:message
+			<th id="u_phone" align="center"><spring:message
 					code="user.userPhone" /></th>
-			<th align="center" width="170"><spring:message
+			<th id="u_email" align="center"><spring:message
 					code="user.userEmail" /></th>
-			<th align="center" width="120"><spring:message
+			<th id="u_auth" align="center" ><spring:message
 					code="user.emailAuth" /></th>
-			<th align="center" width="120"><spring:message
+			<th id="u_reg" align="center" ><spring:message
 					code="user.regDate" /></th>
-			<th align="center" width="70"><spring:message
+			<th id="u_division" align="center" ><spring:message
 					code="user.userDivision" /></th>
-			<th align="center" width="40"><spring:message
+			<th id="u_treatment" align="center" ><spring:message
 					code="user.treatment" /></th>
 		</tr>
 		<c:choose>

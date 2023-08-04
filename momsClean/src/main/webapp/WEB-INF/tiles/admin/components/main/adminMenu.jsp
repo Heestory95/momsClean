@@ -19,7 +19,7 @@
         justify-content: center;
 		margin:0 auto;
 		width: 100%;
-		height: 200px;
+		height: 130px;
 		position: relative;
 	}
 	
@@ -28,7 +28,7 @@
 	}
 	
 	nav{
-		height:52px;
+		height:53px;
 		display: inline;
 		position: absolute;
 		width: 100%;
@@ -46,7 +46,7 @@
 	}
 	
 	#topMenu{
-		height: 60px;
+		height: 61px;
 	}
 	
 	#topMenu > li {
@@ -58,7 +58,7 @@
 		display: block;
 		font-weight: 600;
 	
-		padding: 20px 60px;
+		padding: 19px 61px;
 	}
 	
 	#topMenu > li > a > span {
@@ -85,7 +85,7 @@
 	
 	#topMenu > li > ul > li > a {
 		font-size: 14px;
-		padding: 10px;
+		padding: 11px;
 		color: #000;
 	}
 	
@@ -99,6 +99,7 @@
 	}
 	#boardList {
 		color: inherit;
+		font-size: 17px;
 	}
 </style>
 	<div align="center" id="container">

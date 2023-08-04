@@ -106,6 +106,16 @@
 	</select>
 
 	<!-- 예약취소율 통계용 쿼리 -->
+	<select id="requestCount" resultType="int">
+		<![CDATA[
+			SELECT count(reserve_no)
+			FROM reserve
+			WHERE reserve_state = '예약대기'
+			AND reserve_request = '예약요청'
+			AND clean_done = 'N'
+		]]>
+	</select>
+	
 	<select id="reserveCount" resultType="int">
 		<![CDATA[
 			SELECT count(reserve_no)
