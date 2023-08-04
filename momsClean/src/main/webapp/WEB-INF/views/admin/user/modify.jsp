@@ -13,7 +13,7 @@ h2 {
 	font-family: "나눔바른고딕";
 	width: 300px;
 	border-collapse: collapse;
-	font-size: 14px;
+	font-size: 16px;
 	letter-spacing: -0.3px;
 	margin-bottom: 10px;
 }
@@ -21,10 +21,10 @@ h2 {
 td {
 	border-top: 1px solid #cfcbbb;
 	border-bottom: 1px solid #cfcbbb;
-	padding-left: 8px;
+	padding-left: 10px;
 	padding-top: 8px;
 	padding-bottom: 8px;
-	font-size: 14px;
+	font-size: 16px;
 }
 
 .first-td {

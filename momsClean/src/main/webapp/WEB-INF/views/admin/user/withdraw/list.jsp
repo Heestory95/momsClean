@@ -10,9 +10,9 @@ h2 {
 	font-family: "나눔바른고딕";
 }
 
-table {
+#withdrawList {
 	font-family: "나눔바른고딕";
-	width: 1000px;
+	width: 1100px;
 	border-collapse: collapse;
 	font-size: 14px;
 	letter-spacing: -0.3px;
@@ -24,6 +24,38 @@ th {
 	padding-top: 8px;
 	padding-bottom: 8px;
 	font-size: 16px;
+}
+
+
+#u_no {
+	width: 48px;
+}
+#u_id {
+	width: 90px;
+}
+#u_name {
+	width: 70px;
+}
+#u_phone {
+	width: 100px
+}
+#u_email {
+	width: 180px;
+}
+#u_auth {
+	width: 85px;
+}
+#u_reg {
+	width: 85px;
+}
+#u_division {
+	width: 48px;
+}
+#u_withdrawDate {
+	width: 85px;
+}
+#u_treatment {
+	width: 30px;
 }
 
 td {
@@ -45,6 +77,7 @@ select {
 	font-family: "나눔바른고딕";
 	padding: 5px 9px 3px 9px;
 	border: 1px solid #d8d3bd;
+	font-size: 13px;
 }
 
 #search {
@@ -74,27 +107,27 @@ input {
 	<spring:message code="user.admin.header.withdraw" />
 </h2>
 <form:form modelAttribute="user">
-	<table align="center">
+	<table id="withdrawList">
 		<tr>
-			<th align="center" width="70"><spring:message
+			<th id="u_no" align="center"><spring:message
 					code="user.userNo" /></th>
-			<th align="center" width="70"><spring:message
+			<th id="u_id" align="center"><spring:message
 					code="user.userId" /></th>
-			<th align="center" width="70"><spring:message
+			<th id="u_name" align="center"><spring:message
 					code="user.userName" /></th>
-			<th align="center" width="110"><spring:message
+			<th id="u_phone" align="center"><spring:message
 					code="user.userPhone" /></th>
-			<th align="center" width="170"><spring:message
+			<th id="u_email" align="center"><spring:message
 					code="user.userEmail" /></th>
-			<th align="center" width="120"><spring:message
+			<th id="u_auth" align="center" ><spring:message
 					code="user.emailAuth" /></th>
-			<th align="center" width="120"><spring:message
+			<th id="u_reg" align="center" ><spring:message
 					code="user.regDate" /></th>
-			<th align="center" width="70"><spring:message
+			<th id="u_division" align="center" ><spring:message
 					code="user.userDivision" /></th>
-			<th align="center" width="120"><spring:message
+			<th id="u_withdrawDate" align="center" width="120"><spring:message
 					code="user.withdrawDate" /></th>
-			<th align="center" width="40"><spring:message
+			<th id="u_treatment" align="center" ><spring:message
 					code="user.treatment" /></th>
 		</tr>
 		<c:choose>
@@ -126,7 +159,7 @@ input {
 	</table>
 </form:form>
 <!-- 페이징 네비게이션 -->
-<div align="center">
+<div align="center" id="pagination">
 	<c:if test="${pagination2.prev}">
 		<a href="/admin/user/withdraw/list${pagination2.makeQuery(pagination2.startPage - 1)}">&laquo;</a>
 	</c:if>
