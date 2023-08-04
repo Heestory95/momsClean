@@ -62,8 +62,8 @@
 #register {
 	border: 1px solid black;
 	width: 60px;
-	margin-left: 570px;
 	padding: 7px;
+	
 }
 
 </style>
