@@ -105,7 +105,6 @@
 				<tr>
 					<th align="center" width="80"><spring:message
 							code="reference.no" /></th>
-					<th align="center" width="80"><spring:message code="user.no" /></th>
 					<th align="center" width="320"><spring:message
 							code="reference.title" /></th>
 					<th align="center" width="100"><spring:message
@@ -116,18 +115,30 @@
 				<c:choose>
 					<c:when test="${empty list}">
 						<tr>
-							<td colspan="5"><spring:message code="common.listEmpty" /></td>
+							<td colspan="4"><spring:message code="common.listEmpty" /></td>
 						</tr>
 					</c:when>
 					<c:otherwise>
 						<c:forEach items="${list}" var="home">
 							<tr>
-								<td align="center">${home.referenceNo}</td>
-								<td align="center">${home.userNo}</td>
-								<td align="left"><span class="word-limit">${home.referenceTitle}</span></td>
-								<td align="center">${home.userName}</td>
-								<td align="center"><fmt:formatDate pattern="yyyy-MM-dd"
-										value="${home.referenceDate}" /></td>
+							<td align="center">
+							<c:choose>
+    						<c:when test="${not empty home.no}">${home.no}</c:when>
+    						</c:choose>
+								
+        	<c:choose>
+    <c:when test="${empty home.no}"><B>└</B></c:when>
+    </c:choose>
+        </td>
+        <td align="left">
+            <a href="/admin/reference/read${pgrq.toUriString(pgrq.page)}&referenceNo=${home.referenceNo}">
+                <c:out value="${home.referenceTitle}" />
+            </a>
+        </td>
+        <td align="center">${home.userName}</td>
+        <td align="center">
+            <fmt:formatDate pattern="yyyy-MM-dd" value="${home.referenceDate}" />
+        </td>
 							</tr>
 						</c:forEach>
 					</c:otherwise>
