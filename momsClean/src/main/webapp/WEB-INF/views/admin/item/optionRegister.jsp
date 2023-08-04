@@ -2,31 +2,74 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+
+<style>
+
+	h2{
+		font-size:30px;
+		color:#6AAAFF;
+		margin:0;
+	}
+	
+	#register{
+		border-left:0px;
+		border-right:0px;
+		border-collapse : collapse;
+	}
+
+	td{
+	background-color:#FAFFFF;
+	font-size:20px;
+	font-family:'Malgun Gothic';
+	}
+
+	button{
+	width:100px;
+	font-size:18px;
+	border-color:#6AAAFF;
+	box-shadow: none;
+	background-color:white;
+	}
+	
+	.name,.price{
+	 border:none;
+	 font-size:20px;
+	
+	}
+	
+	#name,#price{
+	background-color:#6AAAFF;
+	color:white;
+	text-align: center;
+	}
+
+</style>
+<br><br><br><br>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <h2>
 	<spring:message code="item.optionRegist" />
 </h2>
+<br><br><br><br><br>
 <form:form modelAttribute="item" action="optionRegister"
 	enctype="multipart/form-data">
-	<table border="1">
+	<table border="1" id="register">
 		<tr>
-			<td><spring:message code="item.optionName" /></td>
-			<td><form:input path="itemName" /></td>
-			<td><font color="red"><form:errors path="itemName" /></font></td>
+			<td id="name"><spring:message code="item.optionName" /></td>
+			<td><form:input class="name" path="itemName" /></td>
 		</tr>
 		<tr>
-			<td><spring:message code="item.itemPrice" /></td>
-			<td><form:input path="itemPrice" /></td>
-			<td><font color="red"><form:errors path="itemPrice" /></font></td>
+			<td id="price"><spring:message code="item.itemPrice" /></td>
+			<td><form:input class="price" path="itemPrice" /></td>
 		</tr>
 	</table>
 </form:form>
-
+<br><br>
 <div>
 	<button type="submit" id="btnRegister">
 		<spring:message code="item.regist" />
 	</button>
+	&nbsp;&nbsp;&nbsp;&nbsp;
 	<button type="submit" id="btnCancel">
 		<spring:message code="item.cancel" />
 	</button>

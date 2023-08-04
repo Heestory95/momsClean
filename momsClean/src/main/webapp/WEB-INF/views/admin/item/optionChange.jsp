@@ -5,33 +5,77 @@
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<style>
+
+	h2{
+		font-size:30px;
+		color:#6AAAFF;
+		margin:0;
+	}
+	
+	#change{
+		border-left:0px;
+		border-right:0px;
+		border-collapse : collapse;
+	}
+
+	td{
+	background-color:#FAFFFF;
+	font-size:20px;
+	font-family:'Malgun Gothic';
+	}
+
+	button{
+	width:100px;
+	font-size:18px;
+	border-color:#6AAAFF;
+	box-shadow: none;
+	background-color:white;
+	}
+	
+	.name,.price{
+	 border:none;
+	 font-size:20px;
+	
+	}
+	
+	#name,#price{
+	background-color:#6AAAFF;
+	color:white;
+	text-align: center;
+	}
+
+</style>
+<br><br><br><br>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <h2>
 	<spring:message code="item.header.change" />
 </h2>
+<br><br><br><br><br>
 <form:form modelAttribute="item">
 
-	<table>
+	<table border="1" id="change">
 		<tr>
-			<td><spring:message code="item.itemName" /></td>
-			<td><form:input path="itemName" readonly="true" /></td>
-			<td><font color="red"><form:errors path="itemName" /></font></td>
+			<td id="name"><spring:message code="item.itemName" /></td>
+			<td><form:input class="name" path="itemName" readonly="true" /></td>
 		</tr>
 		<tr>
-			<td><spring:message code="item.itemPrice" /></td>
-			<td><form:input path="itemPrice" readonly="true" /></td>
-			<td><font color="red"><form:errors path="itemPrice" /></font></td>
+			<td id="price"><spring:message code="item.itemPrice" /></td>
+			<td><form:input class="price" path="itemPrice" readonly="true" /></td>
 		</tr>
 	</table>
 </form:form>
+<br><br>
 <div>
 	<button type="submit" id="btnEdit">
 		<spring:message code="item.edit" />
 	</button>
+	&nbsp;&nbsp;&nbsp;&nbsp;
 	<button type="submit" id="btnRemove">
 		<spring:message code="item.remove" />
 	</button>
+	&nbsp;&nbsp;&nbsp;&nbsp;
 	<button type="submit" id="btnCancel">
 		<spring:message code="item.cancel" />
 	</button>

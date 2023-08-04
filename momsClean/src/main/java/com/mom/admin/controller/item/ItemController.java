@@ -79,10 +79,10 @@ public class ItemController {
 
 	// 옵션 등록 페이지
 	@RequestMapping(value = "/optionRegister", method = RequestMethod.GET)
-	public String optionRegisterForm(Model model) {
+	public void optionRegisterForm(Model model) {
 		model.addAttribute(new Item());
 
-		return "/admin/item/optionRegister";
+		
 	}
 
 	// 옵션 등록 처리
@@ -107,23 +107,23 @@ public class ItemController {
 
 	// 상품 수정 페이지
 	@RequestMapping(value = "/itemModify", method = RequestMethod.GET)
-	public String modifyForm(String itemNo, Model model) throws Exception {
+	public void modifyForm(String itemNo, Model model) throws Exception {
 		Item item = ItemService.read(itemNo);
 		
 		model.addAttribute(item);
 
-		return "/admin/item/itemModify";
+		
 	}
 
 	// 옵션 수정 페이지
 	@RequestMapping(value = "/optionModify", method = RequestMethod.GET)
-	public String optionModifyForm(String itemName, Model model) throws Exception {
+	public void optionModifyForm(String itemName, Model model) throws Exception {
 		
 		Item item = ItemService.optionRead(itemName);
 		
 		model.addAttribute(item);
 
-		return "/admin/item/optionModify";
+
 	}
 
 	// 상품 수정 처리

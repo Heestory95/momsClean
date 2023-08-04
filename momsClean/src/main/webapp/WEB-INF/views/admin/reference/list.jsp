@@ -12,50 +12,79 @@
 <style>
 
 	h2{
-		font-size:50px;
+		font-size:30px;
 		color:#6AAAFF;
+		margin:0;
 	}
 	
 	#reference{
 		border-left:0px;
 		border-right:0px;
+		border-collapse : collapse;
+	}
+	
+	th,td{
+	font-family:'Malgun Gothic';
+	
 	}
 	
 	th{
 	background-color:#6AAAFF;
+	font-size:20px;
+	color:white;
+	
 	}
 	
+	td{
+	background-color:#FAFFFF;
+	font-size:20px;
+	}
 
-
+	#searchBtn{
+	width:100px;
+	font-size:18px;
+	border-color:#6AAAFF;
+	box-shadow: none;
+	background-color:white;
+	}
+	.custom-input{
+	font-size:20px;
+	}
+	.custom-select{
+	font-size:20px;
+	margin-left:960px;
+	}
 	
+	.custom-input,.custom-select,#searchBtn{
+	margin-right:0px;}
+
 </style>
-<br><br>
+<br><br><br><br>
 <h2 id=title>
 	<spring:message code="reference.header" />
 </h2>
-
+<br><br><br><br><br>
 <!-- 검색 폼을 만든다. -->
 <form:form modelAttribute="pgrq" method="get"
 	action="/admin/reference/list" align="center">
 	<form:select path="searchType" items="${searchTypeCodeValueList}"
-		itemValue="value" itemLabel="label" />
+		itemValue="value" itemLabel="label" class="custom-select"/>
 
-	<form:input path="keyword" />
+	<form:input path="keyword" class="custom-input"/>
 	<button id="searchBtn">
 		<spring:message code="action.search" />
 	</button>
-	<br><br>
 </form:form>
-
+<br>
 <form:form modelAttribute="reference">
-<table id=reference border="0">
+<table id=reference border="1">
 	<tr>
-		<th align="center" width="150"><spring:message code="reference.no" /></th>
-		<th align="center" width="370"><spring:message
+		<th align="center" width="250"><spring:message code="reference.no" /></th>
+		<th align="center" width="690"><spring:message
 				code="reference.title" /></th>
-		<th align="center" width="150"><spring:message
+		<th align="center" width="250"><spring:message
 				code="reference.name" /></th>
-		<th align="center" width="150"><spring:message
+		<th align="center" width="250"><spring:message
 				code="reference.referenceDate" /></th>
 	</tr>
 

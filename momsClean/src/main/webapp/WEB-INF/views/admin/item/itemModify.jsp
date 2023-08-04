@@ -5,54 +5,100 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
+<style>
+
+	h2{
+		font-size:30px;
+		color:#6AAAFF;
+		margin:0;
+	}
+	
+	#modify{
+		border-left:0px;
+		border-right:0px;
+		border-collapse : collapse;
+	}
+
+	td{
+	background-color:#FAFFFF;
+	font-size:20px;
+	font-family:'Malgun Gothic';
+	}
+
+	button{
+	width:100px;
+	font-size:18px;
+	border-color:#6AAAFF;
+	box-shadow: none;
+	background-color:white;
+	}
+	
+	.no,.name,.price,.img,.thumb,.imgFile,.thumbFile{
+	 border:none;
+	 font-size:20px;
+	
+	}
+	
+	#no,#name,#price,#img,#thumb,#imgFile,#thumbFile{
+	background-color:#6AAAFF;
+	color:white;
+	text-align: center;
+	}
+
+	input[type="file"]::-webkit-file-upload-button {
+  border-color: #6AAAFF; 
+  background-color:white;
+}
+	
+
+</style>
+<br><br><br><br>
 <h2>
 	<spring:message code="item.itemModify" />
 </h2>
-
+<br><br><br><br><br>
 <form:form modelAttribute="item" action="itemModify"
 	enctype="multipart/form-data">
 
 	<form:hidden path="iNo" />
 
-	<table border="1">
+	<table id="modify" border="1">
 		<tr>
-			<td><spring:message code="item.itemNo" /></td>
-			<td><form:input path="itemNo" /></td>
-			<td><font color="red"><form:errors path="itemNo" /></font></td>
+			<td id="no"><spring:message code="item.itemNo" /></td>
+			<td><form:input class="no" path="itemNo" /></td>
 		</tr>
 		<tr>
-			<td><spring:message code="item.itemName" /></td>
-			<td><form:input path="itemName" /></td>
-			<td><font color="red"><form:errors path="itemName" /></font></td>
+			<td id="name"><spring:message code="item.itemName" /></td>
+			<td><form:input class="name" path="itemName" /></td>
 		</tr>
 		<tr>
-			<td><spring:message code="item.itemPrice" /></td>
-			<td><form:input path="itemPrice" />원</td>
-			<td><font color="red"><form:errors path="itemPrice" /></font></td>
+			<td id="price"><spring:message code="item.itemPrice" /></td>
+			<td><form:input class="price" path="itemPrice" /></td>
 		</tr>
 		<tr>
-			<td><spring:message code="item.img" /></td>
-			<td><img src="picture?itemNo=${item.itemNo}" width="210"></td>
+			<td id="img"><spring:message code="item.img" /></td>
+			<td><img class="img" src="picture?itemNo=${item.itemNo}" width="210"></td>
 		</tr>
 		<tr>
-			<td><spring:message code="item.img.thumb" /></td>
-			<td><img src="thumb?itemNo=${item.itemNo}" width="210"></td>
+			<td id="thumb"><spring:message code="item.img.thumb" /></td>
+			<td><img class="thumb" src="thumb?itemNo=${item.itemNo}" width="210"></td>
 		</tr>
 		<tr>
-			<td><spring:message code="item.imgFile" /></td>
-			<td><input type="file" name="picture" /></td>
+			<td id="imgFile"><spring:message code="item.imgFile" /></td>
+			<td><input class="imgFile" type="file" name="picture" /></td>
 		</tr>
 		<tr>
-			<td><spring:message code="item.img.thumbFile" /></td>
-			<td><input type="file" name="thumb" /></td>
+			<td id="thumbFile"><spring:message code="item.img.thumbFile" /></td>
+			<td><input class="thumbFile" type="file" name="thumb" /></td>
 		</tr>
 	</table>
 </form:form>
-
+<br><br>
 <div>
 	<button type="submit" id="btnModify">
 		<spring:message code="item.edit" />
 	</button>
+	&nbsp;&nbsp;&nbsp;&nbsp;
 	<button type="submit" id="btnCancel">
 		<spring:message code="item.cancel" />
 	</button>
