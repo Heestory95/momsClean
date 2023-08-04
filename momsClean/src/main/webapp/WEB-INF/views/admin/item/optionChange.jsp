@@ -50,7 +50,7 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <h2>
-	<spring:message code="item.header.change" />
+	<spring:message code="item.optionModify" />
 </h2>
 <br><br><br><br><br>
 <form:form modelAttribute="item">

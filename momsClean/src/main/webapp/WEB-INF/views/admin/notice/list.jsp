@@ -21,63 +21,79 @@
 
 <style>
 
-#noticeHeader {
-	font-size: 35px;
-}
+	h2{
+		font-size:30px;
+		color:#6AAAFF;
+		margin:0;
+	}
 
-#keyword {
-	width: 300px;
-	height: 28px;
-	margin-left: 600px;
-}
+#notice 
+	{
+		border-left:0px;
+		border-right:0px;
+		border-collapse : collapse;
+		width:70%;
+	}
 
-#searchBtn {
-	width: 60px;
-	height: 32px;
-}
-
-.listTitle {
-	height: 50px;
-	background-color: #6AAAFF;
-	font-size: 20px;
-	color: white;
-	border-color: black;
-}
+.listTitle 
+{
+	background-color:#6AAAFF;
+	font-size:22px;
+	color:white;
+	height:50px;
+	
+	}
 
 .listList {
-	height: 42px;
-	font-size: 18px;
-}
+	background-color:#FAFFFF;
+	font-size:18px;
+	height:42px;
+	}
 
 .page {
  	margin-top: 20px;
  	font-size: 22px;
+ 	color:#6AAAFF;
 }
 
-.page > a {
-	margin-left: 10px;
+#searchBtn {
+	width:100px;
+	font-size:18px;
+	border-color:#6AAAFF;
+	box-shadow: none;
+	background-color:white;
+	}
 	
-}
+	#keyword{
+	font-size:20px;
+	}
 
-#register {
-	border: 1px solid black;
-	width: 60px;
-	padding: 7px;
+	#register{
+	margin-left:1215px;
+	font-size:18px;
+	border: 2px solid black;
+	border-color:#6AAAFF;
+	display: inline-block;
+	}
 	
-}
+	 #search{
+	width:70%;
+	}
 
 </style>
-
-<h2 id="noticeHeader"><spring:message code="notice.header.list" /></h2>
-
-<form:form modelAttribute="pgrq" method="get" action="list${pgrq.toUriStringByPage(1)}" >		
+<br><br><br><br>
+<h2 ><spring:message code="notice.header.list" /></h2>
+<br><br><br><br><br>
+<form:form id="search" align="right" modelAttribute="pgrq" method="get" action="list${pgrq.toUriStringByPage(1)}" >		
 	<form:select path="searchType" items="${searchTypeCodeValueList}" itemValue="value" itemLabel="label" style="display: none;"/>
-	
 	<form:input path="keyword" id="keyword"/>
 	<button id='searchBtn'><spring:message code="action.search" /></button>
+
 </form:form>
 
-<table border="1">
+<br>
+	<a href="register" id="register"><spring:message code="notice.new" /></a>
+<table id="notice" border="1">
   <tr class="listTitle">
     <th align="center" width="170"><spring:message code="notice.no" /></th>
     <th align="center" width="550"><spring:message code="notice.title" /></th>
@@ -117,7 +133,4 @@
 	<c:if test="${pagination.next && pagination.endPage > 0}">
 		<a href="/admin/notice/list${pagination.makeQuery(pagination.endPage +1)}">&raquo;</a>
 	</c:if>
-	
-
-<a href="register" id="register"><spring:message code="notice.new" /></a>
 </div>

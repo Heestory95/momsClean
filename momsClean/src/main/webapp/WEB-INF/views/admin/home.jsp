@@ -10,6 +10,79 @@
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
+<style>
+
+	h3{
+		font-size:30px;
+		color:#6AAAFF;
+		margin:0;
+		background-color:white;
+	}
+	
+	.homeReserve,.homeReference{
+		font-size:30px;
+		color:#6AAAFF;
+		margin:0;
+		background-color:white;
+	}
+	.homeReview{
+		border:none;
+		border-color:white;
+		font-size:30px;
+		color:#6AAAFF;
+		background-color:white;
+	}
+	
+	#reserve{
+		border-left:0px;
+		border-right:0px;
+		border-collapse : collapse;
+		width:1550px;
+	}
+	
+	#reference{
+		border-left:0px;
+		border-right:0px;
+		border-collapse : collapse;
+		width: 750px;
+
+	}
+	#review{
+		border-left:0px;
+		border-right:0px;
+		border-collapse : collapse;
+		margin-left: 47px;
+		width: 750px;
+	}
+	
+	th,td{
+	font-family:'Malgun Gothic';
+	
+	}
+	
+	th{
+	background-color:#6AAAFF;
+	font-size:18px;
+	color:white;
+	height:50px;
+	
+	}
+	
+	td{
+	background-color:#FAFFFF;
+	font-size:16px;
+	height:42px;
+	}
+
+	#review2{
+
+	}
+	#review3{
+	margin-left:40px;
+	}
+}
+
+</style>
 <script>
   $(document).ready(function() {
     // 모든 게시글 내용의 길이를 체크하고 15자를 넘어가면 자르고 "..."을 붙입니다.
@@ -26,6 +99,7 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
+<br><br>
 <table align="center">
 	<!-- 신규 예약 -->
 	<tr>
@@ -34,7 +108,7 @@
 	</tr>
 	<tr>
 		<td colspan="2"><form:form modelAttribute="request">
-				<table border="1" align="center">
+				<table border="1" id="reserve">
 					<tr>
 						<th align="center" width="180"><spring:message
 								code="reserve.reserveNo" /></th>
@@ -94,13 +168,12 @@
 	</tr>
 	<!-- 신규 문의 -->
 	<tr>
-		<th class="homeReference" align="left"><spring:message code="home.admin.reference" /></th>
-		<th class="homeReview" align="left"><spring:message code="home.admin.review" /></th>
-	</tr>
-	<tr>
 		
 		<td>
-			<table border="1">
+		<table id="review2">
+			<th colspan="3" class="homeReference" align="left"><spring:message code="home.admin.reference" /></th>
+			</table>
+			<table border="1" id="reference">
 				
 				<tr>
 					<th align="center" width="80"><spring:message
@@ -148,8 +221,10 @@
 		
 		<!-- 신규 리뷰 -->
 		<td>
-			<table border="1">
-				
+			<table id="review3">
+			<th colspan="3" class="homeReview" align="left"><spring:message code="home.admin.review" /></th>
+			</table>
+			<table border="1" id="review">
 				<tr>
 					<th align="center" width="80"><spring:message code="review.no" /></th>
 					<th align="center" width="80"><spring:message
@@ -192,7 +267,7 @@
 </table>
 
 <!-- 통계 차트 -->
-
+<br>
 <div class="wrapper">
 	<h3>
 		<spring:message code="home.admin.chart" />

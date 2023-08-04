@@ -23,7 +23,7 @@
 
 	td{
 	background-color:#FAFFFF;
-	font-size:20px;
+	font-size:16px;
 	font-family:'Malgun Gothic';
 	}
 
@@ -37,7 +37,7 @@
 	
 	.no,.name,.price,.img,.thumb{
 	 border:none;
-	 font-size:20px;
+	 font-size:18px;
 	
 	}
 	
@@ -50,11 +50,11 @@
 	
 
 </style>
-<br><br><br><br>
+<br>
 <h2>
 	<spring:message code="item.header.change" />
 </h2>
-<br><br><br><br><br>
+<br>
 <form:form modelAttribute="item">
 
 	<table border="1" id="change">

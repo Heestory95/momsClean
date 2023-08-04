@@ -21,7 +21,7 @@
 
 	td{
 	background-color:#FAFFFF;
-	font-size:20px;
+	font-size:16px;
 	font-family:'Malgun Gothic';
 	}
 
@@ -35,7 +35,7 @@
 	
 	.no,.name,.price,.img,.thumb,.imgFile,.thumbFile{
 	 border:none;
-	 font-size:20px;
+	 font-size:18px;
 	
 	}
 	
@@ -52,11 +52,11 @@
 	
 
 </style>
-<br><br><br><br>
+<br>
 <h2>
 	<spring:message code="item.itemModify" />
 </h2>
-<br><br><br><br><br>
+<br>
 <form:form modelAttribute="item" action="itemModify"
 	enctype="multipart/form-data">
 

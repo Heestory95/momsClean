@@ -19,8 +19,66 @@
   });
 </script>
 
-<h2><spring:message code="review.header.list" /></h2>
+<style>
 
+	h2{
+		font-size:30px;
+		color:#6AAAFF;
+		margin:0;
+	}
+	
+	#list{
+		border-left:0px;
+		border-right:0px;
+		border-collapse : collapse;
+		width:70%;
+	}
+	
+	th,td{
+	font-family:'Malgun Gothic';
+	
+	}
+	
+	th{
+	background-color:#6AAAFF;
+	font-size:22px;
+	color:white;
+	height:50px;
+	
+	}
+	
+	td{
+	background-color:#FAFFFF;
+	font-size:18px;
+	height:42px;
+	}
+
+	#searchBtn{
+	width:100px;
+	font-size:18px;
+	border-color:#6AAAFF;
+	box-shadow: none;
+	background-color:white;
+	}
+	.custom-input{
+	font-size:20px;
+	}
+	.custom-select{
+	font-size:20px;
+	margin-left:860px;
+
+	}
+
+	.page {
+ 	margin-top: 20px;
+ 	font-size: 22px;
+ 	color:#6AAAFF;
+}
+
+</style>
+<br><br><br><br>
+<h2><spring:message code="review.header.list" /></h2>
+<br><br><br><br><br>
 <%-- <form method="get" action="admin/review/list">
     <label for="searchType">글 내용</label>
     <input type="text" name="keyword" id="keyword">
@@ -30,15 +88,15 @@
 
 
 <form:form modelAttribute="pgrq" method="get" action="${pgrq.toUriStringByPage(1)}">		
-	<form:select path="searchType" items="${searchTypeCodeValueList}" itemValue="value" itemLabel="label" />
+	<form:select class="custom-select" path="searchType" items="${searchTypeCodeValueList}" itemValue="value" itemLabel="label" />
 	
-	<form:input path="keyword" />
+	<form:input class="custom-input" path="keyword" />
 	<button id='searchBtn'><spring:message code="action.search" /></button>
 </form:form>
+<br>
 
 
-
-<table border="1">
+<table border="1" id="list">
   <tr>
     <th align="center" width="80"><spring:message code="review.no" /></th>
     <th align="center" width="80"><spring:message code="review.grade" /></th>
@@ -73,9 +131,9 @@
   </c:choose>
   
 </table>
-
+<br>
 <!-- 페이징 네비게이션 -->
-<div>
+<div class="page">
 	<c:if test="${pagination.prev}">
 		<a href="/admin/review/list${pagination.makeQuery(pagination.startPage -1)}">&laquo;</a>
 	</c:if>

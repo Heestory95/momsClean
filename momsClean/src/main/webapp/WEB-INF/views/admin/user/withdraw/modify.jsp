@@ -5,53 +5,53 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <style>
-h2 {
-	font-family: "나눔바른고딕";
-}
 
-#userInfo {
-	font-family: "나눔바른고딕";
-	width: 300px;
-	border-collapse: collapse;
-	font-size: 16px;
-	letter-spacing: -0.3px;
-	margin-bottom: 10px;
-}
+	h2{
+		font-size:30px;
+		color:#6AAAFF;
+		margin:0;
+	}
+	
+	#modify{
+		border-left:0px;
+		border-right:0px;
+		 border-collapse : collapse;
+		 width:500px;
 
-td {
-	border-top: 1px solid #cfcbbb;
-	border-bottom: 1px solid #cfcbbb;
-	padding-left: 10px;
-	padding-top: 8px;
-	padding-bottom: 8px;
-	font-size: 16px;
-}
+	}
+	
+	th,td{
+	font-family:'Malgun Gothic';
+	font-size:18px;
+	height:50px;
+	}
+	
 
-.first-td {
-	border-right: 1px solid #cfcbbb;
-	background-color: #eeebda;
-	width: 80px;
-}
+	
+	.first-td{
+	background-color:#6AAAFF;
+	color:white;
+	text-align: center;
+	}
 
-#btnRestore, #btnList {
-	position: relative;
-	margin: 0 auto;
-	cursor: pointer;
-	margin-bottom: 6px;
-	padding: 3px 9px 5px 9px;
-	border: 1px solid #e4e0cd;
-	background-color: #36343f;
-	color: white;
-}
+	button{
+	border-color:#6AAAFF;
+	font-size:20px;
+	background-color:white;
+	}
+
 
 </style>
+
+<br>
 <h2 align="center">
 	<spring:message code="user.admin.header.withdraw.modify" />
 </h2>
+<br>
 <form:form modelAttribute="user" action="modify">
 	<form:hidden path="userNo" />
 
-	<table id="userInfo">
+	<table border="1" id="modify">
 		<tr>
 			<td class="first-td"><b><spring:message code="user.userNo" /></b></td>
 			<td>${user.userNo}</td>
@@ -86,9 +86,11 @@ td {
 		</tr>
 	</table>
 </form:form>
+<br>
 <div align="center">
 	<button type="submit" id="btnRestore">
 		<spring:message code="action.restore" /></button>
+		&nbsp;&nbsp;&nbsp;&nbsp;
 	<button type="submit" id="btnList">
 		<spring:message code="action.list" /></button>
 </div>

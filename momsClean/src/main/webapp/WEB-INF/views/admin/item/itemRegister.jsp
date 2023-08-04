@@ -18,7 +18,7 @@
 
 	td{
 	background-color:#FAFFFF;
-	font-size:20px;
+	font-size:16px;
 	font-family:'Malgun Gothic';
 	}
 
@@ -32,7 +32,7 @@
 	
 	.no,.name,.price,.img,.thumb{
 	 border:none;
-	 font-size:20px;
+	 font-size:18px;
 	
 	}
 	
@@ -49,13 +49,13 @@
 	
 
 </style>
-<br><br><br><br>
+<br>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <h2>
 	<spring:message code="item.itemRegist" />
 </h2>
-<br><br><br><br><br>
+<br>
 <form:form modelAttribute="item" action="itemRegister"
 	enctype="multipart/form-data">
 	<table border="1" id="register">

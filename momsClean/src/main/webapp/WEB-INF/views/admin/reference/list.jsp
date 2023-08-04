@@ -21,6 +21,7 @@
 		border-left:0px;
 		border-right:0px;
 		border-collapse : collapse;
+		width:83.6%;
 	}
 	
 	th,td{
@@ -30,14 +31,16 @@
 	
 	th{
 	background-color:#6AAAFF;
-	font-size:20px;
+	font-size:22px;
 	color:white;
+	height:50px;
 	
 	}
 	
 	td{
 	background-color:#FAFFFF;
-	font-size:20px;
+	font-size:18px;
+	height:42px;
 	}
 
 	#searchBtn{
@@ -52,12 +55,17 @@
 	}
 	.custom-select{
 	font-size:20px;
-	margin-left:960px;
-	}
-	
-	.custom-input,.custom-select,#searchBtn{
-	margin-right:0px;}
 
+	}
+
+	.page {
+ 	margin-top: 20px;
+ 	font-size: 22px;
+ 	color:#6AAAFF;
+}
+ 	#search{
+	width:83.6%;
+	}
 </style>
 <br><br><br><br>
 <h2 id=title>
@@ -66,7 +74,7 @@
 <br><br><br><br><br>
 <!-- 검색 폼을 만든다. -->
 <form:form modelAttribute="pgrq" method="get"
-	action="/admin/reference/list" align="center">
+	action="/admin/reference/list" align="right">
 	<form:select path="searchType" items="${searchTypeCodeValueList}"
 		itemValue="value" itemLabel="label" class="custom-select"/>
 
@@ -79,12 +87,12 @@
 <form:form modelAttribute="reference">
 <table id=reference border="1">
 	<tr>
-		<th align="center" width="250"><spring:message code="reference.no" /></th>
-		<th align="center" width="690"><spring:message
+		<th align="center" width="500"><spring:message code="reference.no" /></th>
+		<th align="center" width="1500"><spring:message
 				code="reference.title" /></th>
-		<th align="center" width="250"><spring:message
+		<th align="center" width="500"><spring:message
 				code="reference.name" /></th>
-		<th align="center" width="250"><spring:message
+		<th align="center" width="500"><spring:message
 				code="reference.referenceDate" /></th>
 	</tr>
 
@@ -123,7 +131,7 @@
 <br>
 <!-- 페이징 네비게이션 -->
 <!-- 페이징 네비게이션 -->
-<div align="center">
+<div class="page" align="center">
 	<c:if test="${pagination.prev}">
 		<a
 			href="/admin/reference/list${pagination.makeQuery(pagination.startPage - 1)}">&laquo;</a>

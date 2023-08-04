@@ -52,6 +52,8 @@
 	#topMenu > li {
 		float: left;
 		position: relative;
+		color: white;
+		
 	}
 	
 	#topMenu > li > a{
@@ -73,20 +75,26 @@
 	#topMenu > li > ul {
 		display: none;
 		position: absolute;
-		width: 200px;
-		background: rgba(180,210,230);
+		width: 250px;
+		background: white;
 		left: 20px;
 		margin: 0;
+		border:none;
 	}
 	
 	#topMenu > li > ul > li {
 		padding: 10px 10px 10px 30px;
+		border:1px solid black;
+		border-top:0;
+		border-left: 0;
+		border-right: 0;
 	}
 	
 	#topMenu > li > ul > li > a {
-		font-size: 14px;
+		font-size: 16px;
 		padding: 11px;
-		color: #000;
+		color: #363636;
+		font-weight: normal;
 	}
 	
 	#topMenu > li:hover > ul {
@@ -95,18 +103,19 @@
 	}
 	
 	#topMenu > li > ul > li > a:hover {
-		color: #f00;
+		color: #363636;
+		font-size : 20px;
+		font-weight: bold;
 	}
 	#boardList {
 		color: inherit;
-		font-size: 17px;
+		font-size: 22px;
 	}
 </style>
 	<div align="center" id="container">
 		<nav>
 				<!-- 상품관리를 메뉴에 추가한다. -->
 			<ul id="topMenu">
-				<li id="logo"><a href="/"><img src="../image/momsImage.png" width="200px" height="150px"></a></li>
 				<li><a href="/admin/item/list" id="boardList"><spring:message	code="menu.item.admin" /></a></li>
 					<!-- 회원 관리를 메뉴에 추가한다. -->
 				<li><a href="#" id="boardList"><spring:message code="menu.user.admin" /><span>▼</span></a>

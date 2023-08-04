@@ -6,105 +6,79 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <style>
-h2 {
-	font-family: "나눔바른고딕";
+
+	h2{
+		font-size:30px;
+		color:#6AAAFF;
+		margin:0;
+	}
+	
+	#list{
+		border-left:0px;
+		border-right:0px;
+		border-collapse : collapse;
+		width:83.6%;
+	}
+	
+	th,td{
+	font-family:'Malgun Gothic';
+	
+	}
+	
+	th{
+	background-color:#6AAAFF;
+	font-size:18px;
+	color:white;
+	height:50px;
+	
+	}
+	
+	td{
+	background-color:#FAFFFF;
+	font-size:16px;
+	height:42px;
+	}
+
+	#searchBtn{
+	width:100px;
+	font-size:18px;
+	border-color:#6AAAFF;
+	box-shadow: none;
+	background-color:white;
+	}
+	.custom-input{
+	font-size:20px;
+	}
+	.custom-select{
+	font-size:20px;
+
+
+	}
+	#search{
+	width:83.6%;
+	}
+	
+	.page {
+ 	margin-top: 20px;
+ 	font-size: 22px;
+ 	color:#6AAAFF;
 }
 
-#userList {
-	font-family: "나눔바른고딕";
-	width: 1000px;
-	border-collapse: collapse;
-	font-size: 14px;
-	letter-spacing: -0.3px;
-	margin-bottom: 10px;
-}
-
-th {
-	border: none;
-	padding-top: 8px;
-	padding-bottom: 8px;
-	font-size: 16px;
-}
-
-#u_no {
-	width: 48px;
-}
-#u_id {
-	width: 90px;
-}
-#u_name {
-	width: 70px;
-}
-#u_phone {
-	width: 100px
-}
-#u_email {
-	width: 180px;
-}
-#u_auth {
-	width: 85px;
-}
-#u_reg {
-	width: 85px;
-}
-#u_division {
-	width: 48px;
-}
-#u_treatment {
-	width: 30px;
-}
-
-td {
-	border-top: 1px solid #cfcbbb;
-	border-bottom: 1px solid #cfcbbb;
-	border-left: 1px solid #cfcbbb;
-	border-right: 1px solid #cfcbbb;
-	padding-top: 6px;
-	padding-bottom: 6px;
-	font-size: 15px;
-}
-
-#pagination {
-	font-family: "나눔바른고딕";
-	margin-bottom: 10px;
-}
-
-select {
-	font-family: "나눔바른고딕";
-	padding: 5px 9px 3px 9px;
-	border: 1px solid #d8d3bd;
-	font-size: 13px;
-}
-
-#search {
-	font-family: "나눔바른고딕";
-}
-
-input {
-	margin-right: 3px;
-	padding: 5px 0 5px 0;
-	border: 1px solid #d8d3bd;
-	background-color: #fcfdf4;
-}
-
-#searchBtn {
-	position: relative;
-	margin: 0 auto;
-	cursor: pointer;
-	margin-top: 0px;
-	margin-bottom: 14px;
-	padding: 3px 9px 5px 9px;
-	border: 1px solid #e4e0cd;
-	background-color: #36343f;
-	color: white;
-}
 </style>
-
+<br>
 <h2>
 	<spring:message code="user.admin.header.list" />
 </h2>
+<!-- 검색 폼 -->
+<form:form id="search" modelAttribute="pgrq" method="get" action="list${pgrq.toUriStringByPage(1)}" align="right">
+	<form:select class="custom-select" path="searchType" items="${searchTypeCodeValueList}" itemValue="value" itemLabel="label" />
+	
+	<form:input class="custom-input" path="keyword"/>
+	<button id='searchBtn'><spring:message code="action.search" /></button>
+</form:form>
+<br>
 <form:form modelAttribute="user">
-	<table id="userList">
+	<table border="1" id="list">
 		<tr>
 			<th id="u_no" align="center"><spring:message
 					code="user.userNo" /></th>
@@ -151,8 +125,9 @@ input {
 		</c:choose>
 	</table>
 </form:form>
+<br>
 <!-- 페이징 네비게이션 -->
-<div align="center" id="pagination">
+<div align="center" class="page">
 	<c:if test="${pagination.prev}">
 		<a href="/admin/user/list${pagination.makeQuery(pagination.startPage - 1)}">&laquo;</a>
 	</c:if>
@@ -166,10 +141,3 @@ input {
 		<a href="/admin/user/list${pagination.makeQuery(pagination.endPage + 1)}">&raquo;</a>
 	</c:if>
 </div>
-<!-- 검색 폼 -->
-<form:form id="search" modelAttribute="pgrq" method="get" action="list${pgrq.toUriStringByPage(1)}" align="center">
-	<form:select path="searchType" items="${searchTypeCodeValueList}" itemValue="value" itemLabel="label" />
-	
-	<form:input path="keyword"/>
-	<button id='searchBtn'><spring:message code="action.search" /></button>
-</form:form>

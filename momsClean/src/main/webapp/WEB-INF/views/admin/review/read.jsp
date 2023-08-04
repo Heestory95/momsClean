@@ -5,35 +5,77 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-<h2><spring:message code="review.header.read" /></h2>
+<style>
 
+	h2{
+		font-size:30px;
+		color:#6AAAFF;
+		margin:0;
+	}
+	
+	#read{
+		border-left:0px;
+		border-right:0px;
+		 border-collapse : collapse;
+		 width:700px;
+
+	}
+	
+	th,td{
+	font-family:'Malgun Gothic';
+	font-size:25px;
+	height:100px;
+	}
+	
+	.no,.grade,.content{
+	 border:none;
+	 font-size:20px;
+	
+	}
+	
+	#no,#grade,#content{
+	background-color:#6AAAFF;
+	color:white;
+	text-align: center;
+	}
+
+	button{
+	border-color:#6AAAFF;
+	font-size:20px;
+	background-color:white;
+	}
+
+
+</style>
+
+<br><br><br><br>
+<h2><spring:message code="review.header.read" /></h2>
+<br><br><br><br><br>
 <form:form modelAttribute="review">
 	
 	<input type="hidden" name="page" value="${pgrq.page}"> 
 	<input type="hidden" name="sizePerPage" value="${pgrq.sizePerPage}">	
 
-	<table>
+	<table border="1" id="read">
 		<tr>
-			<td><spring:message code="review.no" /></td>
-			<td><form:input path="reviewNo" readonly="true" /></td>
-			<td><font color="red"><form:errors path="reviewNo" /></font></td>
+			<td id="no"><spring:message code="review.no" /></td>
+			<td><form:input class="no" path="reviewNo" readonly="true" /></td>
 		</tr>
 		<tr>
-			<td><spring:message code="review.grade" /></td>
-			<td><form:input path="reviewGrade" readonly="true" /></td>
-			<td><font color="red"><form:errors path="reviewGrade" /></font></td>
+			<td id="grade"><spring:message code="review.grade" /></td>
+			<td><form:input class="grade" path="reviewGrade" readonly="true" /></td>
 		</tr>
 		<tr>
-			<td><spring:message code="review.content" /></td>
-			<td><form:textarea path="reviewContent" readonly="true" /></td>
-			<td><font color="red"><form:errors path="reviewContent" /></font></td>
+			<td id="content"><spring:message code="review.content" /></td>
+			<td><form:textarea class="content" path="reviewContent" readonly="true" /></td>
 		</tr>
 	</table>
 
 </form:form>
-
+<br><br>
 <div>
 		<button type="submit" id="btnList"><spring:message code="review.list" /></button>
+		&nbsp;&nbsp;&nbsp;&nbsp;
 		<button type="submit" id="btnRemove"><spring:message code="review.remove" /></button>
 </div>
 

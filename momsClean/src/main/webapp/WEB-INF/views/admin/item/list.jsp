@@ -21,13 +21,18 @@
 		border-right:0px;
 		border-collapse : collapse;
 
-		width:70%;
+		width:50%;
 	}
 	
-	th,td{
+	
+	th{
 	font-family:'Malgun Gothic';
-	font-size:20px;
+	font-size:18px;
 
+	}
+	td{
+	font-family:'Malgun Gothic';
+	font-size:16px;
 	}
 	
 	.no,.name,.price,.modify{
@@ -40,8 +45,10 @@
 	#regist{
 	border:none;
 	border-collapse : collapse;
-	margin-left:400px;
+	width:50%;
 	color:#6AAAFF;
+
+
 	}
 
 	tr.register th{
@@ -50,18 +57,17 @@
 
 
 </style>
-<br><br><br><br>
+<br>
 <h2>
 	<spring:message code="item.header.itemList" />
 </h2>
 
-<br><br><br><br><br>
-<table id="regist" border="1" >
-	<tr class="register">
-		<th width="320"></th>
-		<th width="100"></th>
-		<th width="80"></th>
-		<th colspan="5" align="right" width="80"><a href="itemRegister"><spring:message
+<br>
+<table id="regist" border="1">
+	<tr class="register"> 
+		<th width="270"></th>
+		<th width="230"></th>
+		<th colspan="3" align="right" width="80"><a href="optionRegister"><spring:message
 					code="item.regist" /></a></th>
 	</tr>
 </table>
@@ -101,13 +107,12 @@
 
 <br>
 <br>
-<br>
 
 <h2>
 	<spring:message code="item.header.optionList" />
 </h2>
 
-<br><br><br><br><br>
+<br>
 <table id="regist" border="1">
 	<tr class="register"> 
 		<th width="270"></th>
