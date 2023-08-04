@@ -38,7 +38,12 @@ public class HomeServiceImpl implements HomeService {
 		return mapper.review(mainPageRequest);
 	}
 
-	// 총 예약완료, 예약취소 전체 건수 반환
+	// 총 예약대기, 예약완료, 예약취소 전체 건수 반환
+	@Override
+	public int requestCount(Home home) throws Exception {
+		return mapper.requestCount(home);
+	}
+	
 	@Override
 	public int reserveCount(Home home) throws Exception {
 		return mapper.reserveCount(home);

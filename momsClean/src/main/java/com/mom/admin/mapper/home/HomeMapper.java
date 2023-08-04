@@ -19,7 +19,9 @@ public interface HomeMapper {
 
 	public List<Home> review(PageRequest mainPageRequest) throws Exception;
 
-	// 총 예약완료, 예약취소 전체 건수 반환
+	// 총 예약대기, 예약완료, 예약취소 전체 건수 반환
+	public int requestCount(Home home) throws Exception;
+	
 	public int reserveCount(Home home) throws Exception;
 
 	public int cancelCount(Home home) throws Exception;
