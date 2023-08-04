@@ -9,18 +9,53 @@
 
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<h2>
+<style>
+
+	h2{
+		font-size:50px;
+		color:#6AAAFF;
+	}
+	
+	#reference{
+		border-left:0px;
+		border-right:0px;
+	}
+	
+	th{
+	background-color:#6AAAFF;
+	}
+	
+
+
+	
+</style>
+<br><br>
+<h2 id=title>
 	<spring:message code="reference.header" />
 </h2>
+
+<!-- 검색 폼을 만든다. -->
+<form:form modelAttribute="pgrq" method="get"
+	action="/admin/reference/list" align="center">
+	<form:select path="searchType" items="${searchTypeCodeValueList}"
+		itemValue="value" itemLabel="label" />
+
+	<form:input path="keyword" />
+	<button id="searchBtn">
+		<spring:message code="action.search" />
+	</button>
+	<br><br>
+</form:form>
+
 <form:form modelAttribute="reference">
-<table border="1">
+<table id=reference border="0">
 	<tr>
-		<th align="center" width="80"><spring:message code="reference.no" /></th>
-		<th align="center" width="320"><spring:message
+		<th align="center" width="150"><spring:message code="reference.no" /></th>
+		<th align="center" width="370"><spring:message
 				code="reference.title" /></th>
-		<th align="center" width="100"><spring:message
+		<th align="center" width="150"><spring:message
 				code="reference.name" /></th>
-		<th align="center" width="100"><spring:message
+		<th align="center" width="150"><spring:message
 				code="reference.referenceDate" /></th>
 	</tr>
 
@@ -56,7 +91,7 @@
 	</c:choose>
 </table>
 </form:form>
-
+<br>
 <!-- 페이징 네비게이션 -->
 <!-- 페이징 네비게이션 -->
 <div align="center">
@@ -82,17 +117,7 @@
 	</c:if>
 </div>
 
-<!-- 검색 폼을 만든다. -->
-<form:form modelAttribute="pgrq" method="get"
-	action="/admin/reference/list" align="center">
-	<form:select path="searchType" items="${searchTypeCodeValueList}"
-		itemValue="value" itemLabel="label" />
 
-	<form:input path="keyword" />
-	<button id="searchBtn">
-		<spring:message code="action.search" />
-	</button>
-</form:form>
 
 <script>
 	var result = "${msg}";
