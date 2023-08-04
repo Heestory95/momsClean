@@ -12,7 +12,9 @@ public interface HomeService {
 	// 문의 게시글 전체 건수 반환
 	public int count(PageRequest mainPageRequest) throws Exception;
 
-	// 예약취소율 통계에 필요한 총 예약완료, 예약취소 전체 건수 반환
+	// 예약취소율 통계에 필요한 총 예약대기, 예약완료, 예약취소 전체 건수 반환
+	public int requestCount(Home home) throws Exception;
+	
 	public int reserveCount(Home home) throws Exception;
 
 	public int cancelCount(Home home) throws Exception;

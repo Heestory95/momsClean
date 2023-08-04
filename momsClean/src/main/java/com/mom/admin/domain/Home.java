@@ -44,6 +44,7 @@ public class Home {
 	private Date reviewDate;
 	
 	// 예약취소율 통계 카운트
+	private int requestCount;
 	private int reserveCount;
 	private int cancelCount;
 	

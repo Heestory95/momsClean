@@ -204,17 +204,19 @@
 	      google.charts.setOnLoadCallback(drawItemChart);
 	      google.charts.setOnLoadCallback(drawMonthlySalesChart);
 	      function drawCancelChart() {
+	    	var reserveRequest = ${requestCount};
 	    	var reserveCompleted = ${reserveCount};
 	    	var reserveCancelled = ${cancelCount};
 	    	  
 	        var data = google.visualization.arrayToDataTable([
-	          ['예약취소율', 'Cancel Chart'],
+	          ['누적 예약취소율', 'Cancel Chart'],
 	          ['예약완료',     reserveCompleted],
-	          ['예약취소',     reserveCancelled]
+	          ['예약취소',     reserveCancelled],
+	          ['예약대기',     reserveRequest]
 	        ]);
 	
 	        var options = {
-	          title: '예약취소율',
+	          title: '누적 예약취소율',
 	          pieHole: 0.35,
 	          slices: {
 	              // 예약취소 부분 강조를 위해 설정 (0번부터 시작)
@@ -235,7 +237,7 @@
 		    	var itemCount6 = ${itemCount6};
 		    	  
 		        var data = google.visualization.arrayToDataTable([
-		          ['상품판매비율', 'Item Chart'],
+		          ['누적상품판매비율', 'Item Chart'],
 		          ['A세트',     itemCount1],
 		          ['B세트',     itemCount2],
 		          ['C세트',     itemCount3],
@@ -245,7 +247,7 @@
 		        ]);
 		
 		        var options = {
-		          title: '상품판매비율',
+		          title: '누적 상품판매비율',
 		          pieHole: 0.35,
 		        };
 		
