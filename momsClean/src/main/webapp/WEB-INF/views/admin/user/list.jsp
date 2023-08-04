@@ -10,7 +10,7 @@ h2 {
 	font-family: "나눔바른고딕";
 }
 
-table {
+#userList {
 	font-family: "나눔바른고딕";
 	width: 1000px;
 	border-collapse: collapse;
@@ -20,7 +20,6 @@ table {
 }
 
 th {
-	
 	border: none;
 	padding-top: 8px;
 	padding-bottom: 8px;
@@ -42,6 +41,12 @@ td {
 	margin-bottom: 10px;
 }
 
+select {
+	font-family: "나눔바른고딕";
+	padding: 5px 9px 3px 9px;
+	border: 1px solid #d8d3bd;
+}
+
 #search {
 	font-family: "나눔바른고딕";
 }
@@ -53,7 +58,7 @@ input {
 	background-color: #fcfdf4;
 }
 
-button {
+#searchBtn {
 	position: relative;
 	margin: 0 auto;
 	cursor: pointer;
@@ -61,7 +66,7 @@ button {
 	margin-bottom: 14px;
 	padding: 3px 9px 5px 9px;
 	border: 1px solid #e4e0cd;
-	background-color: #292730;
+	background-color: #36343f;
 	color: white;
 }
 </style>

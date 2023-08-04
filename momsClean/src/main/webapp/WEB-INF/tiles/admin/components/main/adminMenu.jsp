@@ -19,7 +19,7 @@
         justify-content: center;
 		margin:0 auto;
 		width: 100%;
-		height: 200px;
+		height: 130px;
 		position: relative;
 	}
 	
