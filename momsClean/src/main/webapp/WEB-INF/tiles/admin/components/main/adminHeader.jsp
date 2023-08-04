@@ -8,6 +8,7 @@
 	height=35;
 	padding: 3px 3px 3px 3px;
 	border: 1px solid #000;
+	color: inherit;
 }
 .mom {
 	font-family: "나눔바른고딕";
