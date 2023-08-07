@@ -67,7 +67,7 @@
 	<tr class="register"> 
 		<th width="270"></th>
 		<th width="230"></th>
-		<th colspan="3" align="right" width="80"><a href="optionRegister"><spring:message
+		<th colspan="3" align="right" width="80"><a href="itemRegister"><spring:message
 					code="item.regist" /></a></th>
 	</tr>
 </table>
