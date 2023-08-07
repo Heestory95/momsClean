@@ -57,9 +57,9 @@
 
 </style>
 
-<br><br><br><br>
+<br>
 <h2><spring:message code="notice.header.read" /></h2>
-<br><br><br><br><br>
+<br>
 <form:form modelAttribute="notice">
 <form:hidden path="noticeNo"/>
 	

@@ -31,7 +31,7 @@
 	
 	th{
 	background-color:#6AAAFF;
-	font-size:22px;
+	font-size:18px;
 	color:white;
 	height:50px;
 	
@@ -39,7 +39,7 @@
 	
 	td{
 	background-color:#FAFFFF;
-	font-size:18px;
+	font-size:16px;
 	height:42px;
 	}
 

@@ -16,27 +16,37 @@
 	#read{
 		border-left:0px;
 		border-right:0px;
-		 border-collapse : collapse;
-		 width:700px;
+		border-collapse : collapse;
+		width:700px;
+		padding: 0px 5px 0px 5px;
 
 	}
 	
 	th,td{
 	font-family:'Malgun Gothic';
-	font-size:25px;
-	height:100px;
+	font-size:18px;
+	height:30px;
 	}
 	
 	.no,.grade,.content{
-	 border:none;
-	 font-size:20px;
+	font-size:18px;
+	padding-left: 11px;
+	border:none;
+	}
 	
+	.content{
+	border:none;
+	width: 500px;
+	height: 500px;
+	font-family:'Malgun Gothic';
+	font-size:18px;
 	}
 	
 	#no,#grade,#content{
 	background-color:#6AAAFF;
 	color:white;
 	text-align: center;
+	font-weight: bold;
 	}
 
 	button{
@@ -48,9 +58,9 @@
 
 </style>
 
-<br><br><br><br>
+<br>
 <h2><spring:message code="review.header.read" /></h2>
-<br><br><br><br><br>
+<br>
 <form:form modelAttribute="review">
 	
 	<input type="hidden" name="page" value="${pgrq.page}"> 

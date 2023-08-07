@@ -19,27 +19,37 @@
 	#reply{
 		border-left:0px;
 		border-right:0px;
-		 border-collapse : collapse;
-		 width:700px;
+		border-collapse : collapse;
+		width:700px;
+		padding: 0px 5px 0px 5px;
 
 	}
 	
 	th,td{
 	font-family:'Malgun Gothic';
-	font-size:25px;
-	height:100px;
+	font-size:18px;
+	height:30px;
 	}
 	
-	.no,.name,.phone,.title,.content{
-	 border:none;
-	 font-size:20px;
+	.no,.name,.phone,.title{
+	font-size:18px;
+	padding-left: 11px;
+	border:none;
+	}
 	
+	.content{
+	border:none;
+	width: 500px;
+	height: 500px;
+	font-family:'Malgun Gothic';
+	font-size:18px;
 	}
 	
 	#no,#name,#phone,#title,#content,#date{
 	background-color:#6AAAFF;
 	color:white;
 	text-align: center;
+	font-weight: bold;
 	}
 
 	button{
@@ -50,7 +60,7 @@
 
 
 </style>
-<br><br><br><br>
+<br>
 <h2>
 	<spring:message code="reference.reply" />
 </h2>
@@ -59,7 +69,7 @@
 	<form:hidden path="root" value="${referenceNo}"/>
 	<form:hidden path="step"/>
 	<form:hidden path="indent"/>
-<br><br><br><br><br>
+<br>
 	<table id="reply" border="1"> 
 		<tr>
 			<td id="title"><spring:message code="reference.title" /></td>
@@ -71,7 +81,7 @@
 		</tr>
 		<tr>
 			<td id="content"><spring:message code="reference.conten" /></td>
-			<td><form:input class="content" path="referenceContent" /></td>
+			<td><form:textarea class="content" path="referenceContent" /></td>
 		</tr>
 		<tr>
 			<td id="date"><spring:message code="reference.referenceDate" /></td>
@@ -81,7 +91,7 @@
 	</table>
 
 </form:form>
-<br><br>
+<br>
 <div>
 	<button type="submit" id="btnRegister">
 		<spring:message code="item.regist" />
@@ -96,8 +106,16 @@
 		var formObj = $("#reference");
 
 		$("#btnRegister").on("click", function() {
-			
-			formObj.submit();
+
+			var titleValue = $("#referenceTitle").val().trim();
+			var contentValue = $("#referenceContent").val().trim();
+
+
+			if (titleValue === "" || contentValue === "") {
+				alert("빈칸을 입력하셨습니다.");
+			} else {
+				formObj.submit();
+			}
 		});
 
 		$("#btnCancel").on("click", function() {

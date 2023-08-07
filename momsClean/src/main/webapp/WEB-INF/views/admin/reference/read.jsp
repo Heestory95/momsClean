@@ -17,27 +17,37 @@
 	#read{
 		border-left:0px;
 		border-right:0px;
-		 border-collapse : collapse;
-		 width:700px;
+		border-collapse : collapse;
+		width:700px;
+		padding: 0px 5px 0px 5px;
 
 	}
 	
 	th,td{
 	font-family:'Malgun Gothic';
-	font-size:25px;
-	height:100px;
+	font-size:18px;
+	height:30px;
 	}
 	
-	.no,.name,.phone,.title,.content{
-	 border:none;
-	 font-size:20px;
+	.no,.name,.phone,.title{
+	font-size:18px;
+	padding-left: 11px;
+	border:none;
+	}
 	
+	.content{
+	border:none;
+	width: 500px;
+	height: 500px;
+	font-family:'Malgun Gothic';
+	font-size:18px;
 	}
 	
 	#no,#name,#phone,#title,#content,#date{
 	background-color:#6AAAFF;
 	color:white;
 	text-align: center;
+	font-weight: bold;
 	}
 
 	button{
@@ -50,11 +60,11 @@
 </style>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<br><br><br><br>
+<br>
 <h2>
 	<spring:message code="reference.read" />
 </h2>
-<br><br><br><br><br>
+<br>
 <form:form modelAttribute="reference">
 	
 
@@ -83,7 +93,7 @@
 		</tr>
 		<tr>
 			<td id="content"><spring:message code="reference.conten" /></td>
-			<td><form:input class="content" path="referenceContent" readonly="true" /></td>
+			<td><form:textarea class="content" path="referenceContent" readonly="true" /></td>
 		</tr>
 		<tr>
 			<td id="date"><spring:message code="reference.referenceDate" /></td>
@@ -92,7 +102,7 @@
 		</tr>
 	</table>
 
-	<br><br>
+	<br>
 </form:form>
 <div>
 	<button type="submit" id="btnList">

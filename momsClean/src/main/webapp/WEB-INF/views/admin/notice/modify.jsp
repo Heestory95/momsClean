@@ -15,24 +15,25 @@
 	#modify{
 		border-left:0px;
 		border-right:0px;
-		 border-collapse : collapse;
-		 width:700px;
+		border-collapse : collapse;
+		width:700px;
+		padding: 0px 5px 0px 5px;
 
 	}
 	
 	th,td{
 	font-family:'Malgun Gothic';
 	font-size:18px;
-	height:100px;
+	height:30px;
 	}
 	
 	.no,.title,.content{
-	 border:none;
-	 font-size:18px;
-	
+	font-size:18px;
+	padding-left: 11px;
 	}
 	
 	.content{
+	border:none;
 	width: 500px;
 	height: 500px;
 	font-family:'Malgun Gothic';
@@ -43,6 +44,7 @@
 	background-color:#6AAAFF;
 	color:white;
 	text-align: center;
+	font-weight: bold;
 	}
 
 	button{
@@ -54,9 +56,9 @@
 
 </style>
 
-<br><br><br><br>
+<br>
 <h2><spring:message code="notice.header.modify" /></h2>
-<br><br><br><br><br>
+<br>
 <form:form modelAttribute="notice" action="modify">
 	<form:hidden path="noticeNo" />
 	
@@ -95,13 +97,21 @@
 		var formObj = $("#notice");
 
 		$("#btnEdit").on("click", function() {
-			formObj.submit();
+			
+			var titleValue = $("#noticeTitle").val().trim();
+			var contentValue = $("#noticeContent").val().trim();
+			
+			
+			if (titleValue === "" || contentValue === "") {
+				alert("빈칸을 입력 할 수 없습니다.");
+			} else {
+				formObj.submit();
+			}
 		});
 		
 		$("#btnRemove").on("click", function() {
 			formObj.attr("action", "remove");
 			formObj.submit();
-		
 		});
 
 		$("#btnList").on("click", function() {

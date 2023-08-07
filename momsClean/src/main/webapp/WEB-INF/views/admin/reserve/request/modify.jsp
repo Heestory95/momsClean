@@ -21,10 +21,15 @@
 
 	}
 	
-	th,td{
+	th{
 	font-family:'Malgun Gothic';
-	font-size:25px;
-	height:100px;
+	font-size:18px;
+	height:40px;
+	}
+	td{
+	font-family:'Malgun Gothic';
+	font-size:16px;
+	height:40px;
 	}
 	
 
@@ -44,11 +49,11 @@
 
 </style>
 
-<br><br><br><br>
+<br>
 <h2 align="center">
 	<spring:message code="reserve.admin.header.info" />
 </h2>
-<br><br><br><br><br>
+<br>
 <form:form modelAttribute="reserve" action="modify">
 	<form:hidden path="reserveNo" />
 

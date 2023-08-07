@@ -17,26 +17,28 @@
 		border-left:0px;
 		border-right:0px;
 		 border-collapse : collapse;
-		 width:500px;
+		 width:700px;
 
 	}
 	
-	th,td{
+	th{
 	font-family:'Malgun Gothic';
-	font-size:25px;
-	height:50px;
+	font-size:18px;
+	height:40px;
+	}
+	td{
+	font-family:'Malgun Gothic';
+	font-size:16px;
+	height:40px;
 	}
 	
-	.no,.title,.content{
-	 border:none;
-	 font-size:20px;
+
 	
-	}
-	
-	#first-td{
+	.first-td{
 	background-color:#6AAAFF;
 	color:white;
 	text-align: center;
+	width:100px;
 	}
 
 	button{
@@ -48,68 +50,68 @@
 
 </style>
 
-<br><br><br><br>
+<br>
 <h2 align="center">
 	<spring:message code="reserve.admin.header.info" />
 </h2>
-<br><br><br><br><br>
+<br>
 <form:form modelAttribute="reserve" action="modify">
 	<form:hidden path="reserveNo" />
 	
 	<table border="1" id="modify">
 		<c:forEach var="reserve" items="${cancelModifyForm}">
 			<tr>
-				<td id="first-td"><b><spring:message code="reserve.reserveNo" /></b></td>
+				<td class="first-td"><b><spring:message code="reserve.reserveNo" /></b></td>
 				<td>${reserve.reserveNo}</td>
 			</tr>
 			<tr>
 			<tr>
-				<td id="first-td"><b><spring:message code="reserve.reserveUserName" /></b></td>
+				<td class="first-td"><b><spring:message code="reserve.reserveUserName" /></b></td>
 				<td>${reserve.userName}(${reserve.userId})</td>
 			</tr>
 			<tr>
-				<td id="first-td"><b><spring:message code="reserve.reserveAddr" /></b></td>
+				<td class="first-td"><b><spring:message code="reserve.reserveAddr" /></b></td>
 				<td>${reserve.reserveAddr}</td>
 			</tr>
 			<tr>
-				<td rowspan="2" id="first-td"><b><spring:message code="reserve.itemInfo" /></b></td>
+				<td rowspan="2" class="first-td"><b><spring:message code="reserve.itemInfo" /></b></td>
 				<td>상품 : ${reserve.reserveItemName}</td>
 			</tr>
 			<tr>
 				<td>가격 : ${reserve.reserveItemPrice}원</td>
 			</tr>
 			<tr>
-				<td rowspan="2" id="first-td"><b><spring:message code="reserve.optionInfo" /></b></td>
+				<td rowspan="2" class="first-td"><b><spring:message code="reserve.optionInfo" /></b></td>
 				<td>옵션 : ${reserve.reserveOptionName}</td>
 			</tr>
 			<tr>
 				<td>가격 : ${reserve.reserveOptionPrice}원</td>
 			</tr>
 			<tr>
-				<td id="first-td"><b><spring:message code="reserve.reserveDate" /></b></td>
+				<td class="first-td"><b><spring:message code="reserve.reserveDate" /></b></td>
 				<td><fmt:formatDate pattern="yyyy-MM-dd"
 						value="${reserve.reserveDate}" /></td>
 			</tr>
 			<tr>
-				<td id="first-td"><b><spring:message code="reserve.cleanDate" /></b></td>
+				<td class="first-td"><b><spring:message code="reserve.cleanDate" /></b></td>
 				<td><fmt:formatDate pattern="yyyy-MM-dd"
 						value="${reserve.cleanDate}" /></td>
 			</tr>
 			<tr>
-				<td id="first-td"><b><spring:message code="reserve.reserveState" /></b></td>
+				<td class="first-td"><b><spring:message code="reserve.reserveState" /></b></td>
 				<td>${reserve.reserveState}</td>
 			</tr>
 			<tr>
-				<td id="first-td"><b><spring:message code="reserve.cancelDate" /></b></td>
+				<td class="first-td"><b><spring:message code="reserve.cancelDate" /></b></td>
 				<td><fmt:formatDate pattern="yyyy-MM-dd"
 						value="${reserve.cancelDate}" /></td>
 			</tr>
 			<tr>
-				<td id="first-td"><b><spring:message code="reserve.cleanDone" /></b></td>
+				<td class="first-td"><b><spring:message code="reserve.cleanDone" /></b></td>
 				<td>${reserve.cleanDone}</td>
 			</tr>
 			<tr>
-				<td id="first-td"><b><spring:message code="reserve.request" /></b></td>
+				<td class="first-td"><b><spring:message code="reserve.request" /></b></td>
 				<td>${reserve.reserveRequest}</td>
 			</tr>
 		</c:forEach>

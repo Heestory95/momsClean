@@ -157,3 +157,16 @@
 		<a href="/admin/reserve/cancel/list${pagination3.makeQuery(pagination3.endPage + 1)}">&raquo;</a>
 	</c:if>
 </div>
+<script>
+  $(document).ready(function() {
+    // 모든 게시글 내용의 길이를 체크하고 15자를 넘어가면 자르고 "..."을 붙입니다.
+    $("#r_addr").each(function() {
+      var content = $(this).text();
+      var maxLength = 15;
+      if (content.length > maxLength) {
+        content = content.substring(0, maxLength) + "...";
+      }
+      $(this).text(content);
+    });
+  });
+</script>
