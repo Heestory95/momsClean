@@ -541,6 +541,4 @@
 			AND TO_CHAR(reserve_date, 'YYYYMM') = '202312'
 		]]>
 	</select>
-	<!-- 신규 예약현황의 select문 where절에 들어갈 현재날짜와 예약날짜 비교 쿼리 -->
-	<!-- TRUNC(reserve_date) = TRUNC(sysdate) -->
 </mapper>

@@ -124,16 +124,27 @@
 		var formObj = $("#reserve");
 		 $("#btnFinish").on("click", function() {
 	            var cleanDoneValue = "${reserve.cleanDone}"; // 현재의 cleanDone 값 가져오기
+	            var reserveNum = "${reserve.reserveNo}";
 
 	            if (cleanDoneValue === 'N') { // 'N'인 경우
+	            	alert("예약번호 : " + reserveNum + "\n청소 완료 처리되었습니다.");
 	                formObj.attr("action", "finishUpdate"); // form의 action을 finishUpdate로 변경
 	            } else if (cleanDoneValue === 'Y') { // 'Y'인 경우
+	            	alert("예약번호 : " + reserveNum + "\n미완료 처리되었습니다.");
 	                formObj.attr("action", "finishCancel"); // form의 action을 finishCancel로 변경
 	            }
 	            formObj.submit(); // submit 실행
 	        });
 		$("#btnRestore").on("click", function() {
-			formObj.submit();
+			var cleanDoneValue = "${reserve.cleanDone}"; // 현재의 cleanDone 값 가져오기
+			var reserveNum = "${reserve.reserveNo}";
+			
+			if (cleanDoneValue === 'N') { // 'N'인 경우
+				alert("예약번호 : " + reserveNum + "\n복구가 완료되었습니다.");
+            } else if (cleanDoneValue === 'Y') { // 'Y'인 경우
+            	alert("예약번호 : " + reserveNum + "\n청소가 완료되어 복구가 불가능합니다.");
+            }
+            formObj.submit(); // submit 실행
 		});
 		$("#btnList").on("click", function() {
 			self.location = "/admin/reserve/complete/list${pgrq2.toUriString()}";

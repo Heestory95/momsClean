@@ -120,12 +120,12 @@
 	$(document).ready(function() {
 		var formObj = $("#reserve");
 		
-		function submitFormAndGoBack() {
-	        // Submit the form
-	        formObj.submit();
-	    }
 		
 		$("#btnApproval").on("click", function() {
+			var reserveReq = "${reserve.reserveRequest}";
+			var reserveNum = "${reserve.reserveNo}";
+			
+			alert("예약번호 : " + reserveNum + "\n" + reserveReq + "이 승인처리 되었습니다.")
 			formObj.submit();
 		});
 		$("#btnList").on("click", function() {

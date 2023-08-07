@@ -94,6 +94,9 @@
 	$(document).ready(function() {
 		var formObj = $("#user");
 		$("#btnWithdraw").on("click", function() {
+			var userInfo = "${user.userName}(${user.userId})";
+			
+			alert(userInfo + "님이 회원탈퇴 처리되었습니다.")
 			formObj.submit();
 		});
 		$("#btnList").on("click", function() {

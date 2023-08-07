@@ -312,7 +312,7 @@
 		    	var itemCount6 = ${itemCount6};
 		    	  
 		        var data = google.visualization.arrayToDataTable([
-		          ['누적상품판매비율', 'Item Chart'],
+		          ['누적 상품판매비율', 'Item Chart'],
 		          ['A세트',     itemCount1],
 		          ['B세트',     itemCount2],
 		          ['C세트',     itemCount3],
@@ -333,7 +333,7 @@
 	      function drawMonthlySalesChart() {
 	          
 				var data = google.visualization.arrayToDataTable([
-				['월매출', '상품판매액', '옵션판매액', '총 판매액', '총 예약수'],
+				['월 별 매출액', '상품판매액', '옵션판매액', '총 판매액', '총 예약수'],
 				['2023/01', ${itemSales1}, ${optionSales1}, ${totalSales1}, ${monthlyReserveCount1}],
 				['2023/02', ${itemSales2}, ${optionSales2}, ${totalSales2}, ${monthlyReserveCount2}],
 				['2023/03', ${itemSales3}, ${optionSales3}, ${totalSales3}, ${monthlyReserveCount3}],
@@ -353,7 +353,7 @@
 				        title: '월 별 매출액',
 				        vAxes: {
 				            0: { title: '매출액' }, // 왼쪽 Y축 (막대 그래프용)
-				            1: { title: '예약수' } // 오른쪽 Y축 (선 그래프용)
+				            1: { title: '예약수', format: '0', ticks: [0, 5, 10, 15, 20, 25, 30, 35] } // 오른쪽 Y축 (선 그래프용)
 				        },
 				        seriesType: 'bars',
 				        series: {

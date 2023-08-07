@@ -129,6 +129,9 @@
 	$(document).ready(function() {
 		var formObj = $("#reserve");
 		$("#btnRestore").on("click", function() {
+			var reserveNum = "${reserve.reserveNo}";
+			
+			alert("예약번호 : " + reserveNum + "\n복구가 완료되었습니다.");
 			formObj.submit();
 		});
 		$("#btnList").on("click", function() {
