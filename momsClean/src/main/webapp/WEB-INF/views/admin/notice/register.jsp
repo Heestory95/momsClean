@@ -23,14 +23,21 @@
 	
 	th,td{
 	font-family:'Malgun Gothic';
-	font-size:25px;
-	height:100px;
+	font-size:18px;
+	height:30px;
 	}
 	
-	.no,.title,.content{
-	 border:none;
-	 font-size:20px;
+	.title,.content{
+	border:none;
+	font-size:18px;
+	padding-left: 11px;
+	width: 500px
+	}
 	
+	.content{
+	height: 500px;
+	font-family:'Malgun Gothic';
+	font-size:18px;
 	}
 	
 	#no,#title,#content{
@@ -48,10 +55,9 @@
 
 </style>
 
-<br><br><br><br>
+<br>
 <h2><spring:message code="notice.header.register" /></h2>
-<br><br><br><br><br>
-
+<br><br>
 <form:form modelAttribute="notice" action="register">
 	<table border="1" id="register">
 		<tr>
@@ -81,6 +87,11 @@
 		var formObj = $("#notice");
 
 		$("#btnRegister").on("click", function() {
+			// 폼 전송 전에 숫자 입력 여부와 빈 칸 여부를 확인합니다.
+			if (!validateInput()) {
+				return false; // 제출 취소
+			}
+			
 			formObj.submit();
 		});
 
@@ -89,4 +100,26 @@
 		});
 
 	});
+	
+	function validateInput() {
+		var noticeTitleInput = $("input[name='noticeTitle']");
+		var inputValue = noticeTitleInput.val();
+
+		var noticeContentInput = $("textarea[name='noticeContent']");
+		var inputValue2 = noticeContentInput.val();
+
+		// 빈 칸인지 확인합니다.
+		if (!inputValue.trim()) {
+			alert("공지사항의 제목을 입력해주세요.");
+			return false;
+		}
+
+		if (!inputValue2.trim()) {
+			alert("공지사항의 내용을 입력해주세요.");
+			return false;
+		}
+		
+
+		return true;
+	}
 </script>

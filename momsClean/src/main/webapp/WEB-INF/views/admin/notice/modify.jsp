@@ -22,14 +22,21 @@
 	
 	th,td{
 	font-family:'Malgun Gothic';
-	font-size:25px;
+	font-size:18px;
 	height:100px;
 	}
 	
 	.no,.title,.content{
 	 border:none;
-	 font-size:20px;
+	 font-size:18px;
 	
+	}
+	
+	.content{
+	width: 500px;
+	height: 500px;
+	font-family:'Malgun Gothic';
+	font-size:18px;
 	}
 	
 	#no,#title,#content{
@@ -59,7 +66,7 @@
 	<table border="1" id="modify">
 		<tr>
 			<td id="no"><spring:message code="notice.no" /></td>
-			<td><form:input class="no" path="noticeNo" readonly="true"/></td>
+			<td>${notice.noticeNo}</td>
 		</tr>
 		
 		<tr>

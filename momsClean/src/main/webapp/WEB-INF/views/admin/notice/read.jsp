@@ -16,27 +16,36 @@
 	#read{
 		border-left:0px;
 		border-right:0px;
-		 border-collapse : collapse;
-		 width:700px;
+		border-collapse : collapse;
+		width:700px;
+		padding: 0px 5px 0px 5px;
 
 	}
 	
 	th,td{
 	font-family:'Malgun Gothic';
-	font-size:25px;
-	height:100px;
+	font-size:18px;
+	height:30px;
 	}
 	
 	.no,.title,.content{
-	 border:none;
-	 font-size:20px;
+	font-size:18px;
+	padding-left: 11px;
+	}
 	
+	.content{
+	border:none;
+	width: 500px;
+	height: 500px;
+	font-family:'Malgun Gothic';
+	font-size:18px;
 	}
 	
 	#no,#title,#content{
 	background-color:#6AAAFF;
 	color:white;
 	text-align: center;
+	font-weight: bold;
 	}
 
 	button{
@@ -52,6 +61,7 @@
 <h2><spring:message code="notice.header.read" /></h2>
 <br><br><br><br><br>
 <form:form modelAttribute="notice">
+<form:hidden path="noticeNo"/>
 	
 	<input type="hidden" name="page" value="${pgrq.page}"> 
 	<input type="hidden" name="sizePerPage" value="${pgrq.sizePerPage}">	
@@ -59,15 +69,16 @@
 	<table border="1" id="read">
 		<tr>
 			<td id="no"><spring:message code="notice.no" /></td>
-			<td><form:input class="no" path="noticeNo" readonly="true" /></td>
+			<td class="no">${notice.noticeNo}</td>
 		</tr>
 		<tr>
 			<td id="title"><spring:message code="notice.title" /></td>
-			<td><form:input class="title" path="noticeTitle" readonly="true" /></td>
+			<td class="title">${notice.noticeTitle}</td>
 		</tr>
 		<tr>
 			<td id="content"><spring:message code="notice.content" /></td>
-			<td><form:input class="content" path="noticeContent" readonly="true" /></td>
+			<td><form:textarea class="content" path="noticeContent" readonly="true" /></td>
+			<%-- <td>${notice.noticeContent}</td> --%>
 		</tr>
 	</table>
 

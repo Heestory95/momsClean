@@ -65,7 +65,6 @@
 	}
 	.custom-select{
 	font-size:20px;
-	margin-left:860px;
 
 	}
 
@@ -73,12 +72,16 @@
  	margin-top: 20px;
  	font-size: 22px;
  	color:#6AAAFF;
-}
+	}
+	
+	#search{
+	width:70%;
+	}
 
 </style>
-<br><br><br><br>
+<br>
 <h2><spring:message code="review.header.list" /></h2>
-<br><br><br><br><br>
+
 <%-- <form method="get" action="admin/review/list">
     <label for="searchType">글 내용</label>
     <input type="text" name="keyword" id="keyword">
@@ -87,7 +90,7 @@
 </form> --%>
 
 
-<form:form modelAttribute="pgrq" method="get" action="${pgrq.toUriStringByPage(1)}">		
+<form:form id="search" modelAttribute="pgrq" method="get" action="${pgrq.toUriStringByPage(1)}" align="right">		
 	<form:select class="custom-select" path="searchType" items="${searchTypeCodeValueList}" itemValue="value" itemLabel="label" />
 	
 	<form:input class="custom-input" path="keyword" />

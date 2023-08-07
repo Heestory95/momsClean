@@ -69,21 +69,25 @@
 	}
 
 	#register{
-	margin-left:1215px;
+	width:70%;
+	
+	}
+	
+	#regBtn{
+	width: 85px;
 	font-size:18px;
 	border: 2px solid black;
 	border-color:#6AAAFF;
-	display: inline-block;
-	}
 	
+	}
 	 #search{
 	width:70%;
 	}
 
 </style>
-<br><br><br><br>
+<br>
 <h2 ><spring:message code="notice.header.list" /></h2>
-<br><br><br><br><br>
+
 <form:form id="search" align="right" modelAttribute="pgrq" method="get" action="list${pgrq.toUriStringByPage(1)}" >		
 	<form:select path="searchType" items="${searchTypeCodeValueList}" itemValue="value" itemLabel="label" style="display: none;"/>
 	<form:input path="keyword" id="keyword"/>
@@ -92,7 +96,7 @@
 </form:form>
 
 <br>
-	<a href="register" id="register"><spring:message code="notice.new" /></a>
+<div id="register" align="right"><a href="register" id="regBtn"><spring:message code="notice.new" /></a></div>
 <table id="notice" border="1">
   <tr class="listTitle">
     <th align="center" width="170"><spring:message code="notice.no" /></th>

@@ -64,16 +64,16 @@
  	color:#6AAAFF;
 }
  	#search{
-	width:83.6%;
+	width:70%;
 	}
 </style>
-<br><br><br><br>
+<br>
 <h2 id=title>
 	<spring:message code="reference.header" />
 </h2>
-<br><br><br><br><br>
+
 <!-- 검색 폼을 만든다. -->
-<form:form modelAttribute="pgrq" method="get"
+<form:form id="search" modelAttribute="pgrq" method="get"
 	action="/admin/reference/list" align="right">
 	<form:select path="searchType" items="${searchTypeCodeValueList}"
 		itemValue="value" itemLabel="label" class="custom-select"/>
