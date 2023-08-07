@@ -123,7 +123,7 @@
 						<td align="center">${reserve.userId}</td>
 						<td align="center">${reserve.userName}</td>
 						<td align="center">${reserve.itemNo}</td>
-						<td align="center">${reserve.reserveAddr}</td>
+						<td class="r_addr" align="center">${reserve.reserveAddr}</td>
 						<td align="center">${reserve.reserveItemPrice + reserve.reserveOptionPrice}원</td>
 						<td align="center"><fmt:formatDate
 								value="${reserve.reserveDate}" pattern="yyyy-MM-dd" /></td>
@@ -160,7 +160,7 @@
 <script>
   $(document).ready(function() {
     // 모든 게시글 내용의 길이를 체크하고 15자를 넘어가면 자르고 "..."을 붙입니다.
-    $("#r_addr").each(function() {
+    $(".r_addr").each(function() {
       var content = $(this).text();
       var maxLength = 15;
       if (content.length > maxLength) {

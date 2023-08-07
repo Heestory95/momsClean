@@ -85,10 +85,10 @@
 </style>
 <script>
   $(document).ready(function() {
-    // 모든 게시글 내용의 길이를 체크하고 20자를 넘어가면 자르고 "..."을 붙입니다.
+    // 모든 게시글 내용의 길이를 체크하고 자를 넘어가면 자르고 "..."을 붙입니다.
     $(".word-limit").each(function() {
       var content = $(this).text();
-      var maxLength = 20;
+      var maxLength = 35;
       if (content.length > maxLength) {
         content = content.substring(0, maxLength) + "...";
       }
@@ -148,7 +148,7 @@
 									<td align="center">${home.userId}</td>
 									<td align="center">${home.userName}</td>
 									<td align="center">${home.itemNo}</td>
-									<td align="center">${home.reserveAddr}</td>
+									<td class="word-limit" align="center">${home.reserveAddr}</td>
 									<td align="center">${home.reserveItemPrice + home.reserveOptionPrice}원</td>
 									<td align="center"><fmt:formatDate
 											value="${home.reserveDate}" pattern="yyyy-MM-dd" /></td>
