@@ -51,15 +51,14 @@
 	background-color:white;
 	}
 	.custom-input{
-	font-size:20px;
+	font-size:18px;
 	}
 	.custom-select{
-	font-size:20px;
+	font-size:18px;
 
 	}
 
 	.page {
- 	margin-top: 20px;
  	font-size: 22px;
  	color:#6AAAFF;
 }
@@ -87,19 +86,19 @@
 <form:form modelAttribute="reference">
 <table id=reference border="1">
 	<tr>
-		<th align="center" width="500"><spring:message code="reference.no" /></th>
-		<th align="center" width="1500"><spring:message
+		<th align="center" width="130"><spring:message code="reference.no" /></th>
+		<th align="center" width="550"><spring:message
 				code="reference.title" /></th>
-		<th align="center" width="500"><spring:message
+		<th align="center" width="115"><spring:message
 				code="reference.name" /></th>
-		<th align="center" width="500"><spring:message
+		<th align="center" width="115"><spring:message
 				code="reference.referenceDate" /></th>
 	</tr>
 
 	<c:choose>
 		<c:when test="${empty list}">
 			<tr>
-				<td colspan="4"><spring:message code="common.listEmpty" /></td>
+				<td colspan="4" align="center"><spring:message code="common.listEmpty" /></td>
 			</tr>
 		</c:when>
 		<c:otherwise>

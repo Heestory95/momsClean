@@ -85,10 +85,10 @@
 </style>
 <script>
   $(document).ready(function() {
-    // 모든 게시글 내용의 길이를 체크하고 15자를 넘어가면 자르고 "..."을 붙입니다.
+    // 모든 게시글 내용의 길이를 체크하고 20자를 넘어가면 자르고 "..."을 붙입니다.
     $(".word-limit").each(function() {
       var content = $(this).text();
-      var maxLength = 15;
+      var maxLength = 20;
       if (content.length > maxLength) {
         content = content.substring(0, maxLength) + "...";
       }
@@ -188,7 +188,7 @@
 				<c:choose>
 					<c:when test="${empty list}">
 						<tr>
-							<td colspan="4"><spring:message code="common.listEmpty" /></td>
+							<td colspan="4" align="center"><spring:message code="common.listEmpty" /></td>
 						</tr>
 					</c:when>
 					<c:otherwise>
@@ -237,7 +237,7 @@
 				<c:choose>
 					<c:when test="${empty review}">
 						<tr>
-							<td colspan="4"><spring:message code="common.listEmpty" /></td>
+							<td colspan="4" align="center"><spring:message code="common.listEmpty" /></td>
 						</tr>
 					</c:when>
 					<c:otherwise>

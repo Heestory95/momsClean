@@ -10,7 +10,7 @@
     // 모든 게시글 내용의 길이를 체크하고 15자를 넘어가면 자르고 "..."을 붙입니다.
     $(".notice-title").each(function() {
       var content = $(this).text();
-      var maxLength = 15;
+      var maxLength = 20;
       if (content.length > maxLength) {
         content = content.substring(0, maxLength) + "...";
       }
@@ -51,7 +51,6 @@
 	}
 
 .page {
- 	margin-top: 20px;
  	font-size: 22px;
  	color:#6AAAFF;
 }
@@ -65,11 +64,15 @@
 	}
 	
 	#keyword{
-	font-size:20px;
+	font-size:18px;
+	}
+
+	#topTable{
+	width: 70%;
 	}
 
 	#register{
-	width:70%;
+	
 	
 	}
 	
@@ -78,35 +81,40 @@
 	font-size:18px;
 	border: 2px solid black;
 	border-color:#6AAAFF;
+	padding: 0px 15px 0px 15px;
 	
 	}
 	 #search{
-	width:70%;
+	
 	}
 
 </style>
 <br>
 <h2 ><spring:message code="notice.header.list" /></h2>
 
-<form:form id="search" align="right" modelAttribute="pgrq" method="get" action="list${pgrq.toUriStringByPage(1)}" >		
-	<form:select path="searchType" items="${searchTypeCodeValueList}" itemValue="value" itemLabel="label" style="display: none;"/>
-	<form:input path="keyword" id="keyword"/>
-	<button id='searchBtn'><spring:message code="action.search" /></button>
-
+<form:form modelAttribute="pgrq" method="get" action="list${pgrq.toUriStringByPage(1)}" >		
+	<table id="topTable">
+	  <tr>
+	    <td id="register" align="left"><a href="register" id="regBtn"><spring:message code="notice.new" /></a></td>
+	    <td id="search" align="right"><form:select path="searchType" items="${searchTypeCodeValueList}" itemValue="value" itemLabel="label" style="display: none;"/>
+		<form:input path="keyword" id="keyword"/>
+		<button id='searchBtn'><spring:message code="action.search" /></button></td>
+	  </tr>
+	</table>
 </form:form>
 
 <br>
-<div id="register" align="right"><a href="register" id="regBtn"><spring:message code="notice.new" /></a></div>
+<div></div>
 <table id="notice" border="1">
   <tr class="listTitle">
-    <th align="center" width="170"><spring:message code="notice.no" /></th>
+    <th align="center" width="130"><spring:message code="notice.no" /></th>
     <th align="center" width="550"><spring:message code="notice.title" /></th>
     <th align="center" width="230"><spring:message code="notice.date" /></th>
   </tr>
   <c:choose>
    	<c:when test="${empty list}">
   		<tr>
-    		<td colspan="3"><spring:message code="common.listEmpty" /></td>
+    		<td colspan="3" align="center"><spring:message code="common.listEmpty" /></td>
   		</tr>
   	</c:when>
   	<c:otherwise>
@@ -123,7 +131,7 @@
   </c:choose>
   
 </table>
-
+<br>
 <!-- 페이징 네비게이션 -->
 <div class="page">
 	<c:if test="${pagination.prev}">

@@ -109,7 +109,7 @@
   <c:choose>
    	<c:when test="${empty list}">
   		<tr>
-    		<td colspan="4"><spring:message code="common.listEmpty" /></td>
+    		<td colspan="4" align="center"><spring:message code="common.listEmpty" /></td>
   		</tr>
   	</c:when>
   	<c:otherwise>
