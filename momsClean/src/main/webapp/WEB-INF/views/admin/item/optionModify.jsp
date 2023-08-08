@@ -44,14 +44,14 @@
 	}
 
 </style>
-<br><br><br><br>
+<br>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <h2>
 	<spring:message code="item.optionModify" />
 </h2>
-<br><br><br><br><br>
+<br>
 <form:form modelAttribute="item" action="optionModify"
 	enctype="multipart/form-data">
 	<form:hidden path="iNo" />
@@ -67,7 +67,7 @@
 		</tr>
 	</table>
 </form:form>
-<br><br>
+<br>
 <div>
 	<button type="submit" id="btnModify">
 		<spring:message code="item.edit" />

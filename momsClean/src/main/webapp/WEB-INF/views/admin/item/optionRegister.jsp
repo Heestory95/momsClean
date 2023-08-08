@@ -44,13 +44,13 @@
 	}
 
 </style>
-<br><br><br><br>
+<br>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <h2>
 	<spring:message code="item.optionRegist" />
 </h2>
-<br><br><br><br><br>
+<br>
 <form:form modelAttribute="item" action="optionRegister"
 	enctype="multipart/form-data">
 	<table border="1" id="register">
@@ -64,7 +64,7 @@
 		</tr>
 	</table>
 </form:form>
-<br><br>
+<br>
 <div>
 	<button type="submit" id="btnRegister">
 		<spring:message code="item.regist" />
