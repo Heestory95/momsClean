@@ -35,7 +35,7 @@
 		FROM (
 			SELECT reference_no, user_no, reference_title , reference_date, step , root, no
 			FROM reference 
-			WHERE reference_no > 0
+			WHERE reference_no > 0 and TRUNC(reference_date) = TRUNC(sysdate)
 			
            order by root desc, reference_no asc, step desc) paginated
            OFFSET #{sizePerPage} * (#{page} - 1) ROWS FETCH NEXT #{sizePerPage} ROWS ONLY

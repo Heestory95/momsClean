@@ -254,7 +254,7 @@
 										<c:otherwise>Unknown</c:otherwise>
 									</c:choose></td>
 								<!-- 게시글 상세보기할 때 페이징 요청 정보를 매개변수로 전달한다 -->
-								<td align="left"><span class="word-limit">${home.reviewContent}</span></td>
+								<td align="left"><a href="/admin/review/read?reviewNo=${home.reviewNo}"><span class="word-limit">${home.reviewContent}</span></td>
 								<td align="center"><fmt:formatDate pattern="yyyy-MM-dd"
 										value="${home.reviewDate}" /></td>
 							</tr>
