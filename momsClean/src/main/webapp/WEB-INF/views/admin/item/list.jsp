@@ -155,7 +155,7 @@
 		</c:choose>
 	</tr>
 </table>
-
+<br>
 <script>
 	var result = "${msg}";
 

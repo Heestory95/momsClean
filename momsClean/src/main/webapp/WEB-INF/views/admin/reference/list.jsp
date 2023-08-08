@@ -153,7 +153,7 @@
 	</c:if>
 </div>
 
-
+<br>
 
 <script>
 	var result = "${msg}";

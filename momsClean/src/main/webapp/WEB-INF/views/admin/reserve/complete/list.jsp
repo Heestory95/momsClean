@@ -155,6 +155,7 @@ h2{
 		<a href="/admin/reserve/complete/list${pagination2.makeQuery(pagination2.endPage + 1)}">&raquo;</a>
 	</c:if>
 </div>
+<br>
 <script>
   $(document).ready(function() {
     // 모든 게시글 내용의 길이를 체크하고 15자를 넘어가면 자르고 "..."을 붙입니다.

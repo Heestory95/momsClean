@@ -49,7 +49,8 @@ public class ItemController {
 
 	// 상품 등록 처리
 	@RequestMapping(value = "/itemRegister", method = RequestMethod.POST)
-	public String register(Item item, RedirectAttributes rttr) throws Exception {
+	public String register(Item item, RedirectAttributes rttr) 
+			throws Exception {
 
 		MultipartFile pictureFile = item.getPicture();
 		MultipartFile thumbFile = item.getThumb();
@@ -58,11 +59,13 @@ public class ItemController {
 		String createdThumbFilename =null;
 	    try {
 	        if (pictureFile != null && !pictureFile.isEmpty()) {
-	            createdPictureFilename = uploadImg(pictureFile.getOriginalFilename(), pictureFile.getBytes());
+	            createdPictureFilename = uploadImg
+	            		(pictureFile.getOriginalFilename(), pictureFile.getBytes());
 	        }else { createdPictureFilename = "";
 	        }
 	        if (thumbFile != null && !thumbFile.isEmpty()) {
-	            createdThumbFilename = uploadThumb(thumbFile.getOriginalFilename(), thumbFile.getBytes());
+	            createdThumbFilename = uploadThumb
+	            		(thumbFile.getOriginalFilename(), thumbFile.getBytes());
 	        }else {createdThumbFilename="";}
 	    } catch (IOException e) {
 	       

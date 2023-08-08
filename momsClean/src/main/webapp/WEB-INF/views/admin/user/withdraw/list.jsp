@@ -144,3 +144,4 @@
 		<a href="/admin/user/withdraw/list${pagination2.makeQuery(pagination2.endPage + 1)}">&raquo;</a>
 	</c:if>
 </div>
+<br>

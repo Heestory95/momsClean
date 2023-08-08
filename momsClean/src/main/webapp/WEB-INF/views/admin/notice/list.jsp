@@ -146,3 +146,4 @@
 		<a href="/admin/notice/list${pagination.makeQuery(pagination.endPage +1)}">&raquo;</a>
 	</c:if>
 </div>
+<br>
