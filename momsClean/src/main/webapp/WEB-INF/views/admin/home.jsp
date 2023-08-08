@@ -229,7 +229,7 @@
 					<th align="center" width="80"><spring:message code="review.no" /></th>
 					<th align="center" width="80"><spring:message
 							code="review.grade" /></th>
-					<th align="center" width="300"><spring:message
+					<th class="word-limit" align="center" width="300"><spring:message
 							code="review.content" /></th>
 					<th align="center" width="180"><spring:message
 							code="review.date" /></th>
