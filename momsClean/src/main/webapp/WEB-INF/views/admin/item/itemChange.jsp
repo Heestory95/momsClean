@@ -107,7 +107,7 @@
 
 		$("#btnRemove").on("click", function() {
 			// confirm 함수로 확인 메시지를 띄웁니다.
-			if (confirm("정말로 상품을 삭제하시겠습니까?")) {
+			if (confirm("정말 상품을 삭제하시겠습니까?")) {
 				formObj.attr("action", "/admin/item/remove");
 				formObj.submit();
 			}
