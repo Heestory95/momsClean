@@ -46,10 +46,10 @@ h2{
 	background-color:white;
 	}
 	.custom-input{
-	font-size:20px;
+	font-size:18px;
 	}
 	.custom-select{
-	font-size:20px;
+	font-size:18px;
 
 	}
 
@@ -73,7 +73,7 @@ h2{
 <form:form id="search" modelAttribute="pgrq2" method="get" action="list${pgrq2.toUriStringByPage(1)}" align="right">
 	<form:select class="custom-select" path="searchType" items="${searchTypeCodeValueList}" itemValue="value" itemLabel="label" />
 	
-	<form:input class="custom-input" path="keyword"/>
+	<form:input class="custom-input" path="keyword" placeholder="검색어를 입력해주세요."/>
 	<button id='searchBtn'><spring:message code="action.search" /></button>
 </form:form>
 <br>

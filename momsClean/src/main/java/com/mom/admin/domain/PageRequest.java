@@ -25,6 +25,7 @@ public class PageRequest {
 		}
 		this.page = page;
 	}
+	
 	public void setSizePerPage(int size) {
 		if (size <= 0 || size > 100) {
 			this.sizePerPage = 10;
@@ -46,7 +47,7 @@ public class PageRequest {
 		return this.sizePerPage;
 	}
 	
-	// 검색 유형과 검색어를 멤버변수의 Getter/Setter 메서드
+	// 검색 유형과 검색어 멤버변수의 Getter/Setter 메서드
 	public String getSearchType() {
 		return searchType;
 	}
@@ -64,7 +65,7 @@ public class PageRequest {
 		this.keyword = keyword;
 	}
 	
-	// 멤버 변수를 활용하여 다양한 형태의 쿼리파마리터를 생성한다.
+	// 멤버 변수로 쿼리파마리터를 생성
 	public String toUriString() {
 		UriComponents uriComponents = UriComponentsBuilder.newInstance()
 				.queryParam("page", this.page)

@@ -105,7 +105,7 @@
 			formObj.submit();
 		});
 		$("#btnList").on("click", function() {
-			self.location = "/admin/user/withdraw/list${pgrq.toUriString()}";
+			self.location = "/admin/user/withdraw/list${pgrq2.toUriString()}";
 		});
 	});
 </script>

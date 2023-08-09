@@ -54,7 +54,7 @@ public class UserController {
 
 	// 회원 탈퇴처리 페이지
 	@GetMapping("/modify")
-	public String modifyForm(int userNo, @ModelAttribute("pgrq") PageRequest pageRequest, Model model)
+	public String modifyForm(int userNo, Model model)
 			throws Exception {
 		User user = service.read(userNo);
 		model.addAttribute(user);
@@ -69,7 +69,6 @@ public class UserController {
 		// RedirectAttributes 객체에 일회성 데이터를 지정하여 전달한다.
 		rttr.addAttribute("page", pageRequest.getPage());
 		rttr.addAttribute("sizePerPage", pageRequest.getSizePerPage());
-		rttr.addFlashAttribute("msg", "SUCCESS");
 
 		return "redirect:/admin/user/list";
 	}

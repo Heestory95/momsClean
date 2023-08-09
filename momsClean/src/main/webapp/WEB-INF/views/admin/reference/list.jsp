@@ -77,7 +77,7 @@
 	<form:select path="searchType" items="${searchTypeCodeValueList}"
 		itemValue="value" itemLabel="label" class="custom-select"/>
 
-	<form:input path="keyword" class="custom-input"/>
+	<form:input path="keyword" class="custom-input" placeholder="검색어를 입력해주세요."/>
 	<button id="searchBtn">
 		<spring:message code="action.search" />
 	</button>

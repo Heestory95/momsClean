@@ -65,6 +65,7 @@
 	
 	#keyword{
 	font-size:18px;
+	width: 240px;
 	}
 
 	#topTable{
@@ -97,7 +98,7 @@
 	  <tr>
 	    <td id="register" align="left"><a href="register" id="regBtn"><spring:message code="notice.new" /></a></td>
 	    <td id="search" align="right"><form:select path="searchType" items="${searchTypeCodeValueList}" itemValue="value" itemLabel="label" style="display: none;"/>
-		<form:input path="keyword" id="keyword"/>
+		<form:input path="keyword" id="keyword" placeholder="글 제목으로 검색 가능합니다."/>
 		<button id='searchBtn'><spring:message code="action.search" /></button></td>
 	  </tr>
 	</table>
