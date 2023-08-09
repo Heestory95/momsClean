@@ -25,7 +25,7 @@ public class ReferenceController {
 	@Autowired
 	private ReferenceService service;
 
-	// 회원 리스트 페이지
+	// 문의게시판 페이지
 	// 페이징 요청 정보를 매개 변수로 받고 다시 뷰에 전달
 	@GetMapping("/list")
 	public void list(@ModelAttribute("pgrq") PageRequest pageRequest, Model model) throws Exception {
@@ -42,7 +42,6 @@ public class ReferenceController {
 
 		List<CodeLabelValue> searchTypeCodeValueList = new ArrayList<CodeLabelValue>();
 		searchTypeCodeValueList.add(new CodeLabelValue("ca", "카테고리"));
-		searchTypeCodeValueList.add(new CodeLabelValue("n", "게시글 번호"));
 		searchTypeCodeValueList.add(new CodeLabelValue("t", "글 제목"));
 		searchTypeCodeValueList.add(new CodeLabelValue("r", "작성자"));
 
