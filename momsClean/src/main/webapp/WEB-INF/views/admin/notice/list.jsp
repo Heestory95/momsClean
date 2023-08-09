@@ -10,7 +10,7 @@
     // 모든 게시글 내용의 길이를 체크하고 15자를 넘어가면 자르고 "..."을 붙입니다.
     $(".notice-title").each(function() {
       var content = $(this).text();
-      var maxLength = 20;
+      var maxLength = 15;
       if (content.length > maxLength) {
         content = content.substring(0, maxLength) + "...";
       }
