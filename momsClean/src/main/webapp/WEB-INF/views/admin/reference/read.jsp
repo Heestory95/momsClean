@@ -80,7 +80,7 @@
 			<td id="name"><spring:message code="reference.name" /></td>
 			<td class="name"><c:choose>
                 <c:when test="${empty reference.no}">
-                    <b>관리자</b>
+                    관리자
                 </c:when>
                 <c:otherwise>
                     <c:out value="${reference.userName}" />
