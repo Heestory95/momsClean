@@ -121,6 +121,7 @@
 		<spring:message code="action.list" />
 	</button>
 </div>
+<br>
 <script>
 	$(document).ready(function() {
 		var formObj = $("#reserve");

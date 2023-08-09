@@ -90,6 +90,7 @@
 	<button type="submit" id="btnList">
 		<spring:message code="action.list" /></button>
 </div>
+<br>
 <script>
 	$(document).ready(function() {
 		var formObj = $("#user");
