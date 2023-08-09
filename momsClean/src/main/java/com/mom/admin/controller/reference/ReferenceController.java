@@ -42,7 +42,6 @@ public class ReferenceController {
 
 		List<CodeLabelValue> searchTypeCodeValueList = new ArrayList<CodeLabelValue>();
 		searchTypeCodeValueList.add(new CodeLabelValue("ca", "카테고리"));
-		searchTypeCodeValueList.add(new CodeLabelValue("n", "게시글 번호"));
 		searchTypeCodeValueList.add(new CodeLabelValue("t", "글 제목"));
 		searchTypeCodeValueList.add(new CodeLabelValue("r", "작성자"));
 

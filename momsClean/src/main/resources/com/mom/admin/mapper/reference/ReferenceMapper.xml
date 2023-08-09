@@ -5,9 +5,6 @@
 	namespace="com.mom.admin.mapper.reference.ReferenceMapper">
 	<sql id="search">
 		<if test="searchType != null">
-			<if test="searchType == 'n'.toString()">
-				AND reference_No LIKE CONCAT('%',CONCAT(#{keyword}, '%'))
-			</if>
 			<if test="searchType == 't'.toString()">
 				AND reference_Title LIKE CONCAT('%',CONCAT(#{keyword},
 				'%'))
@@ -19,9 +16,6 @@
 			</if>
 			<if test="searchType == 'ca'.toString()">
 				AND (
-				reference_No LIKE CONCAT('%',CONCAT(#{keyword},
-				'%'))
-				OR
 				reference_Title LIKE CONCAT('%',CONCAT(#{keyword}, '%'))
 				OR
 				user_No
