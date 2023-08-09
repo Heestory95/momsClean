@@ -77,7 +77,7 @@
 		</tr>
 		<tr>
 			<td id="name"><spring:message code="reference.name" /></td>
-			<td>관리자</td>
+			<td class="name">관리자</td>
 		</tr>
 		<tr>
 			<td id="content"><spring:message code="reference.conten" /></td>
