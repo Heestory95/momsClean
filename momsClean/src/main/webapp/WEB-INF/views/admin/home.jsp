@@ -74,10 +74,8 @@
 	height:42px;
 	}
 
-	#review2{
 
-	}
-	#review3{
+	#newReview{
 	margin-left:40px;
 	}
 }
@@ -170,7 +168,7 @@
 	<tr>
 		
 		<td>
-		<table id="review2">
+		<table>
 			<th colspan="3" class="homeReference" align="left"><spring:message code="home.admin.reference" /></th>
 			</table>
 			<table border="1" id="reference">
@@ -192,28 +190,38 @@
 						</tr>
 					</c:when>
 					<c:otherwise>
-						<c:forEach items="${list}" var="home">
-							<tr>
-							<td align="center">
-							<c:choose>
-    						<c:when test="${not empty home.no}">${home.no}</c:when>
-    						</c:choose>
-								
-        	<c:choose>
-    <c:when test="${empty home.no}"><B>└</B></c:when>
-    </c:choose>
+						<c:forEach items="${list}" var="reference">
+    <tr>
+        <td align="center">
+            <c:choose>
+                <c:when test="${empty reference.no}">
+                    <B>└</B>
+                </c:when>
+                <c:otherwise>
+                    ${reference.no}
+                </c:otherwise>
+            </c:choose>
         </td>
         <td align="left">
-            <a href="/admin/reference/read${pgrq.toUriString(pgrq.page)}&referenceNo=${home.referenceNo}">
-                <c:out value="${home.referenceTitle}" />
+            <a href="/admin/reference/read${pgrq.toUriString(pgrq.page)}&referenceNo=${reference.referenceNo}">
+                <c:out value="${reference.referenceTitle}" />
             </a>
         </td>
-        <td align="center">${home.userName}</td>
         <td align="center">
-            <fmt:formatDate pattern="yyyy-MM-dd" value="${home.referenceDate}" />
+            <c:choose>
+                <c:when test="${empty reference.no}">
+                    <b>관리자</b>
+                </c:when>
+                <c:otherwise>
+                    <c:out value="${reference.userName}" />
+                </c:otherwise>
+            </c:choose>
         </td>
-							</tr>
-						</c:forEach>
+        <td align="center">
+            <fmt:formatDate pattern="yyyy-MM-dd" value="${reference.referenceDate}" />
+        </td>
+    </tr>
+</c:forEach>
 					</c:otherwise>
 				</c:choose>
 			</table>
@@ -221,7 +229,7 @@
 		
 		<!-- 신규 리뷰 -->
 		<td>
-			<table id="review3">
+			<table id="newReview">
 			<th colspan="3" class="homeReview" align="left"><spring:message code="home.admin.review" /></th>
 			</table>
 			<table border="1" id="review">
