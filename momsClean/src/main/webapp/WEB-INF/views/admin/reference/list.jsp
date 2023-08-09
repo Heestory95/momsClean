@@ -107,17 +107,31 @@
 		
 	<c:forEach items="${list}" var="reference">
     <tr>
-        <td align="center">${reference.no}
-        	<c:choose>
-    <c:when test="${empty reference.no}"><B>└</B></c:when>
-    </c:choose>
+        <td align="center">
+            <c:choose>
+                <c:when test="${empty reference.no}">
+                    <B>└</B>
+                </c:when>
+                <c:otherwise>
+                    ${reference.no}
+                </c:otherwise>
+            </c:choose>
         </td>
         <td align="left">
             <a href="/admin/reference/read${pgrq.toUriString(pgrq.page)}&referenceNo=${reference.referenceNo}">
                 <c:out value="${reference.referenceTitle}" />
             </a>
         </td>
-        <td align="center">${reference.userName}</td>
+        <td align="center">
+            <c:choose>
+                <c:when test="${empty reference.no}">
+                    <b>관리자</b>
+                </c:when>
+                <c:otherwise>
+                    <c:out value="${reference.userName}" />
+                </c:otherwise>
+            </c:choose>
+        </td>
         <td align="center">
             <fmt:formatDate pattern="yyyy-MM-dd" value="${reference.referenceDate}" />
         </td>
