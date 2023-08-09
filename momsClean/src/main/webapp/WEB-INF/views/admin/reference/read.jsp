@@ -78,7 +78,14 @@
 		</tr>
 		<tr>
 			<td id="name"><spring:message code="reference.name" /></td>
-			<td><form:input class="name" path="userName" readonly="true" /></td>
+			<td class="name"><c:choose>
+                <c:when test="${empty reference.no}">
+                    <b>관리자</b>
+                </c:when>
+                <c:otherwise>
+                    <c:out value="${reference.userName}" />
+                </c:otherwise>
+            </c:choose></td>
 			
 		</tr>
 		<tr>
