@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 //import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.mom.admin.common.domain.CodeLabelValue;
+import com.mom.admin.common.CodeLabelValue;
 import com.mom.admin.domain.Notice;
 import com.mom.admin.domain.PageRequest;
 import com.mom.admin.domain.Pagination;
