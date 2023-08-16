@@ -36,18 +36,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="list" resultType="User">
     <![CDATA[
     WITH paginated_users AS (
-        SELECT user_no, user_id, user_name, user_phone, user_email, email_auth, reg_date, user_division, rownum as rnum
+        SELECT user_no, user_id, user_name, user_phone, user_email,
+        email_auth, reg_date, user_division, rownum as rnum
         FROM (
-            SELECT user_no, user_id, user_name, user_phone, user_email, email_auth, reg_date, user_division
+            SELECT user_no, user_id, user_name, user_phone, user_email,
+            email_auth, reg_date, user_division
             FROM user_tbl
             WHERE user_division = '유지'
     ]]>
     <include refid="search" />
     <![CDATA[
             ORDER BY user_no ASC) paginated
-        	OFFSET #{sizePerPage} * (#{page} - 1) ROWS FETCH NEXT #{sizePerPage} ROWS ONLY
+        	OFFSET #{sizePerPage} * (#{page} - 1) ROWS FETCH
+        	NEXT #{sizePerPage} ROWS ONLY
     		)
-    	SELECT user_no, user_id, user_name, user_phone, user_email, email_auth, reg_date, user_division
+    	SELECT user_no, user_id, user_name, user_phone, user_email,
+    	email_auth, reg_date, user_division
     	FROM paginated_users
     	WHERE user_division = '유지'
     	ORDER BY user_no ASC

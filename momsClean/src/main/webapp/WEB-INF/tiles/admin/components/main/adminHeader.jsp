@@ -24,6 +24,8 @@
 }
 
 </style>
+<title>MOMSCLEAN</title>
+
 <div align="right">
 <a href="/login" class="logout"><spring:message
 		code="header.admin.logout"/></a>
